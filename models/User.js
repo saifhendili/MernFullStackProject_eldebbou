@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  city: {
+    type: String,
+    reuired: true,
+  },
   email: {
     type: String,
     required: true,
@@ -20,9 +24,10 @@ const UserSchema = new mongoose.Schema({
   },
   typeuser: {
     type: String,
-    required: true,
+    enum:["Premium","Normal"],
+    default:"Normal",
   },
-  avatar: {
+  imageUrl: {
     type: String,
   },
   date: {
@@ -32,6 +37,11 @@ const UserSchema = new mongoose.Schema({
   birthday: {
     type: Date,
     default: Date.now,
+  },
+
+  Role: {
+    type: String,
+    enum:["Client or Saller","Organisation","Delivery","Admin"],
   },
 
 });

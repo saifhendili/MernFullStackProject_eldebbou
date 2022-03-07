@@ -11,6 +11,19 @@ const { check, validationResult } = require('express-validator');
 // @desc Test route
 //@acess Public
 
+
+router.get('/', async (req, res) => {
+  try {
+    const Users = await User.find().sort({ date: -1 });
+    res.json(Users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+
+
 router.post(
   '/',
   [
@@ -20,17 +33,20 @@ router.post(
     check('lastname', 'lastname is required')
       .not()
       .isEmpty(),
-    check('typeuser', 'type of user is required')
+    check('Role', 'Role of user is required')
       .not()
       .isEmpty(),
     check('birthday', 'date of birthday is required')
+      .not()
+      .isEmpty(),
+      check('city', 'City is required')
       .not()
       .isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
     check(
       'password',
       'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 })
+    ).isLength({ min: 3 })
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -40,8 +56,9 @@ router.post(
     const {
       firstname,
       lastname,
-      typeuser,
+      Role,
       email,
+      city,
       birthday,
       password
     } = req.body;
@@ -62,7 +79,8 @@ router.post(
         lastname,
         email,
         avatar,
-        typeuser,
+        Role,
+        city,
         birthday,
         password
       });

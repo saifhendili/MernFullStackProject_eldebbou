@@ -11,6 +11,7 @@ import store from './store';
 import PrivateRoute from './Component/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import IndexAdmin from './Component/Admin/IndexAdmin';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -28,6 +29,7 @@ const App = () => {
           <section className='container'>
             <Alert className='aaa' />
             <Switch>
+          {/* /    <Route path="/" component={IndexAdmin}/> */}
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />

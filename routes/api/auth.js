@@ -7,10 +7,25 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 
+router.put('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (user) {
+      user.firstname= req.body.firstname;
+     
+      const updatedProduct = await user.save();
+      res.json(updatedProduct);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 // @route    GET api/auth
 // @desc     Get user by token
 // @access   Private
-router.get('/', auth, async (req, res) => {
+router.get('/me', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
@@ -19,6 +34,42 @@ router.get('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    await user.remove();
+
+    res.json({ msg: 'User removed' });
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+});
+
+
+
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.find();
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 router.post(
   '/',

@@ -33,10 +33,11 @@ export const register = ({
   firstname,
   lastname,
   email,
+  city,
   password,
   password2,
   birthday,
-  typeuser,
+  Role,
 }) => async (dispatch) => {
   const config = {
     headers: {
@@ -48,10 +49,11 @@ export const register = ({
     firstname,
     lastname,
     email,
+    city,
     password,
     password2,
     birthday,
-    typeuser,
+    Role,
   });
 
   try {

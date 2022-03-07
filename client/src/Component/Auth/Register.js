@@ -14,19 +14,21 @@ function Register({ SetAlert, register, isAuthenticated }) {
     firstname: '',
     lastname: '',
     email: '',
+    city:'',
     password: '',
     password2: '',
     birthday: '',
-    typeuser: 'Instructor',
+    Role: 'Client or Saller',
   });
   const {
     firstname,
     lastname,
     email,
+    city,
     password,
     password2,
     birthday,
-    typeuser,
+    Role,
   } = fromData;
   const hundelchange = (e) =>
     setFormData({ ...fromData, [e.target.name]: e.target.value });
@@ -38,10 +40,11 @@ function Register({ SetAlert, register, isAuthenticated }) {
         firstname,
         lastname,
         email,
+        city,
         password,
         password2,
         birthday,
-        typeuser,
+        Role,
       });
     }
   };
@@ -85,6 +88,14 @@ function Register({ SetAlert, register, isAuthenticated }) {
             value={email}
             onChange={(e) => hundelchange(e)}
           />
+             <input
+            className='myinput'
+            type='text'
+            placeholder='City'
+            name='city'
+            value={city}
+            onChange={(e) => hundelchange(e)}
+          />
           <input
             className='myinput'
             type='password'
@@ -114,11 +125,13 @@ function Register({ SetAlert, register, isAuthenticated }) {
           <select
             className=' typeuser'
             name='typeuser'
-            value={typeuser}
+            value={Role}
             onChange={(e) => hundelchange(e)}
           >
-            <option className='option-type-profile'>Instructor</option>
-            <option className='option-type-profile'>student</option>
+            
+            <option className='option-type-profile'>Client or Saller</option>
+            <option className='option-type-profile'>Organisation</option>
+            <option className='option-type-profile'>Delivery</option>
           </select>
           <input className='submitcreatepro' type='submit' value='Sign Up' />
         </form>

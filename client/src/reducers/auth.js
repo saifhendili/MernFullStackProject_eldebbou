@@ -31,7 +31,7 @@ import {
         // localStorage.setItem('token', payload.token);
         return {
           ...state,
-          // ...payload,
+       
           isAuthenticated: true,
           loading: false,
           user: payload,
