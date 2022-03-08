@@ -12,6 +12,7 @@ import PrivateRoute from './Component/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import IndexAdmin from './Component/Admin/IndexAdmin';
+import Home from './Frontoffice/Home';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -21,23 +22,25 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
   return (
-    <Provider store={store}>
-      <Router>
-        <Fragment>
-          <Navbar />
-          {/* <Route exact path='/' component={Landing} /> */}
-          <section className='container'>
-            <Alert className='aaa' />
-            <Switch>
-          {/* /    <Route path="/" component={IndexAdmin}/> */}
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-              <PrivateRoute exact path='/dashboard' component={Dashboard} />
-            </Switch>
-          </section>
-        </Fragment>
-      </Router>
-    </Provider>
+    // <Provider store={store}>
+    //   <Router>
+    //     <Fragment>
+    //       <Navbar />
+          
+    //       {/* <Route exact path='/' component={Landing} /> */}
+    //       <section className='container'>
+    //         <Alert className='aaa' />
+    //         <Switch>
+    //       {/* /    <Route path="/" component={IndexAdmin}/> */}
+    //           <Route exact path='/register' component={Register} />
+    //           <Route exact path='/login' component={Login} />
+    //           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+    //         </Switch>
+    //       </section>
+    //     </Fragment>
+    //   </Router>
+    // </Provider>
+    <Home/>
   );
 };
 export default App;

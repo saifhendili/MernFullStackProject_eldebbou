@@ -15,6 +15,7 @@ router.put('/', auth, async (req, res) => {
      
       const updatedProduct = await user.save();
       res.json(updatedProduct);
+
     }
   } catch (error) {
     console.log(error);
@@ -44,6 +45,7 @@ router.get('/:id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 
 router.delete('/:id', auth, async (req, res) => {
   try {
