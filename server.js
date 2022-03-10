@@ -15,6 +15,7 @@ app.get('/', (req, res) => res.send('API Running'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/product', require('./routes/api/product'));
+app.use('/api/wishlist', require('./routes/api/wishlist'));
 
 server.listen(process.env.PORT || 5000, () =>
   console.log(`Server has started on.`)

@@ -38,7 +38,37 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-
+  wishlist: [
+    {
+      product: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'product',
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+      availibility: {
+        type: Boolean,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+        
+      },
+      image: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      
+      
+    },  
+  ],
   Role: {
     type: String,
     enum:["Client or Saller","Organisation","Delivery","Admin"],

@@ -64,6 +64,7 @@ html {
 /**
  * Set up a background-color and height on the root and body element.
  */
+ 
 body {
   line-height: 1.5;
   font-size: 1rem;
@@ -72,6 +73,10 @@ body {
 .config {
   overflow: hidden; }
 
+
+  .mycolor{
+background-color: #2c2e3e !important;
+  }
 /**
  * Basic styles for headings and paragraph
  */

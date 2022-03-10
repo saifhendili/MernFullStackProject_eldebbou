@@ -28,13 +28,12 @@ import {
           loading: false,
         };
       case USER_LOADED:
-        // localStorage.setItem('token', payload.token);
         return {
           ...state,
        
-          isAuthenticated: true,
-          loading: false,
+            isAuthenticated: true,
           user: payload,
+          loading: false,
         };
   
       case REGISTER_FAIL:

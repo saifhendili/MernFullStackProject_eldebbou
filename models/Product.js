@@ -36,7 +36,18 @@ const ProductSchema = new mongoose.Schema({
     type: String,
    required:true
   },
-
+  comments: [
+    {
+      userid: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+      text: {
+        type: String,
+      },
+  
+    },
+  ],
   date: {
     type: Date,
     default:Date.now()

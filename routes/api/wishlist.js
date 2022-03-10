@@ -4,16 +4,30 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 
 const Product = require('../../models/Product');
+const User = require('../../models/User');
 
 // @route    GET api/posts
 // @desc     Get all posts
 // @access   Private
 
 
-  router.get('/:id', async (req, res) => {
+  router.get('/',auth, async (req, res) => {
     try {
-      const product = await Product.findById(req.params.id);
+        const me =await User.findById(req.user.id);
+   //   const product = await Product.findById(req.params.id);
+   const wishlist=await me.wishlist
  
+      res.json(wishlist);
+    } catch (err) {
+      console.error(err.message);
+  
+      res.status(500).send('Server Error');
+    }
+  });
+
+  router.get('/:id',auth, async (req, res) => {
+    try {
+   const product = await Product.findById(req.params.id);
       res.json(product);
     } catch (err) {
       console.error(err.message);
@@ -21,6 +35,44 @@ const Product = require('../../models/Product');
       res.status(500).send('Server Error');
     }
   });
+  router.post('/:id',auth,async(req,res)=>{
+      try {
+          const me =await User.findById(req.user.id);
+          const product =await Product.findById(req.params.id);
+          
+          const newProduct = {
+            product:req.user.id,
+            name: product.name,
+            description: product.description,
+            availibility: product.availibility,
+            image: product.image,
+            price: product.price,
+          };
+    
+
+        me.wishlist.unshift(newProduct)
+    await    me.save();
+        res.json(me.wishlist);
+      } catch (error) {
+          
+      res.status(500).send('Server Error');
+      }
+  })
+
+  router.delete('/:id',auth,async(req,res)=>{
+    try {
+        const me =await User.findById(req.user.id);
+        
+        me.wishlist = me.wishlist.filter(
+            ({ id }) => id !== req.params.id
+          );
+   await   me.save();
+      res.json(me.wishlist);
+    } catch (error) {
+        
+    res.status(500).send('Server Error');
+    }
+})
 
   router.get('/', async (req, res) => {
     try {
@@ -33,7 +85,7 @@ const Product = require('../../models/Product');
     }
   });
 
-  router.post('/',auth, async (req, res) => {
+  router.post('/', auth, async (req, res) => {
     
     try {
 

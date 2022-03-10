@@ -1,17 +1,34 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React,{Fragment} from 'react'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import IndexAdmin from '../Admin/IndexAdmin';
+import Spinner from '../Layout/Spinner';
+import ListProduct from '../Frontoffice/Product/ListProduct/ListProduct';
 
-function Dashboard(props) {
-    return (
-        <div>
-          <h1 className='authok'>Auth ok :D</h1>  
-        </div>
-    )
-}
+
+function Dashboard({auth:{user,loading}}) {
+  return loading || user === null ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+       {user.Role =="Admin" ?<IndexAdmin/>:
+        <ListProduct/>
+         }
+        </Fragment>
+  );
+};
 
 Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
 
 }
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  
+});
 
-export default Dashboard
+export default connect(mapStateToProps, {
+  
+})(Dashboard);
+
 
