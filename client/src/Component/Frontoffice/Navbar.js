@@ -654,20 +654,7 @@ function Navbar() {
                     {/*====== Dropdown ======*/}
                     <span className="js-menu-toggle" />
                     <ul style={{width: 170}}>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Home<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 118}}>
-                          <li>
-                            <a href="index.html">Home 1</a></li>
-                          <li>
-                            <a href="index-2.html">Home 2</a></li>
-                          <li>
-                            <a href="index-3.html">Home 3</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
+               
                       <li className="has-dropdown has-dropdown--ul-left-100">
                         <a>Account<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
                         {/*====== Dropdown ======*/}

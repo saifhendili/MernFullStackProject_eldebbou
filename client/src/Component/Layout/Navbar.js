@@ -110,7 +110,6 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
           <div className="secondary-nav">
             {/*====== Dropdown Main plugin ======*/}
             <div className="menu-init" id="navigation1">
-              <button className="btn btn--icon toggle-mega-text toggle-button" type="button">M</button>
               {/*====== Menu ======*/}
               <div className="ah-lg-mode">
                 <span className="ah-close">✕ Close</span>
@@ -657,156 +656,18 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                   <li>
                     <a href="shop-side-version-2.html">NEW ARRIVALS</a></li>
                   <li className="has-dropdown">
-                    <a>PAGES<i className="fas fa-angle-down u-s-m-l-6" /></a>
+                    <a>Services<i className="fas fa-angle-down u-s-m-l-6" /></a>
                     {/*====== Dropdown ======*/}
                     <span className="js-menu-toggle" />
                     <ul style={{width: 170}}>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Home<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 118}}>
-                          <li>
-                            <a href="index.html">Home 1</a></li>
-                          <li>
-                            <a href="index-2.html">Home 2</a></li>
-                          <li>
-                            <a href="index-3.html">Home 3</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Account<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 200}}>
-                          <li>
-                            <a href="signin.html">Signin / Already Registered</a></li>
-                          <li>
-                            <a href="signup.html">Signup / Register</a></li>
-                          <li>
-                            <a href="lost-password.html">Lost Password</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a href="dashboard.html">Dashboard<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 200}}>
-                          <li className="has-dropdown has-dropdown--ul-left-100">
-                            <a href="dashboard.html">Manage My Account<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                            {/*====== Dropdown ======*/}
-                            <span className="js-menu-toggle" />
-                            <ul style={{width: 180}}>
-                              <li>
-                                <a href="dash-edit-profile.html">Edit Profile</a></li>
-                              <li>
-                                <a href="dash-address-book.html">Edit Address Book</a></li>
-                              <li>
-                                <a href="dash-manage-order.html">Manage Order</a></li>
-                            </ul>
-                            {/*====== End - Dropdown ======*/}
-                          </li>
-                          <li>
-                            <a href="dash-my-profile.html">My Profile</a></li>
-                          <li className="has-dropdown has-dropdown--ul-left-100">
-                            <a href="dash-address-book.html">Address Book<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                            {/*====== Dropdown ======*/}
-                            <span className="js-menu-toggle" />
-                            <ul style={{width: 180}}>
-                              <li>
-                                <a href="dash-address-make-default.html">Address Make Default</a></li>
-                              <li>
-                                <a href="dash-address-add.html">Add New Address</a></li>
-                              <li>
-                                <a href="dash-address-edit.html">Edit Address Book</a></li>
-                            </ul>
-                            {/*====== End - Dropdown ======*/}
-                          </li>
-                          <li>
-                            <a href="dash-track-order.html">Track Order</a></li>
-                          <li>
-                            <a href="dash-my-order.html">My Orders</a></li>
-                          <li>
-                            <a href="dash-payment-option.html">My Payment Options</a></li>
-                          <li>
-                            <a href="dash-cancellation.html">My Returns &amp; Cancellations</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Empty<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 200}}>
-                          <li>
-                            <a href="empty-search.html">Empty Search</a></li>
-                          <li>
-                            <a href="empty-cart.html">Empty Cart</a></li>
-                          <li>
-                            <a href="empty-wishlist.html">Empty Wishlist</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Product Details<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 200}}>
-                          <li>
-                            <a href="product-detail.html">Product Details</a></li>
-                          <li>
-                            <a href="product-detail-variable.html">Product Details Variable</a></li>
-                          <li>
-                            <a href="product-detail-affiliate.html">Product Details Affiliate</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Shop Grid Layout<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 200}}>
-                          <li>
-                            <a href="shop-grid-left.html">Shop Grid Left Sidebar</a></li>
-                          <li>
-                            <a href="shop-grid-right.html">Shop Grid Right Sidebar</a></li>
-                          <li>
-                            <a href="shop-grid-full.html">Shop Grid Full Width</a></li>
-                          <li>
-                            <a href="shop-side-version-2.html">Shop Side Version 2</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
-                      <li className="has-dropdown has-dropdown--ul-left-100">
-                        <a>Shop List Layout<i className="fas fa-angle-down i-state-right u-s-m-l-6" /></a>
-                        {/*====== Dropdown ======*/}
-                        <span className="js-menu-toggle" />
-                        <ul style={{width: 200}}>
-                          <li>
-                            <a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                          <li>
-                            <a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                          <li>
-                            <a href="shop-list-full.html">Shop List Full Width</a></li>
-                        </ul>
-                        {/*====== End - Dropdown ======*/}
-                      </li>
+              
+                  
+              
+                
                       <li>
-                        <a href="cart.html">Cart</a></li>
-                      <li>
-                        <Link to="wishlist">Wishlist</Link></li>
-                      <li>
-                        <a href="checkout.html">Checkout</a></li>
-                      <li>
-                        <a href="faq.html">FAQ</a></li>
-                      <li>
-                        <a href="about.html">About us</a></li>
-                      <li>
-                        <a href="contact.html">Contact</a></li>
-                      <li>
-                        <a href="404.html">404</a></li>
+                        <Link to="/addproduct">Add Product </Link></li>
+
+                    
                     </ul>
                     {/*====== End - Dropdown ======*/}
                   </li>
@@ -1915,13 +1776,7 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
     
     <nav class="navbar navbar-expand-md">
 
-        <div class="navbar-header d-flex align-items-center">
-            <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/img/logo2.png" class="img-fluid logo-desktop" alt="logo" />
-                <img src="assets/img/logo-icon.png" class="img-fluid logo-mobile" alt="logo" />
-            </a>
-        </div>
+    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="ti ti-align-left"></i>
         </button>
@@ -2329,8 +2184,6 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
 
   return (
     <div className=''>
-      <Link to='/'>logo</Link>
-
       <Fragment>
         {loading
           ? null

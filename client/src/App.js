@@ -20,6 +20,7 @@ import Navbarr from './Component/Frontoffice/Navbar'
 import Footer from './Component/Frontoffice/Footer'
 import Wishlist from './Component/Frontoffice/Wishlist/Wishlist';
 import ContenuChat from './Component/Admin/Chat/ContenuChat';
+import AddProduct from './Component/Frontoffice/Product/AddProduct/AddProduct';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -64,6 +65,7 @@ const App = () => {
                <Route path='/chat' component={ContenuChat}/>
                <Route path="/myproduct" component={DetailProduit} />
                 <PrivateRoute path="/wishlist" component={Wishlist}/>
+              <Route path="/addproduct" component={AddProduct} />
 
                
                
