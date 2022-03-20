@@ -20,8 +20,8 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
       <nav className="primary-nav primary-nav-wrapper--border">
         <div className="container">
           <div className="primary-nav">
-            <a className="main-logo" href="index.html">
-              <img src="assetes/images/logo/logo-1.png"  /></a>
+            <Link className="main-logo" to='dashboard'>
+              <img src="assetes/images/logo/logo-1.png"  /></Link>
             <form className="main-form">
               <label htmlFor="main-search" />
               <input className="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search" />
@@ -41,8 +41,8 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                     <span className="js-menu-toggle" />
                     <ul style={{width: 120}}>
                       <li>
-                        <a href="dashboard.html"><i className="fas fa-user-circle u-s-m-r-6" />
-                          <span>Account</span></a></li>
+                        <Link to="profile"><i className="fas fa-user-circle u-s-m-r-6" />
+                          <span>Account</span></Link></li>
                      
                       <li>
                         <a onClick={(e) => loggout(e)} ><i className="fas fa-lock-open u-s-m-r-6" />
@@ -714,8 +714,8 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                   <Link to="wishlist">
 <i className="far fa-heart" /></Link></li>
                   <li className="has-dropdown">
-                    <a className="mini-cart-shop-link"><i className="fas fa-shopping-bag" />
-                      <span className="total-item-round">2</span></a>
+                    <Link to="card" className="mini-cart-shop-link"><i className="fas fa-shopping-bag" />
+                      <span className="total-item-round">2</span></Link>
                     {/*====== Dropdown ======*/}
                     <span className="js-menu-toggle" />
                     <div className="mini-cart">
@@ -1771,7 +1771,9 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
   );
 
   const adminLinks = (
+
     <div>
+      <Aside />
         <header class="app-header top-bar">
     
     <nav class="navbar navbar-expand-md">

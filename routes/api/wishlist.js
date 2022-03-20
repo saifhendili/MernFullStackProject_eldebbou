@@ -14,10 +14,8 @@ const User = require('../../models/User');
   router.get('/',auth, async (req, res) => {
     try {
         const me =await User.findById(req.user.id);
-   //   const product = await Product.findById(req.params.id);
-   const wishlist=await me.wishlist
- 
-      res.json(wishlist);
+  
+      res.json(me.wishlist);
     } catch (err) {
       console.error(err.message);
   
@@ -37,11 +35,11 @@ const User = require('../../models/User');
   });
   router.post('/:id',auth,async(req,res)=>{
       try {
-          const me =await User.findById(req.user.id);
+          const me =await User.findById(req.user.id).select('-password');;
           const product =await Product.findById(req.params.id);
           
-          const newProduct = {
-            product:req.user.id,
+          const newProduct =  {
+            product:req.params.id,
             name: product.name,
             description: product.description,
             availibility: product.availibility,
@@ -50,8 +48,9 @@ const User = require('../../models/User');
           };
     
 
-        me.wishlist.unshift(newProduct)
-    await    me.save();
+          await  me.wishlist.unshift(newProduct)
+    
+        await  me.save();
         res.json(me.wishlist);
       } catch (error) {
           
@@ -74,73 +73,63 @@ const User = require('../../models/User');
     }
 })
 
-  router.get('/', async (req, res) => {
-    try {
-      const products = await Product.find().sort({ date: -1 });
-      res.json(products);
-    } catch (err) {
-      return res.status(500).json({ msg: "Server error" });
-
-
-    }
-  });
-
-  router.post('/', auth, async (req, res) => {
+ 
+  // router.post('/', auth, async (req, res) => {
     
-    try {
+  //   try {
 
-      const newRequest = new Product({
-        name: req.body.name,
-        description: req.body.description,
-        availibility:req.body.availibility,
-        image: req.body.image,
-        price: req.body.price,
-        dealType:req.body.dealType,
-        user: req.user.id,
-        Category:req.body.category
-      });
+  //     const newRequest = new Product({
+  //       name: req.body.name,
+  //       description: req.body.description,
+  //       availibility:req.body.availibility,
+  //       image: req.body.image,
+  //       price: req.body.price,
+  //       dealType:req.body.dealType,
+  //       user: req.user.id,
+  //       Category:req.body.category
+  //     });
   
-      const mypro = await newRequest.save();
+  //     const mypro = await newRequest.save();
       
-      res.json(mypro);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  });
+  //     res.json(mypro);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //     res.status(500).send('Server Error');
+  //   }
+  // });
 
-  router.put('/:id', auth, async (req, res) => {
-    try {
-      const product = await Product.findById(req.params.id);
-      if (product) {
-        product.name= req.body.name,
-        product.description= req.body.description,
-        product.availibility=req.body.availibility,
-        product.image= req.body.image,
-        product.price= req.body.price,
-        product.dealType=req.body.dealType,
-        product.Category=req.body.category
-        const updatedProduct = await product.save();
-        res.json(updatedProduct);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  // router.put('/:id', auth, async (req, res) => {
+  //   try {
+  //     const product = await Product.findById(req.params.id);
+  //     if (product) {
+  //       product.name= req.body.name,
+  //       product.description= req.body.description,
+  //       product.availibility=req.body.availibility,
+  //       product.image= req.body.image,
+  //       product.price= req.body.price,
+  //       product.dealType=req.body.dealType,
+  //       product.Category=req.body.category
+  //       const updatedProduct = await product.save();
+  //       res.json(updatedProduct);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
 
 
-  router.delete('/:id', auth, async (req, res) => {
-    try {
-      const product = await Product.findById(req.params.id);
-      await product.remove();
+  // router.delete('/:id', auth, async (req, res) => {
+  //   try {
+  //     const product = await Product.findById(req.params.id);
+  //     await product.remove();
   
-      res.json({ msg: 'Product removed' });
-    } catch (err) {
-      console.error(err.message);
+  //     res.json({ msg: 'Product removed' });
+  //   } catch (err) {
+  //     console.error(err.message);
   
-      res.status(500).send('Server Error');
-    }
-  });
+  //     res.status(500).send('Server Error');
+  //   }
+  // });
   
   
   module.exports = router;

@@ -3,9 +3,10 @@ import alert from './alert';
 import auth from './auth.js';
 import product from './product'
 import user from './user';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import wishlist from './wishlist';
+import panier from './panier';
+import comment from './comment';
 
 export default combineReducers({
 
@@ -13,5 +14,7 @@ export default combineReducers({
   alert,
   product,
   user,
-  wishlist
+  wishlist,
+  panier,
+  comment
 });

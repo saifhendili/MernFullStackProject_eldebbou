@@ -1,12 +1,16 @@
 import React,{useEffect} from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-function WishlistItem({product:{name,image,Category,price}}) {
+import { DeleteWishlist } from '../../../actions/wishlist';
+import { Link } from 'react-router-dom';
+
+function WishlistItem({DeleteWishlist, product:{_id,name,image,Category,price,product}}) {
 
 
   return (
     <div class="w-r u-s-m-b-30">
-    <div class="w-r__container">
+  
+   <div class="w-r__container">
         <div class="w-r__wrap-1">
             <div class="w-r__img-wrap">
 
@@ -21,26 +25,29 @@ function WishlistItem({product:{name,image,Category,price}}) {
 
                     <a href="shop-side-version-2.html"></a>{Category}</span>
 
-                <span class="w-r__price">{price}
+                <span class="w-r__price">{price} DT
 
-                    <span class="w-r__discount">$160.00</span></span></div>
+                    <span class="w-r__discount"></span></span></div>
         </div>
         <div class="w-r__wrap-2">
 
             <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
 
-            <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-detail.html">VIEW</a>
-
-            <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
-    </div>
+            <Link to={`/myproduct?id=${product}`} class="w-r__link btn--e-transparent-platinum-b-2" >VIEW</Link>
+            <a  onClick={() => DeleteWishlist(_id)}class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
+    </div> 
 </div>
   )
 }
+WishlistItem.propTypes = {
+    DeleteWishlist: PropTypes.func.isRequired,
+  };
 
+const mapStateToProps = (state) => ({
 
-
-  
-  const mapStateToProps = (state) => ({
   });
   
-  export default connect(mapStateToProps, {  })(WishlistItem);
+  export default connect(mapStateToProps, {
+    DeleteWishlist,
+  })(WishlistItem);
+

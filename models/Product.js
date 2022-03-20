@@ -42,8 +42,25 @@ const ProductSchema = new mongoose.Schema({
         type:  mongoose.Schema.Types.ObjectId,
         ref: 'user',
       },
+      firstname: {
+        type: String,
+        required:true
+      },
+      lastname: {
+        type: String,
+        required:true
+      },
+      image: {
+        type: String,
+        required:true
+      },
       text: {
         type: String,
+        required:true
+      },
+      date: {
+        type: Date,
+        default: Date.now,
       },
   
     },

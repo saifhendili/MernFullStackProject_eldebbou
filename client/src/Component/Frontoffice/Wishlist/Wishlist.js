@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../../Layout/Spinner';
 
-function Wishlist({GetWishLists ,mywishlist:{wishlist,loading}}) {
+function Wishlist({GetWishLists ,wishlist:{wishlists,loading}}) {
     useEffect(() => {
         GetWishLists();
       }, [GetWishLists]);
-      return loading || wishlist === null ? (
+      return loading || wishlists === null ? (
         <Spinner />
       ) : (  <Fragment>
     <div class="app-content">
@@ -53,9 +53,11 @@ function Wishlist({GetWishLists ,mywishlist:{wishlist,loading}}) {
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
 
-                     
-                           {wishlist.map(x=>(x.name))}
-                            {/* <WishlistItem/> */}
+                     {loading}
+                           {wishlists.map(x=>(<WishlistItem product={x} />
+                       
+                           ))}
+                       
                           
                       
                         </div>
@@ -83,11 +85,11 @@ function Wishlist({GetWishLists ,mywishlist:{wishlist,loading}}) {
  };
 Wishlist.propTypes = {
     GetWishLists: PropTypes.func.isRequired,
-    mywishlist: PropTypes.object.isRequired,
+    wishlist: PropTypes.object.isRequired,
   };
   
   const mapStateToProps = (state) => ({
-    mywishlist: state.wishlist,
+    wishlist: state.wishlist,
   });
   
   export default connect(mapStateToProps, { GetWishLists })(Wishlist);

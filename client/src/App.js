@@ -12,15 +12,17 @@ import PrivateRoute from './Component/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import IndexAdmin from './Component/Admin/IndexAdmin';
-import Home from './Component/Frontoffice/Home';
+// import Home from './Component/Frontoffice/Home';
 import ListeUser from './Component/Admin/Liste-User/ListeUser';
 import ListProduct from './Component/Frontoffice/Product/ListProduct/ListProduct';
 import DetailProduit from './Component/Frontoffice/Product/DetailProduit/DetailProduit';
-import Navbarr from './Component/Frontoffice/Navbar'
-import Footer from './Component/Frontoffice/Footer'
+
 import Wishlist from './Component/Frontoffice/Wishlist/Wishlist';
 import ContenuChat from './Component/Admin/Chat/ContenuChat';
 import AddProduct from './Component/Frontoffice/Product/AddProduct/AddProduct';
+import MainCard from './Component/Frontoffice/Card/MainCard';
+import ProfileMain from './Component/Frontoffice/Profile/ProfileMain';
+import ForgetPassword from './Component/Auth/ForgetPassword';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,49 +32,27 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
   return (
-    // <Provider store={store}>
-    //   <Router>
-    //     <Fragment>
-    //       <Navbar />
-          
-    //       {/* <Route exact path='/' component={Landing} /> */}
-    //       <section className='container'>
-    //         <Alert className='aaa' />
-    //         <Switch>
-    //       {/* /    <Route path="/" component={IndexAdmin}/> */}
-    //           <Route exact path='/register' component={Register} />
-    //           <Route exact path='/login' component={Login} />
-    //           <PrivateRoute exact path='/dashboard' component={Dashboard} />
-    //           <Route exact path='/home' component={Home} />
-              
-    //         </Switch>
-    //       </section>
-    //     </Fragment>
-    //   </Router>
-    // </Provider>
+ 
     
     <Provider store={store}>
       
     <Router>
     <Alert className='aaa' />
     <Navbar />
-    <Route exact path='/register' component={Register} />
+       <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
                <PrivateRoute exact path='/dashboard' component={Dashboard} />
-               <Route exact path='/home' component={Home} />
+               {/* <Route exact path='/home' component={Home} /> */}
                <Route exact path='/listeuser' component={ListeUser} />
                <Route exact path='/listeproduct' component={ListProduct} />
                <Route path='/chat' component={ContenuChat}/>
                <Route path="/myproduct" component={DetailProduit} />
-                <PrivateRoute path="/wishlist" component={Wishlist}/>
-              <Route path="/addproduct" component={AddProduct} />
-
-               
-               
-  {/* <Navbarr /> */}
-  {/* <FrontListProducts/> */}
-  {/* <Footer/> */}
-  </Router>
+               <PrivateRoute path="/wishlist" component={Wishlist}/>
+               <PrivateRoute path="/card" component={MainCard}/>
+               <Route path="/addproduct" component={AddProduct} />
+               <PrivateRoute path='/profile' component={ProfileMain}/>
+               <Route path="/forgetpassword" component={ForgetPassword} />
+        </Router>
   {/* <Footer/> */}
   </Provider>  
   );
