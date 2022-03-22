@@ -122,7 +122,7 @@ function Login({ login, isAuthenticated }) {
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
                                     <div class="u-s-m-b-30">
 
-                                        <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                        <Link class="gl-link" to="forgetpassword">Lost Your Password?</Link></div>
                                 </div>
                                 <div class="u-s-m-b-30">
 

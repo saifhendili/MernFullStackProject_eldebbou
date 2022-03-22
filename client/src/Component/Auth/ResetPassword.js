@@ -1,31 +1,32 @@
 import React,{useState} from 'react'
 import axios from 'axios'
-import { SetAlert } from '../../actions/alert'
-import { Redirect } from 'react-router-dom'
+import queryString from 'query-string';
 
-function ForgetPassword() {
-    const [email,setEmail]=useState("")
- 
-const ForgetPasswordHandler= async(e)=>{
-    e.preventDefault();
-    const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      try {
-        const {data} = await axios.post(
-          `/api/users/forgetpassword/`,
-          {email},config
+function ResetPassword({location}) {
+    const [password,setPassword]=useState("")
 
-        );
-        alert("Mail Sent") 
-          }catch(error){
-alert("verify ")    
-this.email="" 
- }
+    const { resetToken } = queryString.parse(location.search);
 
-}
+
+    const ResetPasswordHandler= async(e)=>{
+        e.preventDefault();
+        const config = {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          };
+          try {
+            const {data} = await axios.put(
+              `/api/users/resetpassword/${resetToken}`,
+              {password},config
+    
+            );
+            alert("Password Changed  ") 
+              }catch(error){
+    alert("verify ")    
+     }
+    
+    }
   return (
     <div class="app-content">
 
@@ -69,13 +70,13 @@ this.email=""
                                 <div class="l-f-o__pad-box">
                                     <h1 class="gl-h1">PASSWORD RESET</h1>
 
-                                    <span class="gl-text u-s-m-b-30">Enter your email or username below and we will send you a link to reset your password.</span>
-                                    <form onSubmit={ForgetPasswordHandler} class="l-f-o__form">
+                                    <span class="gl-text u-s-m-b-30">Enter your new password.</span>
+                                    <form onSubmit={ResetPasswordHandler} class="l-f-o__form">
                                         <div class="u-s-m-b-30">
 
-                                            <label class="gl-label" for="reset-email">E-MAIL *</label>
+                                            <label class="gl-label" for="reset-email">Password *</label>
 
-                                            <input class="input-text input-text--primary-style" type="email" value={email}  onChange={(e)=>setEmail(e.target.value)} id="reset-email" placeholder="Enter E-mail"/></div>
+                                            <input class="input-text input-text--primary-style" type="password" value={password} minLength='6' onChange={(e)=>setPassword(e.target.value)} id="reset-Password" placeholder="New Password"/></div>
                                         <div class="u-s-m-b-30">
 
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button></div>
@@ -95,4 +96,4 @@ this.email=""
   )
 }
 
-export default ForgetPassword
+export default ResetPassword

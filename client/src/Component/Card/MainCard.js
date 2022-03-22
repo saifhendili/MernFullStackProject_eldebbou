@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CardItem from './CardItem'
 
-import { GetPanier } from '../../../actions/panier';
-import Spinner from '../../Layout/Spinner';
+import { GetPanier } from '../../actions/panier';
+import Spinner from '../Layout/Spinner';
 
 function MainCard({GetPanier,panier:{panier,loading} ,auth:{user}}) {
 

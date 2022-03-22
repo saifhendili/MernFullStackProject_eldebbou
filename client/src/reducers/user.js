@@ -1,7 +1,10 @@
 import {
     GET_USERS,
     USER_ERROR,
-    DELETE_USER
+    DELETE_USER,
+    PUT_USER,
+    CHANGE_PASSWORD,FORGET_PASSWORD
+
   } from '../actions/Types';
   
   const initialState = {
@@ -14,12 +17,30 @@ import {
     const { type, payload } = action;
   
     switch (type) {
+      case GET_USERS:
+        return {
+          ...state,
+          users: payload,
+          loading: false,
+        };
         case GET_USERS:
             return {
               ...state,
               users: payload,
               loading: false,
             };
+            case CHANGE_PASSWORD:
+              return {
+                ...state,
+                users: payload,
+                loading: false,
+              };
+            case PUT_USER:
+              return {
+                ...state,
+                users: payload,
+                loading: false,
+              };
             case DELETE_USER:
                 return {
                   ...state,

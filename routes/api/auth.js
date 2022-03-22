@@ -11,12 +11,12 @@ router.put('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (user) {
-      user.firstname= req.body.firstname;
-     
-      const updatedProduct = await user.save();
-      res.json(updatedProduct);
-
+      user.firstname= req.body.firstname?req.body.firstname:user.firstname;
+     user.lastname=req.body.lastname?req.body.lastname:user.lastname;
+     user.city=req.body.city?req.body.city:user.city;
     }
+  await user.save();
+    res.json(user);
   } catch (error) {
     console.log(error);
   }

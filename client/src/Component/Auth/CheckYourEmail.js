@@ -1,31 +1,7 @@
-import React,{useState} from 'react'
-import axios from 'axios'
-import { SetAlert } from '../../actions/alert'
-import { Redirect } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ForgetPassword() {
-    const [email,setEmail]=useState("")
- 
-const ForgetPasswordHandler= async(e)=>{
-    e.preventDefault();
-    const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      try {
-        const {data} = await axios.post(
-          `/api/users/forgetpassword/`,
-          {email},config
-
-        );
-        alert("Mail Sent") 
-          }catch(error){
-alert("verify ")    
-this.email="" 
- }
-
-}
   return (
     <div class="app-content">
 
@@ -67,21 +43,15 @@ this.email=""
                         <div class="col-lg-6 col-md-8 u-s-m-b-30">
                             <div class="l-f-o">
                                 <div class="l-f-o__pad-box">
-                                    <h1 class="gl-h1">PASSWORD RESET</h1>
+                                    <h1 class="gl-h1">Check Your Email</h1>
 
-                                    <span class="gl-text u-s-m-b-30">Enter your email or username below and we will send you a link to reset your password.</span>
-                                    <form onSubmit={ForgetPasswordHandler} class="l-f-o__form">
-                                        <div class="u-s-m-b-30">
+                                    <span class="gl-text u-s-m-b-30"> we send you a link to reset your password.</span>
+                                    <form class="l-f-o__form">
+                                      
 
-                                            <label class="gl-label" for="reset-email">E-MAIL *</label>
+                                       
 
-                                            <input class="input-text input-text--primary-style" type="email" value={email}  onChange={(e)=>setEmail(e.target.value)} id="reset-email" placeholder="Enter E-mail"/></div>
-                                        <div class="u-s-m-b-30">
-
-                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button></div>
-                                        <div class="u-s-m-b-30">
-
-                                            <a class="gl-link" href="signin.html">Back to Login</a></div>
+                                            <Link to="login" class="gl-link" >Back to Login</Link>
                                     </form>
                                 </div>
                             </div>

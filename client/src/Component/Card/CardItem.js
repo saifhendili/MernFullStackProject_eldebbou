@@ -1,5 +1,5 @@
 import React from 'react'
-import { DeleteFromPanier } from '../../../actions/panier'
+import { DeleteFromPanier } from '../../actions/panier'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 

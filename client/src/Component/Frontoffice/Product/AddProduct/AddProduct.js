@@ -1,9 +1,60 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import Footer from '../../../Layout/Footer'
 import { Link } from 'react-router-dom';
+import { addProduct } from '../../../../actions/product';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
-function AddProduct() {
+function AddProduct({addProduct}) {
+    const onChangeFile=e=>{
+setFormData({ ...fromData, [e.target.name]:e.target.files[0] });
+
+    }
+    const [fromData, setFormData] = useState({
+        name: '',
+        Category: '',
+        price: '',
+        images:'',
+        description:'',
+        availibility: true,
+        dealType: 'UsedProduct',
+        
+      });
+      const {
+        name,
+        description,
+        availibility,
+        images,
+        price,
+        dealType,
+        Category,
+       
+        
+      } = fromData;
+      const onsubmit = (e) => {
+        e.preventDefault();
+        let myformdata=new FormData();
+        myformdata.append("name",name);
+        myformdata.append("description",description)
+        myformdata.append("availibility",availibility)
+        myformdata.append("images",images)
+        myformdata.append("price",price)
+        myformdata.append("dealType",dealType)
+        myformdata.append("Category",Category)
+
+        addProduct(myformdata)
+        setFormData({name: '',
+        Category: '',
+        price: '',
+        images:'',
+        description:'',
+        availibility: true,
+        dealType: 'UsedProduct'})
+    }
+
+const hundelchange = (e) =>
+setFormData({ ...fromData, [e.target.name]: e.target.value });
     return (
         <div>
             <div className="app-content">
@@ -81,19 +132,20 @@ function AddProduct() {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-12">
-                                                            <form className="dash-edit-p">
+                                                            <form className="dash-edit-p"  onSubmit={(e) => onsubmit(e)} enctype="multipart/form-data" >
                                                                 <div className="gl-inline">
                                                                     <div className="u-s-m-b-30">
                                                                         <label className="gl-label" htmlFor="reg-fname">NAME *</label>
-                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Sneakers" /></div>
+                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='name'value={name} onChange={(e) => hundelchange(e)} placeholder="Name" /></div>
 
 
 
 
 
                                                                     <div className="u-s-m-b-30">
+
                                                                         <label className="gl-label" htmlFor="reg-fname">Category *</label>
-                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Sneakers" /></div>
+                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='Category'value={Category} onChange={(e) => hundelchange(e)} placeholder="Category" /></div>
 
                                                                 </div>
 
@@ -102,10 +154,11 @@ function AddProduct() {
                                                                 <div className="gl-inline">
                                                                     <div className="u-s-m-b-30">
                                                                         <label className="gl-label" htmlFor="reg-fname">Price *</label>
-                                                                        <input className="input-text input-text--primary-style" type="number" id="reg-fname" placeholder="Put your price" /></div>
+                                                                        <input className="input-text input-text--primary-style" type="number" id="reg-fname" name='price'value={price} onChange={(e) => hundelchange(e)} placeholder="Put your price" /></div>
                                                                     <div className="u-s-m-b-30">
-                                                                        <label className="gl-label" htmlFor="gender">DealType</label><select className="select-box select-box--primary-style u-w-100" id="gender">
-                                                                            <option >Select</option>
+                                                                        <label className="gl-label"  htmlFor="gender">DealType</label>
+                                                                        <select className="select-box select-box--primary-style u-w-100" id="gender">
+                                                                            <option name='dealType'value={dealType} onChange={(e) => hundelchange(e)}  >Select</option>
                                                                             <option value="UsedProduct">UsedProduct</option>
                                                                             <option value="Exchange">Exchange</option>
                                                                             <option value="Donation">Donation</option>
@@ -115,16 +168,14 @@ function AddProduct() {
 
                                                                 </div>
                                                                 <div className="gl-inline">
-                                                                    <div className="u-s-m-b-30">
-                                                                        <label className="gl-label" htmlFor="reg-fname">Availibility *</label>
-                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" placeholder="Sneakers" /></div>
-
-
-
-
                                                                     <div className="custom-file">
 
-                                                                        <input type="file" className="custom-file-input" id="customFile" />
+                                                                     
+                                                                     
+                                                                        <input type="file" name="images" className="custom-file-input"id="customFile" />
+                                                                     
+                                                                        <input type="file" class="form-control-file"  onChange={(e) =>onChangeFile(e)} name="images"/>
+
                                                                         <label className="custom-file-label" htmlFor="customFile">Choose file</label>
                                                                     </div>
 
@@ -141,8 +192,8 @@ function AddProduct() {
 
 
                                                                         <div className="u-s-m-b-30">
-                                                                            <label className="gl-label" htmlFor="reg-lname">Description *</label>
-                                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
+                                                                            <label className="gl-label" htmlFor="reg-lname" >Description *</label>
+                                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"name='description' value={description} onChange={(e) => hundelchange(e)}></textarea></div>
 
                                                                     </div>
 
@@ -152,7 +203,7 @@ function AddProduct() {
 
 
 
-                                                                    <a class="dash__custom-link btn--e-transparent-brand-b-2 mt-3" href="dash-edit-profile.html">Add Product</a></div>
+                                                                    <input type="submit" class="dash__custom-link btn--e-transparent-brand-b-2 mt-3"value="Add Product" /></div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -185,4 +236,10 @@ function AddProduct() {
     )
 }
 
-export default AddProduct
+AddProduct.propTypes = {
+   
+  };
+  const mapStateToProps = (state) => ({
+  });
+  
+  export default connect(mapStateToProps, { addProduct })(AddProduct);

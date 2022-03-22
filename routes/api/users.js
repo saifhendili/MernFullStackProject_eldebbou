@@ -1,3 +1,4 @@
+const crypto =require('crypto')
 const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
@@ -5,6 +6,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const User = require('../../models/User');
+const auth = require('../../middleware/auth');
+const sendEmail=require('../../middleware/sendEmail')
 const { check, validationResult } = require('express-validator');
 // const normalize = require('normalize-url');
 // @route post api/user
@@ -123,4 +126,114 @@ router.post(
     }
   }
 );
+
+router.put('/',auth,async (req, res) => {
+  try {
+    const me=await User.findById(req.user.id);
+    const isMatch = await bcrypt.compare(req.body.oldpassword, me.password);
+
+if(isMatch){
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+  const userPassword =await User.findByIdAndUpdate({_id:req.user.id},{password:password},{new:true});
+  return res.status(200).json("Password Changed")
+}else 
+return  res.status(400).json({ errors: [{ msg: 'Password Incorrect' }] });
+
+} catch (err) {
+
+    res.status(500).send('Server Error');
+  }
+});
+
+
+router.put('/email',auth,async (req, res) => {
+  try {
+    const me=await User.findById(req.user.id);
+    const isMatch = await bcrypt.compare(req.body.oldpassword, me.password);
+
+if(isMatch){
+  
+  const userPassword =await User.findByIdAndUpdate({_id:req.user.id},{email:req.body.email},{new:true});
+  return res.status(200).json("EmailChanged")
+  
+
+}else 
+return  res.status(400).json("Incorrect Password")
+
+} catch (err) {
+
+    res.status(500).send('Server Error');
+  }
+});
+
+
+router.post('/forgetPassword',async (req, res,next) => {
+ const {email} =req.body;
+ try {
+   const user= await User.findOne({email})
+   if(!user){
+     return res.status(400).send('Use exes');
+   }
+   const resetToken=user.getResetPasswordToken()
+   await user.save();
+   const resetUrl=`http://localhost:3000/passwordreset?resetToken=${resetToken}`
+   const message=`
+   <h1>You have requested a password reset </h1>
+   <p>Please go to this link to reset your password</p>
+   <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+   `
+  
+   try {
+     await sendEmail({
+       to:user.email,
+       subject:"Password Reset Request",
+       text:message
+     });
+     res.status(200).json({success:true,data:"Email Sent"})
+   } catch (error) {
+     user.resetPasswordToken=undefined;
+     user.resetPasswordExpire=undefined;
+     await user.save();
+    res.status(400).send('Email could not be sent 2');
+
+   }
+ } catch (error) {
+  res.status(500).send('Server Error');
+   
+ }
+});
+
+
+router.put('/resetpassword/:resetToken',async (req, res) => {
+  console.log("h1")
+
+const resetPasswordToken=crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
+
+try {
+
+  const user =await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire:{$gt:Date.now()}
+  })
+  console.log(user)
+  if(!user){
+    res.status(400).send('Email could not be sent');
+  }
+  console.log("h2")
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(req.body.password, salt);
+  user.resetPasswordToken=undefined;
+  user.resetPasswordExpire=undefined
+await user.save();
+res.status(201).json({
+  success:true,
+  data:"Password Reset Success"
+})
+} catch (error) {
+  res.status(500).send('Server Error');
+  
+}
+
+})
 module.exports = router;

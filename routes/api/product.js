@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const multer =require('multer')
 const auth = require('../../middleware/auth');
 
 const Product = require('../../models/Product');
@@ -8,6 +8,19 @@ const Product = require('../../models/Product');
 // @route    GET api/posts
 // @desc     Get all posts
 // @access   Private
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'client/public/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix+file.originalname)
+  }
+})
+
+
+const upload=multer({storage:storage});
 
 
   router.get('/:id', async (req, res) => {
@@ -33,7 +46,7 @@ const Product = require('../../models/Product');
     }
   });
 
-  router.post('/',auth, async (req, res) => {
+  router.post('/',auth, upload.single("images"),async (req, res) => {
     
     try {
 
@@ -41,11 +54,11 @@ const Product = require('../../models/Product');
         name: req.body.name,
         description: req.body.description,
         availibility:req.body.availibility,
-        image: req.body.image,
+        image: req.file.images,
         price: req.body.price,
         dealType:req.body.dealType,
         user: req.user.id,
-        Category:req.body.category
+        Category:req.body.Category
       });
   
       const mypro = await newRequest.save();
@@ -57,24 +70,24 @@ const Product = require('../../models/Product');
     }
   });
 
-  router.put('/:id', auth, async (req, res) => {
-    try {
-      const product = await Product.findById(req.params.id);
-      if (product) {
-        product.name= req.body.name,
-        product.description= req.body.description,
-        product.availibility=req.body.availibility,
-        product.image= req.body.image,
-        product.price= req.body.price,
-        product.dealType=req.body.dealType,
-        product.Category=req.body.category
-        const updatedProduct = await product.save();
-        res.json(updatedProduct);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  // router.put('/:id', auth,upload.single("image"), async (req, res) => {
+  //   try {
+  //     const product = await Product.findById(req.params.id);
+  //     if (product) {
+  //       product.name= req.body.name,
+  //       product.description= req.body.description,
+  //       product.availibility=req.body.availibility,
+  //       product.image= req.file.originalname,
+  //       product.price= req.body.price,
+  //       product.dealType=req.body.dealType,
+  //       product.Category=req.body.category
+  //       const updatedProduct = await product.save();
+  //       res.json(updatedProduct);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
 
 
   router.delete('/:id', auth, async (req, res) => {

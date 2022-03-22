@@ -2,19 +2,17 @@ import React,{useState} from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../../Layout/Spinner';
-import { PutInfo } from '../../../actions/user';
-import { Link } from 'react-router-dom';
+import { ChangePassword, PutInfo } from '../../../actions/user';
 
-function ProfileMain({PutInfo,auth:{user,loading}}) {
+function ChangePossword({ChangePassword,auth:{user,loading}}) {
     const [fromData, setFormData] = useState({
-        firstname: '',
-        lastname: '',
-        city: '',
+        oldpassword: '',
+        password: '',
+      
     });
     const {
-        firstname,
-        lastname,
-        city,  
+        oldpassword,
+        password, 
       } = fromData;
       const hundelchange = (e) =>
       setFormData({ ...fromData, [e.target.name]: e.target.value });
@@ -23,10 +21,9 @@ function ProfileMain({PutInfo,auth:{user,loading}}) {
       const onsubmit = (e) => {
         e.preventDefault();
         
-        PutInfo({
-            firstname,
-            lastname,
-           city
+        ChangePassword({
+            oldpassword,
+        password, 
           });
         }
      
@@ -143,70 +140,17 @@ function ProfileMain({PutInfo,auth:{user,loading}}) {
                                                   <div class="gl-inline">
                                                       <div class="u-s-m-b-30">
 
-                                                          <label class="gl-label" for="reg-fname">FIRST NAME *</label>
+                                                          <label class="gl-label" for="reg-fname">OLD PASSWORD *</label>
 
-                                                          <input class="input-text input-text--primary-style"name='firstname' value={firstname}  onChange={(e) => hundelchange(e)} type="text" id="reg-fname" placeholder={user.firstname}/></div>
+                                                          <input class="input-text input-text--primary-style"name='oldpassword' value={oldpassword}  onChange={(e) => hundelchange(e)} type="password" id="reg-fname" placeholder="Old Password"/></div>
                                                       <div class="u-s-m-b-30">
 
-                                                          <label class="gl-label" for="reg-lname">LAST NAME *</label>
+                                                          <label class="gl-label" for="reg-lname">PASSWORD *</label>
 
-                                                          <input class="input-text input-text--primary-style" type="text" id="reg-lname" name='lastname' value={lastname}  onChange={(e) => hundelchange(e)} placeholder={user.lastname}/></div>
+                                                          <input class="input-text input-text--primary-style" type="password" id="reg-lname" name='password' value={password}  onChange={(e) => hundelchange(e)} placeholder="Password"/></div>
                                                   </div>
-                                                  <div class="gl-inline">
-                                                      {/* <div class="u-s-m-b-30">
-
-
-                                                          <span class="gl-label">BIRTHDAY</span>
-                                                          <div class="gl-dob"><select class="select-box select-box--primary-style">
-                                                                  <option selected>Month</option>
-                                                                  <option value="male">January</option>
-                                                                  <option value="male">February</option>
-                                                                  <option value="male">March</option>
-                                                                  <option value="male">April</option>
-                                                              </select><select class="select-box select-box--primary-style">
-                                                                  <option selected>Day</option>
-                                                                  <option value="01">01</option>
-                                                                  <option value="02">02</option>
-                                                                  <option value="03">03</option>
-                                                                  <option value="04">04</option>
-                                                              </select><select class="select-box select-box--primary-style">
-                                                                  <option selected>Year</option>
-                                                                  <option value="1991">1991</option>
-                                                                  <option value="1992">1992</option>
-                                                                  <option value="1993">1993</option>
-                                                                  <option value="1994">1994</option>
-                                                              </select></div>
-                                                      </div> */}
-                                                      {/* <div class="u-s-m-b-30">
-
-                                                          <label class="gl-label" for="gender">GENDER</label><select class="select-box select-box--primary-style u-w-100" id="gender">
-                                                              <option selected>Select</option>
-                                                              <option value="male">Male</option>
-                                                              <option value="male">Female</option>
-                                                          </select></div> */}
-                                                  </div>
-                                                  <div class="gl-inline">
-                                                      <div class="u-s-m-b-30">
-                                                          <h2 class="dash__h2 u-s-m-b-8">City</h2>
-
-                                                          <input class="input-text input-text--primary-style" type="text" id="reg-fname" name='city' value={city}  onChange={(e) => hundelchange(e) }placeholder={user.city}/>
-
-                                                      </div>
-                                                  
-                                                  </div>
-                                                  <div class="gl-inline">
-                                                      <div class="u-s-m-b-30">
-                                                          <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
-
-                                                          <span class="dash__text">{user.email}</span>
-                                                          <div class="dash__link dash__link--secondary">
-
-                                                              <a href="#">Change</a></div>
-                                                      </div>
-                                                  
-                                                  </div>
-                                                  <Link to="changepassword"class="btn btn--e-brand-b-2" >Change Password</Link>
-                                                  <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
+                                              
+                                                  <button class="btn btn--e-brand-b-2" type="submit">Change Password</button>
                                               </form>
                                           </div>
                                       </div>
@@ -223,7 +167,7 @@ function ProfileMain({PutInfo,auth:{user,loading}}) {
 
   )
 }
-ProfileMain.propTypes = {
+ChangePossword.propTypes = {
     auth: PropTypes.object.isRequired,
     
   };
@@ -231,5 +175,5 @@ ProfileMain.propTypes = {
     auth: state.auth,
   });
     
-  export default connect(mapStateToProps, {PutInfo})(ProfileMain);
+  export default connect(mapStateToProps, {ChangePassword})(ChangePossword);
 

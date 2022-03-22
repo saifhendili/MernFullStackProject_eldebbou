@@ -20,9 +20,13 @@ import DetailProduit from './Component/Frontoffice/Product/DetailProduit/DetailP
 import Wishlist from './Component/Frontoffice/Wishlist/Wishlist';
 import ContenuChat from './Component/Admin/Chat/ContenuChat';
 import AddProduct from './Component/Frontoffice/Product/AddProduct/AddProduct';
-import MainCard from './Component/Frontoffice/Card/MainCard';
+import MainCard from './Component/Card/MainCard';
 import ProfileMain from './Component/Frontoffice/Profile/ProfileMain';
 import ForgetPassword from './Component/Auth/ForgetPassword';
+import ChangePossword from './Component/Frontoffice/Profile/ChangePossword';
+import CheckYourEmail from './Component/Auth/CheckYourEmail';
+import ResetPassword from './Component/Auth/ResetPassword';
+
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -49,9 +53,15 @@ const App = () => {
                <Route path="/myproduct" component={DetailProduit} />
                <PrivateRoute path="/wishlist" component={Wishlist}/>
                <PrivateRoute path="/card" component={MainCard}/>
-               <Route path="/addproduct" component={AddProduct} />
+               <PrivateRoute path="/addproduct" component={AddProduct} />
                <PrivateRoute path='/profile' component={ProfileMain}/>
                <Route path="/forgetpassword" component={ForgetPassword} />
+               <PrivateRoute path='/changepassword' component={ChangePossword}/>
+               
+               <Route path="/check" component={CheckYourEmail} />
+               <Route path="/passwordreset" component={ResetPassword} />
+
+               
         </Router>
   {/* <Footer/> */}
   </Provider>  

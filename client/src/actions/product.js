@@ -63,5 +63,32 @@ export const GetProducts = () => async (dispatch) => {
     }
   };
 
+// Add Product
+export const addProduct = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
+  try {
+    const res = await axios.post(
+      `/api/product/`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: ADD_PRODUCTS,
+      payload: res.data,
+    });
+
+    dispatch(SetAlert('Product Added', 'success'));
+  } catch (err) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
   
