@@ -10,7 +10,7 @@ import {
 
 export const AddPanier = (id ) => async (dispatch) => {
 
-  try {
+    try {
     const res = await axios.post(`/api/panier/${id}`);
     dispatch({
       type: ADD_TO_PANIER,

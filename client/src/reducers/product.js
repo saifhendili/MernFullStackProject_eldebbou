@@ -34,7 +34,7 @@ import {
             case ADD_PRODUCTS:
                 return {
                   ...state,
-                  panier: payload,
+                  product: payload,
                   loading: false,
                 };
                 case DELETE_PRODUCT:

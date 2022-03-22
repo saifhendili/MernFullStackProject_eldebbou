@@ -4,57 +4,43 @@ import { Link } from 'react-router-dom';
 import { addProduct } from '../../../../actions/product';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 
 function AddProduct({addProduct}) {
-    const onChangeFile=e=>{
-setFormData({ ...fromData, [e.target.name]:e.target.files[0] });
+    const [name,setName]=useState("")
+    const [Category,setCategory]=useState("")
+    const [price,setPrice]=useState("")
+    const [images,setimages]=useState("")
+    const [description,setdescription]=useState("")
+    const [availibility,setavailibility]=useState(true)
+    const [dealType,setdealType]=useState("UsedProduct")
 
+    const onChangeFile=e=>{
+        setimages(e.target.files[0]);
     }
-    const [fromData, setFormData] = useState({
-        name: '',
-        Category: '',
-        price: '',
-        images:'',
-        description:'',
-        availibility: true,
-        dealType: 'UsedProduct',
-        
-      });
-      const {
-        name,
-        description,
-        availibility,
-        images,
-        price,
-        dealType,
-        Category,
-       
-        
-      } = fromData;
+    
       const onsubmit = (e) => {
         e.preventDefault();
-        let myformdata=new FormData();
-        myformdata.append("name",name);
-        myformdata.append("description",description)
-        myformdata.append("availibility",availibility)
-        myformdata.append("images",images)
-        myformdata.append("price",price)
-        myformdata.append("dealType",dealType)
-        myformdata.append("Category",Category)
-
-        addProduct(myformdata)
-        setFormData({name: '',
-        Category: '',
-        price: '',
-        images:'',
-        description:'',
-        availibility: true,
-        dealType: 'UsedProduct'})
+        const formData=new FormData();
+        formData.append("name",name);
+        formData.append("description",description)
+        formData.append("availibility",availibility)
+        formData.append("images",images)
+        formData.append("price",price)
+        formData.append("dealType",dealType)
+        formData.append("Category",Category)
+        setName("")
+        setCategory("")
+        setPrice("")
+        setimages("")
+        setdescription("")
+        setdealType("UsedProduct")
+        addProduct(formData)
+       
     }
 
-const hundelchange = (e) =>
-setFormData({ ...fromData, [e.target.name]: e.target.value });
+
     return (
         <div>
             <div className="app-content">
@@ -136,7 +122,7 @@ setFormData({ ...fromData, [e.target.name]: e.target.value });
                                                                 <div className="gl-inline">
                                                                     <div className="u-s-m-b-30">
                                                                         <label className="gl-label" htmlFor="reg-fname">NAME *</label>
-                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='name'value={name} onChange={(e) => hundelchange(e)} placeholder="Name" /></div>
+                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='name'value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" /></div>
 
 
 
@@ -145,7 +131,7 @@ setFormData({ ...fromData, [e.target.name]: e.target.value });
                                                                     <div className="u-s-m-b-30">
 
                                                                         <label className="gl-label" htmlFor="reg-fname">Category *</label>
-                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='Category'value={Category} onChange={(e) => hundelchange(e)} placeholder="Category" /></div>
+                                                                        <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='Category'value={Category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" /></div>
 
                                                                 </div>
 
@@ -154,11 +140,10 @@ setFormData({ ...fromData, [e.target.name]: e.target.value });
                                                                 <div className="gl-inline">
                                                                     <div className="u-s-m-b-30">
                                                                         <label className="gl-label" htmlFor="reg-fname">Price *</label>
-                                                                        <input className="input-text input-text--primary-style" type="number" id="reg-fname" name='price'value={price} onChange={(e) => hundelchange(e)} placeholder="Put your price" /></div>
+                                                                        <input className="input-text input-text--primary-style" type="number" id="reg-fname" name='price'value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Put your price" /></div>
                                                                     <div className="u-s-m-b-30">
                                                                         <label className="gl-label"  htmlFor="gender">DealType</label>
-                                                                        <select className="select-box select-box--primary-style u-w-100" id="gender">
-                                                                            <option name='dealType'value={dealType} onChange={(e) => hundelchange(e)}  >Select</option>
+                                                                        <select className="select-box select-box--primary-style u-w-100" name='dealType'value={dealType} onChange={(e) => setdealType(e.target.value)}  id="gender">
                                                                             <option value="UsedProduct">UsedProduct</option>
                                                                             <option value="Exchange">Exchange</option>
                                                                             <option value="Donation">Donation</option>
@@ -193,7 +178,7 @@ setFormData({ ...fromData, [e.target.name]: e.target.value });
 
                                                                         <div className="u-s-m-b-30">
                                                                             <label className="gl-label" htmlFor="reg-lname" >Description *</label>
-                                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"name='description' value={description} onChange={(e) => hundelchange(e)}></textarea></div>
+                                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"name='description' value={description} onChange={(e) => setdescription(e.target.value)}></textarea></div>
 
                                                                     </div>
 

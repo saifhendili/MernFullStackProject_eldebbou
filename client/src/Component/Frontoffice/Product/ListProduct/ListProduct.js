@@ -257,7 +257,8 @@ MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price|| 
 <div className="product-m">
     <div className="product-m__thumb">
     <Link to={`/myproduct?id=${x._id}`} className="aspect aspect--bg-grey aspect--square u-d-block" >
-    <img className="aspect__img" src={x.image}/>
+      
+    <img className="aspect__img" src={`assetes/image/product/${x.image}`}/>
     </Link> 
       
       <div className="product-m__quick-look">

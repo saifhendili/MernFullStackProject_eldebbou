@@ -11,7 +11,7 @@ const Product = require('../../models/Product');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'client/public/uploads')
+    cb(null, 'client/public/assetes/image/product')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -54,7 +54,7 @@ const upload=multer({storage:storage});
         name: req.body.name,
         description: req.body.description,
         availibility:req.body.availibility,
-        image: req.file.images,
+        image: req.file.filename,
         price: req.body.price,
         dealType:req.body.dealType,
         user: req.user.id,
