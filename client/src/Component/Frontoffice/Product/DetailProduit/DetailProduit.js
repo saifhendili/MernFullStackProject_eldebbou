@@ -31,20 +31,15 @@ function DetailProduit({getProduct,addComment,getComment ,comment:{comments},pro
                             <li class="has-separator">
 
                                 <a href="index.hml">Home</a></li>
-                            <li class="has-separator">
-
-                                <a href="shop-side-version-2.html">Electronics</a></li>
-                            <li class="has-separator">
-
-                                <a href="shop-side-version-2.html">DSLR Cameras</a></li>
+                          
                             <li class="is-marked">
 
-                                <a href="shop-side-version-2.html">Nikon Cameras</a></li>
+                                <a href="shop-side-version-2.html">{product.name}</a></li>
                         </ul>
                     </div>
            
                     <div class="pd u-s-m-b-30">
-                    <img  src={product.image} alt="img" className="u-img-fluid"/>
+                    <img  src={`assetes/image/product/${product.image}`} alt="img" className="u-img-fluid"/>
                      
                     </div>
                 </div>
@@ -128,9 +123,7 @@ function DetailProduit({getProduct,addComment,getComment ,comment:{comments},pro
                                 <li><i class="fas fa-check-circle u-s-m-r-8"></i>
 
                                     <span>Full Refund if you don't receive your order.</span></li>
-                                <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                    <span>Returns accepted if product not as described.</span></li>
+                        
                             </ul>
                         </div>
                     </div>
@@ -165,20 +158,7 @@ function DetailProduit({getProduct,addComment,getComment ,comment:{comments},pro
                                     <div class="u-s-m-b-15">
                                         <p>{product.description}</p>
                                     </div>
-                                    <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
-                                    <div class="u-s-m-b-30">
-                                        <ul>
-                                            <li><i class="fas fa-check u-s-m-r-8"></i>
-
-                                                <span>Buyer Protection.</span></li>
-                                            <li><i class="fas fa-check u-s-m-r-8"></i>
-
-                                                <span>Full Refund if you don't receive your order.</span></li>
-                                            <li><i class="fas fa-check u-s-m-r-8"></i>
-
-                                                <span>Returns accepted if product not as described.</span></li>
-                                        </ul>
-                                    </div>
+                                   
                                     
                                 
                                 </div>

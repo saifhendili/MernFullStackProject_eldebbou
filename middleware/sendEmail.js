@@ -5,7 +5,7 @@ const sendEmail=(options)=>{
         service:"SendGrid",
         auth:{
             user:"apikey",
-            pass:"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",
+            pass:"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",
         }
     })
 

@@ -12,7 +12,7 @@ import { AddPanier, GetPanier } from '../../../../actions/panier';
 
 const ListProduct =({GetPanier,AddPanier,GetProducts,Addwishlist ,panier:{panier},product:{products,loading},auth:{user}}) =>{
   
-let test
+let test=0
   const [dealType, setdeal] = useState('UsedProduct');
   const [Search, setSearch] = useState('');
   
@@ -45,6 +45,7 @@ let test
         AddPanier(id)
       }
   return (
+    
     <Fragment>
     {loading ? (
       <Spinner />
@@ -263,8 +264,7 @@ MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price|| 
       
       <div className="product-m__quick-look">
         <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
-        {test=0}
-        
+
         {panier.map((ele,i)=>ele.product==x._id ?(test=test+1 ):(null))}
 
        {test>0 ?
