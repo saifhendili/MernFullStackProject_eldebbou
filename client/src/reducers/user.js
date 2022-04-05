@@ -3,7 +3,8 @@ import {
     USER_ERROR,
     DELETE_USER,
     PUT_USER,
-    CHANGE_PASSWORD,FORGET_PASSWORD
+    CHANGE_PASSWORD,
+    FORGET_PASSWORD
 
   } from '../actions/Types';
   

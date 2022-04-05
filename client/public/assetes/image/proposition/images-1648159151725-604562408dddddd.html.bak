@@ -1,0 +1,9 @@
+<iframe
+  width="600"
+  height="450"
+  style="border:0;width:100%;"
+ margin="10px 70px"
+  loading="lazy"
+  allowfullscreen
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDX-nRJ8JxhkpsCsD_-7qGO1vgGtRfMWG4&q=ghazella">
+</iframe>

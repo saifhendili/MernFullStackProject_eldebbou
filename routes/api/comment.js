@@ -16,8 +16,8 @@ router.get('/:id',async(req,res)=>{
         res.json(product.comments);
     } catch (error) {
         res.status(500).send('Server Error');
-        
-    }
+    
+  }
 })
 
 
@@ -55,4 +55,6 @@ router.post(
       }
     }
   );
+
+  
   module.exports = router;

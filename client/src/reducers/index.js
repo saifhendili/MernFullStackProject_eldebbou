@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import wishlist from './wishlist';
 import panier from './panier';
 import comment from './comment';
+import proposition from './proposition';
+import order from './order';
 
 export default combineReducers({
 
@@ -16,5 +18,8 @@ export default combineReducers({
   user,
   wishlist,
   panier,
-  comment
+  comment,
+  proposition,
+  order
+  
 });

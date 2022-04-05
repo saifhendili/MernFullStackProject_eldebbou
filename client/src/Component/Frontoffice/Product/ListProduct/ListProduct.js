@@ -19,8 +19,8 @@ let test=0
   const [MinPrice, setMin] = useState();
   const [MaxPrice, setMax] = useState();
     useEffect(() => {
+      GetPanier();
         GetProducts();
-        GetPanier();
       },[]);
       const onChange1 = (e) => {
         setdeal( "UsedProduct" );
@@ -265,12 +265,12 @@ MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price|| 
       <div className="product-m__quick-look">
         <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
 
-        {panier.map((ele,i)=>ele.product==x._id ?(test=test+1 ):(null))}
+        {panier.map((ele,i)=>ele.product==x._id ?(test=test+1):(null))}
 
        {test>0 ?
        (
         <div  className="product-m__add-cart"> 
-<a  className="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Already In Caz</a>
+<a  className="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Already In Card</a>
 
         </div>
        ):

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { SetAlert } from '../../actions/alert';
@@ -49,7 +49,7 @@ function Register({ SetAlert, register, isAuthenticated }) {
     }
   };
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Navigate to='/dashboard' />;
   }
   return (
     

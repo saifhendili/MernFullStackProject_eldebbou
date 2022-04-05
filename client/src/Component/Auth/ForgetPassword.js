@@ -1,11 +1,10 @@
 import React,{useState} from 'react'
 import axios from 'axios'
-import { SetAlert } from '../../actions/alert'
-import { Redirect } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 function ForgetPassword() {
     const [email,setEmail]=useState("")
- 
+ const navigate=useNavigate()
 const ForgetPasswordHandler= async(e)=>{
     e.preventDefault();
     const config = {
@@ -19,7 +18,8 @@ const ForgetPasswordHandler= async(e)=>{
           {email},config
 
         );
-        alert("Mail Sent") 
+      navigate("/check");
+
           }catch(error){
 alert("verify ")    
 this.email="" 

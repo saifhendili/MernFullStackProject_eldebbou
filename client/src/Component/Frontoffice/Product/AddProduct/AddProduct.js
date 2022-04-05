@@ -154,12 +154,7 @@ function AddProduct({addProduct}) {
                                                                 </div>
                                                                 <div className="gl-inline">
                                                                     <div className="custom-file">
-
-                                                                     
-                                                                     
-                                                                        <input type="file" name="images" className="custom-file-input"id="customFile" />
-                                                                     
-                                                                        <input type="file" class="form-control-file"  onChange={(e) =>onChangeFile(e)} name="images"/>
+                                                                        <input type="file"className="custom-file-input"id="customFile"  onChange={(e) =>onChangeFile(e)} name="images"/>
 
                                                                         <label className="custom-file-label" htmlFor="customFile">Choose file</label>
                                                                     </div>

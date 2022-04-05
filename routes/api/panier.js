@@ -67,7 +67,9 @@ const User = require('../../models/User');
       me.Total=me.Total- x.price
      }
      })
-        me.panier = me.panier.filter(
+
+
+          me.panier = me.panier.filter(
             ({ id }) => id !== req.params.id,
           
           );

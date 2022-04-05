@@ -3,18 +3,21 @@ import { useParams } from 'react-router-dom';
 import {getProduct} from '../../../../actions/product'
 import Spinner from '../../../Layout/Spinner';
 import PropTypes from 'prop-types';
-import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { addComment, getComment } from '../../../../actions/comment';
 import CommentItem from './CommentItem';
+import PropositionItem from './PropositionItem';
+import { getPropositions } from '../../../../actions/proposition';
+import { useSearchParams } from 'react-router-dom';
 
-function DetailProduit({getProduct,addComment,getComment ,comment:{comments},product:{product,loading},location}) {
+function DetailProduit({getProduct,addComment,getComment,getPropositions ,comment:{comments},proposition:{propositions},product:{product,loading}}) {
     const [text, setText] = useState('');
-    const { id } = queryString.parse(location.search);
+    const [searchParams] = useSearchParams();
     useEffect(() => {
-        getProduct(id);
-        getComment(id)
-      }, [getProduct, id]);
+        getProduct(searchParams.get("id"));
+        getComment(searchParams.get("id"));
+        getPropositions(searchParams.get("id"));
+      }, [getProduct, searchParams.get("id")]);
     return loading || product === null ? (
         <Spinner />
       ) : (
@@ -141,30 +144,63 @@ function DetailProduit({getProduct,addComment,getComment ,comment:{comments},pro
                             <ul class="nav pd-tab__list">
                             <li class="nav-item">
 
-<a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
+                                <a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
 
-  </a></li>
-                                <li class="nav-item">
+                                </a></li>
+                                <li><a class="nav-link" id="view-review" data-toggle="tab" href="#pd-prop">PROPOSITIONS
 
-                                    <a class="nav-link " data-toggle="tab" href="#pd-desc">DESCRIPTION</a></li>
+                                <span></span></a></li>
                            
                               
                             </ul>
                         </div>
                         <div class="tab-content">
 
-                            <div class="tab-pane fade " id="pd-desc">
-                                <div class="pd-tab__desc">
-                                    <div class="u-s-m-b-15">
-                                        <p>{product.description}</p>
+                        <div class="tab-pane" id="pd-prop">
+                                <div class="pd-tab__rev">
+                        
+                                    <div class="u-s-m-b-30">
+                                        <form class="pd-tab__rev-f1">
+                                          
+                                            <div class="rev-f1__review">
+                                                
+{propositions.map(x=>(<PropositionItem   key={x._id} proposition={x}/>))}
+                                               
+                                            </div>
+                                        </form>
                                     </div>
-                                   
-                                    
-                                
+                                    <div class="u-s-m-b-30">
+                                        <form class="pd-tab__rev-f2">
+                                         
+                                            <div class="rev-f2__group">
+                                                <div class="u-s-m-b-15">
+
+                                                    <label class="gl-label" for="reviewer-text">YOUR PROPOSITION *</label><textarea class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
+                                                <div>
+                                                <p class="u-s-m-b-30">
+
+<label class="gl-label" for="reviewer-email">PRICE *</label>
+
+<input class="input-text input-text--primary-style" type="text" id="reviewer-email"/></p>
+                                                    <p class="u-s-m-b-30">
+                                                    <div className="custom-file">
+                                                                        <input type="file"className="custom-file-input"id="customFile"  
+                                                                        // onChange={(e) =>onChangeFile(e)} 
+                                                                        name="images"/>
+
+                                                                        <label className="custom-file-label" htmlFor="customFile">Choose file</label>
+                                                                    </div>
+                                                       </p>
+                                                   
+                                                </div>
+                                            </div>
+                                            <div>
+
+                                                <button class="btn btn--e-brand-shadow" type="submit">SUBMIT</button></div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                          
-                       
                        
                             <div class="tab-pane show active" id="pd-rev">
                                 <div class="pd-tab__rev">
@@ -183,16 +219,13 @@ function DetailProduit({getProduct,addComment,getComment ,comment:{comments},pro
                                     <div class="u-s-m-b-30">
                                         <form onSubmit={(e)=>   
                                           {  e.preventDefault();
-                                            addComment(id, { text });
+                                            addComment(searchParams.get("id"), { text });
                                             setText('');}} class="pd-tab__rev-f2">
-                                          
-
-                                          
                                             <div class="rev-f2__group">
                                                 <div class="u-s-m-b-15">
 
                                                     <label class="gl-label" for="reviewer-text">YOUR COMMENT *</label><textarea  value={text}
-                              onChange={(e) => setText(e.target.value)} class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
+                                                     onChange={(e) => setText(e.target.value)} class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
                                              
                                             </div>
                                             <div>
@@ -221,10 +254,12 @@ DetailProduit.propTypes = {
     getProduct: PropTypes.func.isRequired,
     product: PropTypes.object.isRequired,
     getComment:PropTypes.func.isRequired,
+    getPropositions:PropTypes.func.isRequired,
   };
   const mapStateToProps = (state) => ({
     product: state.product,
-    comment:state.comment
+    comment:state.comment,
+    proposition:state.proposition
   });
     
-  export default connect(mapStateToProps, { getProduct,addComment,getComment })(DetailProduit);
+  export default connect(mapStateToProps, { getProduct,addComment,getComment ,getPropositions})(DetailProduit);

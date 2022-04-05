@@ -27,15 +27,14 @@ export const AddPanier = (id ) => async (dispatch) => {
 };
 
 
-export const GetPanier = (id) => async (dispatch) => {
+export const GetPanier = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/panier/${id}`);
+    const res = await axios.get(`/api/panier/`);
 
     dispatch({
       type: GET_PANIER,
       payload: res.data,
     });
-
   } catch (err) {
     dispatch({
     type: PANIER_ERROR,

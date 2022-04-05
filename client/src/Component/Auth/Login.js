@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { login } from '../../actions/auth';
 import img from '../../image/formation2.jpg';
 
@@ -22,7 +22,7 @@ function Login({ login, isAuthenticated }) {
     login(email, password);
   };
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />
+    return <Navigate to='/dashboard' />
   }
   return (
 
@@ -122,7 +122,7 @@ function Login({ login, isAuthenticated }) {
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
                                     <div class="u-s-m-b-30">
 
-                                        <Link class="gl-link" to="forgetpassword">Lost Your Password?</Link></div>
+                                        <Link class="gl-link" to="/forgetpassword">Lost Your Password?</Link></div>
                                 </div>
                                 <div class="u-s-m-b-30">
 
@@ -149,11 +149,11 @@ function Login({ login, isAuthenticated }) {
    
   );
 }
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-};
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
+    Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+    };
+    const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    });
 export default connect(mapStateToProps, { login })(Login);

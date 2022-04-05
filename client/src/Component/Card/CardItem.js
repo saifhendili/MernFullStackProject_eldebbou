@@ -14,9 +14,10 @@ function CardItem({DeleteFromPanier, auth:{user},product:{_id,name,image,Categor
     <tr>
     <td>
         <div class="table-p__box">
+
             <div class="table-p__img-wrap">
 
-                <img class="u-img-fluid" src={image} alt="product"/></div>
+                <img class="u-img-fluid" src={`assetes/image/product/${image}`} alt="product"/></div>
             <div class="table-p__info">
 
                 <span class="table-p__name">
@@ -25,7 +26,7 @@ function CardItem({DeleteFromPanier, auth:{user},product:{_id,name,image,Categor
 
                 <span class="table-p__category">
 
-                    <a href="shop-side-version-2.html">{Category}</a></span>
+                        <a href="shop-side-version-2.html">{Category}</a></span>
               
             </div>
         </div>

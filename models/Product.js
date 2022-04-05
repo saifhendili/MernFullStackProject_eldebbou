@@ -8,7 +8,6 @@ const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
     required:true
-
   },
   availibility: {
     type: Boolean,
@@ -42,7 +41,7 @@ const ProductSchema = new mongoose.Schema({
     required:true
 
   },
-  comments: [
+  proposition: [
     {
       userid: {
         type:  mongoose.Schema.Types.ObjectId,
@@ -52,9 +51,23 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required:true
       },
+      firstname: {
+        type: String,
+      },
+      lastname: {
+        type: String,
+      },
       text: {
         type: String,
         required:true
+      },
+      price: {
+        type: Number,
+        required:true
+      },
+      status: {
+        type: Boolean,
+        default:false,
       },
       date: {
         type: Date,

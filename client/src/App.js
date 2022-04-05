@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Component/Layout/Navbar';
 import Alert from './Component/Layout/Alert';
 import Register from './Component/Auth/Register';
@@ -12,7 +12,8 @@ import PrivateRoute from './Component/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import IndexAdmin from './Component/Admin/IndexAdmin';
-// import Home from './Component/Frontoffice/Home';
+
+
 import ListeUser from './Component/Admin/Liste-User/ListeUser';
 import ListProduct from './Component/Frontoffice/Product/ListProduct/ListProduct';
 import DetailProduit from './Component/Frontoffice/Product/DetailProduit/DetailProduit';
@@ -26,15 +27,24 @@ import ForgetPassword from './Component/Auth/ForgetPassword';
 import ChangePossword from './Component/Frontoffice/Profile/ChangePossword';
 import CheckYourEmail from './Component/Auth/CheckYourEmail';
 import ResetPassword from './Component/Auth/ResetPassword';
+import PlaceOrder from './Component/Frontoffice/Order/PlaceOrder';
+import Address from './Component/Frontoffice/Order/Adress';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import Home from './Component/Frontoffice/Home';
 
+const promise = loadStripe(
+  "pk_test_51KkJdXAKTcryk5ZvXAWqFdeIfD4AW1jvV7yj77K71hUvhGs7hWA8NgONxPl6vsOOYL8yUASXEmUylZtHAqT29p5900JoIJ33lZ"
+);
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
-const App = () => {
+function App () {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+  
   return (
  
     
@@ -43,25 +53,43 @@ const App = () => {
     <Router>
     <Alert className='aaa' />
     <Navbar />
-       <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-               <PrivateRoute exact path='/dashboard' component={Dashboard} />
-               {/* <Route exact path='/home' component={Home} /> */}
-               <Route exact path='/listeuser' component={ListeUser} />
-               <Route exact path='/listeproduct' component={ListProduct} />
-               <Route path='/chat' component={ContenuChat}/>
-               <Route path="/myproduct" component={DetailProduit} />
-               <PrivateRoute path="/wishlist" component={Wishlist}/>
-               <PrivateRoute path="/card" component={MainCard}/>
-               <PrivateRoute path="/addproduct" component={AddProduct} />
-               <PrivateRoute path='/profile' component={ProfileMain}/>
-               <Route path="/forgetpassword" component={ForgetPassword} />
-               <PrivateRoute path='/changepassword' component={ChangePossword}/>
-               
-               <Route path="/check" component={CheckYourEmail} />
-               <Route path="/passwordreset" component={ResetPassword} />
+    <Routes>
+       <Route exact path='/register' element={<Register/>} />
+              <Route exact path='/login' element={<Login/>} />
+               <Route path='/' element={<Home/>} />
+               <Route exact path='/listeuser' element={<ListeUser/>} />
+               <Route exact path='/listeproduct' element={<ListProduct/>} />
+               <Route path='/chat' element={<ContenuChat/>}/>
+               <Route path="/myproduct" element={<DetailProduit/>} />
+            
+               {/* <PrivateRoute path='/payment' element={ <Elements stripe={promise}>
+    <PlaceOrder />
+    </Elements>} /> */}
+      <Route
+            path="/payment"
+            element={
+         <PrivateRoute>     <Elements stripe={promise}>
+            < PlaceOrder/>
+              </Elements></PrivateRoute>
+            }
+          />
+               <Route path="/forgetpassword" element={<ForgetPassword/>} />
 
+               <Route path="/check" element={<CheckYourEmail/>} />
+               <Route path="/passwordreset" element={<ResetPassword/>} />
                
+§
+               <Route path="/wishlist" element={ <PrivateRoute><Wishlist/></PrivateRoute>}/>
+               <Route path="/card" element={<PrivateRoute><MainCard/></PrivateRoute>}/>
+               <Route path="/addproduct" element={<PrivateRoute><AddProduct/></PrivateRoute>} />
+               <Route path='/profile' element={<PrivateRoute><ProfileMain/></PrivateRoute>}/>
+               <Route path='/address' element={<PrivateRoute><Address/></PrivateRoute>} />
+               <Route path='/changepassword' element={<PrivateRoute><ChangePossword/></PrivateRoute>}/>
+               <Route exact path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+
+               </Routes>
+               
+
         </Router>
   {/* <Footer/> */}
   </Provider>  
