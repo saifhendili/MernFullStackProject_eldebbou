@@ -32,6 +32,8 @@ import Address from './Component/Frontoffice/Order/Adress';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import Home from './Component/Frontoffice/Home';
+import RequestOrganisation from './Component/Admin/Liste-User/RequestOrganisation';
+import RequestDelivery from './Component/Admin/Liste-User/RequestDelivery';
 
 const promise = loadStripe(
   "pk_test_51KkJdXAKTcryk5ZvXAWqFdeIfD4AW1jvV7yj77K71hUvhGs7hWA8NgONxPl6vsOOYL8yUASXEmUylZtHAqT29p5900JoIJ33lZ"
@@ -73,12 +75,18 @@ function App () {
               </Elements></PrivateRoute>
             }
           />
+          
                <Route path="/forgetpassword" element={<ForgetPassword/>} />
 
                <Route path="/check" element={<CheckYourEmail/>} />
                <Route path="/passwordreset" element={<ResetPassword/>} />
                
-§
+               <Route path="/all-Users" element={ <PrivateRoute><IndexAdmin/></PrivateRoute>}/>
+               
+               <Route path="/delivery-list" element={ <PrivateRoute><RequestDelivery/></PrivateRoute>}/>
+
+                <Route path="/organisations-list" element={ <PrivateRoute><RequestOrganisation/></PrivateRoute>}/>
+
                <Route path="/wishlist" element={ <PrivateRoute><Wishlist/></PrivateRoute>}/>
                <Route path="/card" element={<PrivateRoute><MainCard/></PrivateRoute>}/>
                <Route path="/addproduct" element={<PrivateRoute><AddProduct/></PrivateRoute>} />

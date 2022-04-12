@@ -4,8 +4,9 @@ import {
     DELETE_USER,
     PUT_USER,
     CHANGE_PASSWORD,
-    FORGET_PASSWORD
-
+    FORGET_PASSWORD,
+    BLOCK_USER,
+    UNBLOCK_USER
   } from '../actions/Types';
   
   const initialState = {
@@ -18,6 +19,8 @@ import {
     const { type, payload } = action;
   
     switch (type) {
+      case BLOCK_USER:
+      case UNBLOCK_USER:
       case GET_USERS:
         return {
           ...state,
@@ -36,12 +39,12 @@ import {
                 users: payload,
                 loading: false,
               };
-            case PUT_USER:
-              return {
-                ...state,
-                users: payload,
-                loading: false,
-              };
+              case PUT_USER:
+                    return {
+                      ...state,
+                      users: payload,
+                      loading: false,
+                    };
             case DELETE_USER:
                 return {
                   ...state,

@@ -1,18 +1,17 @@
 import React,{useEffect,Fragment} from 'react'
-import {GetUsers} from '../../../actions/user'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import UserItem from './UserItem';
 import Spinner from '../../Layout/Spinner';
-import Aside from '../Layout/Aside';
+import { GetRequestsDelivery } from '../../../actions/request';
+import DeliveryItem from './DeliveryItem';
 
-
-const ListeUser = ({GetUsers,user:{users,loading}}) => {
+const RequestOrganisation = ({GetRequestsDelivery ,request:{deliverys,loading}}) => {
 
     useEffect(() => {
-        GetUsers();
-      }, [GetUsers]);
+        GetRequestsDelivery();
+      }, [GetRequestsDelivery]);
 
   return (
       
@@ -66,14 +65,16 @@ const ListeUser = ({GetUsers,user:{users,loading}}) => {
                                 <tr>
                                     <th scope="col">Clients</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">File</th>
+                                    {/* <th scope="col">File</th> */}
+                                    <th scope="col">Accept</th>
                                     <th scope="col">Block</th>
-                                    <th scope="col">Delete</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                              {users.map((x)=>(<UserItem  key={x._id} x={x} />))}
+                              {deliverys.map((x)=>(x.status?null:<DeliveryItem key={x._id} x={x} />))}
                                    
                             </tbody>
                         </table>
@@ -90,14 +91,14 @@ const ListeUser = ({GetUsers,user:{users,loading}}) => {
     </Fragment>
   );
 };
-ListeUser.propTypes = {
-    GetUsers: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+RequestOrganisation.propTypes = {
+    GetRequestsDelivery: PropTypes.func.isRequired,
+    request: PropTypes.object.isRequired,
   };
   
   const mapStateToProps = (state) => ({
-    user: state.user,
+    request: state.request,
   });
   
-  export default connect(mapStateToProps, { GetUsers })(ListeUser);
+  export default connect(mapStateToProps, { GetRequestsDelivery })(RequestOrganisation);
  

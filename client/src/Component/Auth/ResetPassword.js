@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 import axios from 'axios'
-import queryString from 'query-string';
+import { useSearchParams } from 'react-router-dom';
 
 function ResetPassword({location}) {
     const [password,setPassword]=useState("")
-
-    const { resetToken } = queryString.parse(location.search);
+    const [searchParams] = useSearchParams();
+  
 
 
     const ResetPasswordHandler= async(e)=>{
@@ -17,7 +17,7 @@ function ResetPassword({location}) {
           };
           try {
             const {data} = await axios.put(
-              `/api/users/resetpassword/${resetToken}`,
+              `/api/users/resetpassword/${searchParams.get("resetToken")}`,
               {password},config
     
             );

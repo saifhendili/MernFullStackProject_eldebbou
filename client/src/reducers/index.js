@@ -9,6 +9,7 @@ import panier from './panier';
 import comment from './comment';
 import proposition from './proposition';
 import order from './order';
+import request from './request';
 
 export default combineReducers({
 
@@ -20,6 +21,7 @@ export default combineReducers({
   panier,
   comment,
   proposition,
-  order
+  order,
+  request
   
 });

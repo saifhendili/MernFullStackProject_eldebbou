@@ -6,7 +6,8 @@ import {
   USER_ERROR,
   DELETE_USER,
   PUT_USER,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+ 
 } from './Types';
 
 
@@ -105,7 +106,4 @@ export const deletePost = (id) => async (dispatch) => {
       });
     }
   };
-  
-
-
   

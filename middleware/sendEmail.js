@@ -5,12 +5,12 @@ const sendEmail=(options)=>{
         service:"SendGrid",
         auth:{
             user:"apikey",
-            pass:"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",
+            pass:"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",
         }
     })
 
     const mailOptions={
-        from:"mohamedsaifeddine.hendili@esprit.tn",
+        from:"mouna.ayed@esprit.tn",
         to:options.to,
         subject:options.subject,
         html:options.text

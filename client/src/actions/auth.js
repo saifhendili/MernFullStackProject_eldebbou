@@ -9,7 +9,9 @@ import {
   LOGIN_FAIL,
   CLEAR_PROFILE,
   LOGOUT,
-
+  REQUEST_ORGANISATION,
+  REQUEST_DELIVERY,
+  CONFIRME_REQUEST
 } from './Types';
 import setAuthToken from '../utils/setAuthToken';
 export const loadUser = () => async (dispatch) => {
@@ -113,5 +115,72 @@ export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };
+
+
+
+
+
+export const RequestOrganisation = ( formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.put(
+      `/api/requestUser/organisation`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: REQUEST_ORGANISATION,
+      payload: res.data,
+    });
+
+    dispatch(SetAlert('RequestSent', 'success'));
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+    // dispatch(SetAlert('RequestSent', 'danger'));
+
+  }
+};
+
+
+
+export const RequestDelivery = ( formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.put(
+      `/api/requestUser/delivery`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: REQUEST_DELIVERY,
+      payload: res.data,
+    });
+
+    dispatch(SetAlert('RequestSent', 'success'));
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+    // dispatch(SetAlert('RequestSent', 'danger'));
+
+  }
+};
+
 
 

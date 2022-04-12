@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import IndexAdmin from '../Admin/IndexAdmin';
 import Spinner from '../Layout/Spinner';
 import ListProduct from '../Frontoffice/Product/ListProduct/ListProduct';
+import SendRequestOrganisation from '../Frontoffice/Request/SendRequestOrganisation';
+import WaitForRespense from '../Frontoffice/Request/WaitForRespense';
+import SendRequestDelivery from '../Frontoffice/Request/SendRequestDelivery';
+import BlockedUser from '../Auth/BlockedUser';
 
 
 function Dashboard({auth:{user,loading}}) {
@@ -11,9 +15,19 @@ function Dashboard({auth:{user,loading}}) {
     <Spinner />
   ) : (
     <Fragment>
-       {user.Role =="Admin" ?<IndexAdmin/>:
-        <ListProduct/>
-         }
+       {
+       user.blocked?<BlockedUser/>:
+       user.Role =="Admin" ?<IndexAdmin/>:
+       user.Role =="Client or Saller" ?
+        <ListProduct/>:
+        user.Role =="Organisation"&& user.status==false&&user.request==false?
+         <SendRequestOrganisation/>
+        : user.Role =="Delivery"&& user.status==false&&user.request==false?
+        <SendRequestDelivery/>:
+         user.Role =="Delivery"&& user.status==true?
+<ListProduct/>:
+        <WaitForRespense/>
+        }
         </Fragment>
   );
 };

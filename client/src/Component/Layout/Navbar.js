@@ -1770,6 +1770,66 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
         </div>
   );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const requestLink = (
+    <div>
+
+    <header className="header--style-1">
+          <nav className="primary-nav primary-nav-wrapper--border">
+            <div className="container">
+              <div className="primary-nav">
+                <a className="main-logo" href="index.html">
+                  <img src="assetes/images/logo/logo-1.png"  /></a>
+                  <h6>
+                        <a onClick={(e) => loggout(e)} ><i className="fas fa-lock-open u-s-m-r-6" />
+                          <span>Signout</span></a></h6>
+               
+                {/*====== End - Search Form ======*/}
+            
+                {/*====== End - Dropdown Main plugin ======*/}
+              </div>
+              {/*====== End - Primary Nav ======*/}
+            </div>
+          </nav>
+          {/*====== End - Nav 1 ======*/}
+          {/*====== Nav 2 ======*/}
+          <nav className="secondary-nav-wrapper">
+            <div className="container">
+              {/*====== Secondary Nav ======*/}
+            
+              {/*====== End - Secondary Nav ======*/}
+            </div>
+          </nav>
+          {/*====== End - Nav 2 ======*/}
+        </header>
+    
+            
+        </div>
+  );
+
+
+
+
+
+
   const adminLinks = (
 
     <div>
@@ -2189,10 +2249,13 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
       <Fragment>
         {loading
           ? null
+          :isAuthenticated && user !== null && user.blocked ?requestLink
           : isAuthenticated && user !== null && user.Role == 'Admin'
           ? adminLinks
           : isAuthenticated && user !== null && user.Role == 'Client or Saller'
           ? authLinks
+          :isAuthenticated && user !== null && (user.Role == 'Delivery' ||user.Role == 'Organisation')
+          ?requestLink
           : guestLinks}
       </Fragment>
 

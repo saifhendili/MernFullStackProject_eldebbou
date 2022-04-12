@@ -6,6 +6,9 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    REQUEST_ORGANISATION,
+    REQUEST_DELIVERY,
+    CONFIRME_REQUEST
   } from '../actions/Types';
   
   const initialState = {
@@ -27,11 +30,18 @@ import {
           isAuthenticated: true,
           loading: false,
         };
+      case REQUEST_ORGANISATION:
+        return {
+          ...state,
+          isAuthenticated: true,
+          user: payload,
+          loading: false,
+        };
+      case REQUEST_DELIVERY:
       case USER_LOADED:
         return {
           ...state,
-       
-            isAuthenticated: true,
+          isAuthenticated: true,
           user: payload,
           loading: false,
         };

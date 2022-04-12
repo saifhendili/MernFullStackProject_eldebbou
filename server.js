@@ -20,6 +20,8 @@ app.use('/api/panier', require('./routes/api/panier'));
 app.use('/api/comment', require('./routes/api/comment'));
 app.use('/api/propositions', require('./routes/api/propositions'));
 app.use('/api/order', require('./routes/api/order'));
+app.use('/api/requestUser', require('./routes/api/requestUser'));
+
 
 
 server.listen(process.env.PORT || 5000, () =>

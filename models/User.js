@@ -39,11 +39,35 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  file:{
+    type: String,
+  },
+  status:{
+    type: Boolean,
+    default:false
+  },
+  request:{
+    type: Boolean, 
+    default:false
+  },
+  OrganisationName:{
+    type: String, 
+   },
+   Matricule:{
+    type: String, 
+   },
+   fondationDate:{
+    type:Date
+  },
+  blocked:{
+    type:Boolean,
+    default:false
+  },
   wishlist: [
     {
       product: {
-        type:  mongoose.Schema.Types.ObjectId,
-        ref: 'product',
+          type:  mongoose.Schema.Types.ObjectId,
+          ref: 'product',
       },
       name: {
         type: String,

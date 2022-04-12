@@ -200,7 +200,7 @@ function Register({ SetAlert, register, isAuthenticated }) {
 
 <select
 class="form-select" 
-            name='typeuser'
+            name='Role'
             value={Role}
             onChange={(e) => hundelchange(e)}
           >

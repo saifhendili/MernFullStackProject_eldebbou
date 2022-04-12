@@ -2,9 +2,10 @@ import React from 'react'
 import { deletePost } from '../../../actions/user'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BlockUser, UnBlockUser } from '../../../actions/request';
 
 
-const UserItem = ({ deletePost, x: { _id,firstname ,lastname,email ,Role,typeuser} }) => {
+const UserItem = ({  BlockUser, UnBlockUser ,deletePost, x: { _id,firstname ,lastname,email ,Role,typeuser,blocked} }) => {
 
 
   return (
@@ -21,8 +22,16 @@ const UserItem = ({ deletePost, x: { _id,firstname ,lastname,email ,Role,typeuse
 <td>{Role}</td>
 <td><a href="javascript:void(0)" class="dot"></a><span>{typeuser}</span></td>
 <td>
-   <div  class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 "><i class="ti ti-pencil"></i></div>
+  {!blocked?   <div   onClick={() => BlockUser(_id)} class="btn btn-danger">Block</div>
+:   <div   onClick={() => UnBlockUser (_id)} class="btn btn-primary">Unblock</div>
+
+
+  }
+
+</td>
+<td>
    <div onClick={() => deletePost(_id)}  class="btn btn-icon btn-outline-danger btn-round"><i class="ti ti-close"></i></div>
+
 </td>
 </tr>
   )
@@ -38,6 +47,6 @@ const mapStateToProps = (state) => ({
   });
   
   export default connect(mapStateToProps, {
-    deletePost,
+    deletePost, BlockUser, UnBlockUser 
   })(UserItem);
 
