@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
     enum:["Premium","Normal"],
     default:"Normal",
   },
-  imageUrl: {
+  avatar: {
     type: String,
   },
   date: {

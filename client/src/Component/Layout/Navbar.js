@@ -40,9 +40,13 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                     {/*====== Dropdown ======*/}
                     <span className="js-menu-toggle" />
                     <ul style={{width: 120}}>
+                    <li>
+                        <Link to="myprofile"><i className="fas fa-user-circle u-s-m-r-6" />
+                          <span>Account</span></Link></li>
                       <li>
                         <Link to="profile"><i className="fas fa-user-circle u-s-m-r-6" />
-                          <span>Account</span></Link></li>
+                          <span>Update Info</span></Link></li>
+                         
                      
                       <li>
                         <a onClick={(e) => loggout(e)} ><i className="fas fa-lock-open u-s-m-r-6" />
@@ -692,7 +696,7 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                   <li>
                     <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
                   <li>
-                    <a href="shop-side-version-2.html">GIFT CARDS</a></li>
+                    <Link to ="exchange-product" href="shop-side-version-2.html">My Exchange Products</Link></li>
                 </ul>
                 {/*====== End - List ======*/}
               </div>
@@ -1639,10 +1643,7 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                         </ul>
                         {/*====== End - Dropdown ======*/}
                       </li>
-                      <li>
-                        <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
-                      <li>
-                        <a href="shop-side-version-2.html">GIFT CARDS</a></li>
+                     
                     </ul>
                     {/*====== End - List ======*/}
                   </div>
@@ -1827,7 +1828,45 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
 
 
 
+  const DeliveryLink = (
+    <div>
 
+    <header className="header--style-1">
+          <nav className="primary-nav primary-nav-wrapper--border">
+            <div className="container">
+              <div className="primary-nav">
+                <Link to="dashboard" className="main-logo">
+                  <img src="assetes/images/logo/logo-1.png"  /></Link>
+                  <Link to="pricing">  <h6> <span>Get Premieum account</span></h6></Link>
+
+                  <Link to="myorders-delivery">  <h6> <span>MyOrders</span></h6></Link>
+                  <h6>
+                   
+                        <a onClick={(e) => loggout(e)} ><i className="fas fa-lock-open u-s-m-r-6" />
+                          <span>Signout</span></a></h6>
+               
+                {/*====== End - Search Form ======*/}
+            
+                {/*====== End - Dropdown Main plugin ======*/}
+              </div>
+              {/*====== End - Primary Nav ======*/}
+            </div>
+          </nav>
+          {/*====== End - Nav 1 ======*/}
+          {/*====== Nav 2 ======*/}
+          <nav className="secondary-nav-wrapper">
+            <div className="container">
+              {/*====== Secondary Nav ======*/}
+            
+              {/*====== End - Secondary Nav ======*/}
+            </div>
+          </nav>
+          {/*====== End - Nav 2 ======*/}
+        </header>
+    
+            
+        </div>
+  );
 
 
   const adminLinks = (
@@ -2254,9 +2293,12 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
           ? adminLinks
           : isAuthenticated && user !== null && user.Role == 'Client or Saller'
           ? authLinks
-          :isAuthenticated && user !== null && (user.Role == 'Delivery' ||user.Role == 'Organisation')
+          :isAuthenticated && user !== null && user.status == false &&(user.Role == 'Delivery' ||user.Role == 'Organisation')
           ?requestLink
+          :isAuthenticated && user !== null && user.Role == 'Delivery' && user.status == true
+          ?DeliveryLink
           : guestLinks}
+          {/* DeliveryLink */}
       </Fragment>
 
       {/* <Fragment>

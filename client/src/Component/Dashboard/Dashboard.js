@@ -8,6 +8,8 @@ import SendRequestOrganisation from '../Frontoffice/Request/SendRequestOrganisat
 import WaitForRespense from '../Frontoffice/Request/WaitForRespense';
 import SendRequestDelivery from '../Frontoffice/Request/SendRequestDelivery';
 import BlockedUser from '../Auth/BlockedUser';
+import OrderDilevery from '../Frontoffice/Delivey/OrderDilevery';
+import ListProductDonation from '../Frontoffice/DonationProduct/ListProductDonation';
 
 
 function Dashboard({auth:{user,loading}}) {
@@ -24,9 +26,17 @@ function Dashboard({auth:{user,loading}}) {
          <SendRequestOrganisation/>
         : user.Role =="Delivery"&& user.status==false&&user.request==false?
         <SendRequestDelivery/>:
+        user.Role =="Organisation"&& user.status==false&&user.request==true?
+        <WaitForRespense/>:
+        user.Role =="Delivery"&& user.status==false&&user.request==true?
+        <WaitForRespense/>:
          user.Role =="Delivery"&& user.status==true?
-<ListProduct/>:
-        <WaitForRespense/>
+         <OrderDilevery/>:
+         user.Role =="Organisation"&& user.status==true?
+        <ListProductDonation/>:
+        null
+
+        
         }
         </Fragment>
   );

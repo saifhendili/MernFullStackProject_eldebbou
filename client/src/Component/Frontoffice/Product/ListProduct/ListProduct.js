@@ -250,7 +250,7 @@ let test=0
                 <div className="shop-p__collection">
                   <div className="row is-grid-active">
                   {products.filter(el =>
-                            el.name.toLowerCase().includes(Search)).map((x,i)=>( 
+                            el.name.toLowerCase().includes(Search.toLowerCase())).map((x,i)=>( 
 x.dealType == dealType?(
 MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price||  MinPrice<= x.price && MaxPrice==null||MaxPrice >=x.price &&MinPrice==null ?(
 <div  key={i} className="col-lg-4 col-md-6 col-sm-6">
@@ -286,8 +286,10 @@ MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price|| 
       <div className="product-m__name">
       <Link to={`/myproduct?id=${x._id}`} >{x.name}</Link></div>
       <div className="product-m__rating gl-rating-style"><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star-half-" /><i className="far fa-star" /><i className="far fa-star" />
+       
         <span className="product-m__review">(23)</span></div>
-      <div className="product-m__price">{x.price}</div>
+     {x.dealType=="UsedProduct"?    <div className="product-m__price">{x.price}</div>:null}
+  
       <div className="product-m__hover">
         <div className="product-m__preview-description">
           <span>{x.description}</span></div>

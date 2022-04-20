@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer =require('multer')
 const auth = require('../../middleware/auth');
+const Order = require('../../models/Order');
 
 const Product = require('../../models/Product');
 
@@ -36,7 +37,7 @@ const upload=multer({storage:storage});
   });
 
 
-  router.post('/:id',auth, upload.single("images"),async (req, res) => {
+  router.post('/:id',auth, upload.single("imageprop"),async (req, res) => {
   const  product = await Product.findById(req.params.id) 
   const  user = await User.findById(req.user.id); 
   
@@ -48,14 +49,14 @@ const upload=multer({storage:storage});
         firstname:user.firstname,
         lastname:user.lastname,
         image: req.file.filename,
-        text: req.body.text,
+        description: req.body.description,
         price: req.body.price,
       };
       await product.proposition.unshift(newRequest);
   
       const mypro = await product.save();
       
-      res.json(mypro);
+      res.json(mypro.proposition);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -113,4 +114,52 @@ router.delete('/proposition/:id/:proposition_id', auth, async (req, res) => {
     }
   });
 
+
+
+
+
+
+  router.get('/',auth, async (req, res) => {
+
+    try {
+      await Product.find({'user':req.user.id,'dealType':'Exchange'} ,function(err,data){
+        res.json(data); 
+
+      });
+    } catch (err) {
+      console.error(err.message);
+  
+      res.status(500).send('Server Error');
+    }
+  });
+
+
+
+  
+  router.post('/acceptExchange/:id/:idproposition',auth,async (req, res) => {
+    const  myproduct = await Product.findById(req.params.id).select('-comments')
+    
+    const myprop = myproduct.proposition.find(
+      (p) => p.id === req.params.idproposition
+    );
+      try {
+        myproduct.status=true
+        const newRequest =new Order({
+products:myproduct,
+user:myprop.user,
+price:myprop.price,
+propositon:myprop
+
+        })
+       await myproduct.save()
+        const mypro = await newRequest.save();
+        
+        res.json(mypro);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      }
+    });
+  
+  
   module.exports = router;

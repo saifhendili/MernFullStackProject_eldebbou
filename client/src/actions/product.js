@@ -7,7 +7,7 @@ PRODUCT_ERROR,
   DELETE_PRODUCT,
   ADD_PRODUCTS,
   GET_PRODUCTS,
-
+  GET_MY_EXCHANGE_PRODUCTS
 } from './Types';
 
 export const GetProducts = () => async (dispatch) => {
@@ -16,6 +16,23 @@ export const GetProducts = () => async (dispatch) => {
 
     dispatch({
       type: GET_PRODUCTS,
+      payload: res.data,
+    });
+
+  } catch (err) {
+    dispatch({
+    type: PRODUCT_ERROR,
+    //  payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const GetProductsExchange = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/propositions');
+
+    dispatch({
+      type:GET_MY_EXCHANGE_PRODUCTS ,
       payload: res.data,
     });
 

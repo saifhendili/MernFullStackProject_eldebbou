@@ -7,17 +7,23 @@ import { connect } from 'react-redux';
 import { addComment, getComment } from '../../../../actions/comment';
 import CommentItem from './CommentItem';
 import PropositionItem from './PropositionItem';
-import { getPropositions } from '../../../../actions/proposition';
+import { AddProposition, getPropositions } from '../../../../actions/proposition';
 import { useSearchParams } from 'react-router-dom';
+import FormItemProposition from './FormItemProposition';
 
-function DetailProduit({getProduct,addComment,getComment,getPropositions ,comment:{comments},proposition:{propositions},product:{product,loading}}) {
+function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropositions ,comment:{comments},proposition:{propositions},product:{product,loading}}) {
     const [text, setText] = useState('');
     const [searchParams] = useSearchParams();
+
+
     useEffect(() => {
         getProduct(searchParams.get("id"));
         getComment(searchParams.get("id"));
         getPropositions(searchParams.get("id"));
       }, [getProduct, searchParams.get("id")]);
+   
+
+
     return loading || product === null ? (
         <Spinner />
       ) : (
@@ -53,19 +59,19 @@ function DetailProduit({getProduct,addComment,getComment,getPropositions ,commen
 
                             <span class="pd-detail__name">{product.name}</span></div>
                         <div>
-                            <div class="pd-detail__inline">
 
-                                <span class="pd-detail__price">{product.price} DT</span>
+                            {product.dealType=="UsedProduct" ? <div class="pd-detail__inline">
 
-                               </div>
+<span class="pd-detail__price">{product.price} DT</span>
+
+</div>: <div class="pd-detail__inline">
+
+<span class="pd-detail__price"></span>
+
+</div>}
+                          
                         </div>
-                        <div class="u-s-m-b-15">
-                            <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-
-                                <span class="pd-detail__review u-s-m-l-4">
-
-                                    <a data-click-scroll="#view-review">23 Reviews</a></span></div>
-                        </div>
+                    
                         <div class="u-s-m-b-15">
                             
                         </div>
@@ -162,43 +168,17 @@ function DetailProduit({getProduct,addComment,getComment,getPropositions ,commen
                                     <div class="u-s-m-b-30">
                                         <form class="pd-tab__rev-f1">
                                           
-                                            <div class="rev-f1__review">
+                                        <div className="shop-p__collection">
+              <div className="row is-grid-active">
                                                 
 {propositions.map(x=>(<PropositionItem   key={x._id} proposition={x}/>))}
+                                            </div>
                                                
                                             </div>
                                         </form>
                                     </div>
                                     <div class="u-s-m-b-30">
-                                        <form class="pd-tab__rev-f2">
-                                         
-                                            <div class="rev-f2__group">
-                                                <div class="u-s-m-b-15">
-
-                                                    <label class="gl-label" for="reviewer-text">YOUR PROPOSITION *</label><textarea class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
-                                                <div>
-                                                <p class="u-s-m-b-30">
-
-<label class="gl-label" for="reviewer-email">PRICE *</label>
-
-<input class="input-text input-text--primary-style" type="text" id="reviewer-email"/></p>
-                                                    <p class="u-s-m-b-30">
-                                                    <div className="custom-file">
-                                                                        <input type="file"className="custom-file-input"id="customFile"  
-                                                                        // onChange={(e) =>onChangeFile(e)} 
-                                                                        name="images"/>
-
-                                                                        <label className="custom-file-label" htmlFor="customFile">Choose file</label>
-                                                                    </div>
-                                                       </p>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div>
-
-                                                <button class="btn btn--e-brand-shadow" type="submit">SUBMIT</button></div>
-                                        </form>
-                                    </div>
+<FormItemProposition id={searchParams.get("id")}/>                                    </div>
                                 </div>
                             </div>
                        

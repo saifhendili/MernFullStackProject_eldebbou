@@ -34,6 +34,11 @@ import {loadStripe} from '@stripe/stripe-js';
 import Home from './Component/Frontoffice/Home';
 import RequestOrganisation from './Component/Admin/Liste-User/RequestOrganisation';
 import RequestDelivery from './Component/Admin/Liste-User/RequestDelivery';
+import MyProfile from './Component/Frontoffice/Profile/MyProfile';
+import MyOrders from './Component/Frontoffice/Delivey/MyOrders';
+import Pricing from './Component/Frontoffice/Delivey/Pricing.js/Pricing';
+import MyExchangeProduct from './Component/Frontoffice/Product/ExchangeProduct/MyExchangeProduct';
+import PropositionOfProducts from './Component/Frontoffice/Product/ExchangeProduct/PropositionOfProducts';
 
 const promise = loadStripe(
   "pk_test_51KkJdXAKTcryk5ZvXAWqFdeIfD4AW1jvV7yj77K71hUvhGs7hWA8NgONxPl6vsOOYL8yUASXEmUylZtHAqT29p5900JoIJ33lZ"
@@ -75,17 +80,23 @@ function App () {
               </Elements></PrivateRoute>
             }
           />
+               <Route path="/myprofile" element={ <PrivateRoute><MyProfile/></PrivateRoute>}/>
           
                <Route path="/forgetpassword" element={<ForgetPassword/>} />
-
                <Route path="/check" element={<CheckYourEmail/>} />
                <Route path="/passwordreset" element={<ResetPassword/>} />
                
                <Route path="/all-Users" element={ <PrivateRoute><IndexAdmin/></PrivateRoute>}/>
                
                <Route path="/delivery-list" element={ <PrivateRoute><RequestDelivery/></PrivateRoute>}/>
+               
+               <Route path="/product-proposition" element={ <PrivateRoute><PropositionOfProducts/></PrivateRoute>}/>
+               
+               <Route path="/pricing" element={ <PrivateRoute><Pricing/></PrivateRoute>}/>
 
-                <Route path="/organisations-list" element={ <PrivateRoute><RequestOrganisation/></PrivateRoute>}/>
+               <Route path="/organisations-list" element={ <PrivateRoute><RequestOrganisation/></PrivateRoute>}/>
+                
+               <Route path="/myorders-delivery" element={ <PrivateRoute><MyOrders/></PrivateRoute>}/>
 
                <Route path="/wishlist" element={ <PrivateRoute><Wishlist/></PrivateRoute>}/>
                <Route path="/card" element={<PrivateRoute><MainCard/></PrivateRoute>}/>
@@ -94,6 +105,8 @@ function App () {
                <Route path='/address' element={<PrivateRoute><Address/></PrivateRoute>} />
                <Route path='/changepassword' element={<PrivateRoute><ChangePossword/></PrivateRoute>}/>
                <Route exact path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+               
+               <Route exact path='/exchange-product' element={<PrivateRoute><MyExchangeProduct/></PrivateRoute>} />
 
                </Routes>
                

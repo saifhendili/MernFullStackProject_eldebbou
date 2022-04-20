@@ -14,6 +14,12 @@ const ProductSchema = new mongoose.Schema({
     required:true
 
   },
+  status:{
+    type: Boolean,
+    default:false,
+    required:true
+
+  },
   description: {
     type: String,
     required:true
@@ -41,6 +47,34 @@ const ProductSchema = new mongoose.Schema({
     required:true
 
   },
+  reservation:[
+
+    {
+      userid: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+      firstname: {
+        type: String,
+      },
+      lastname: {
+        type: String,
+      },
+      OrganisationName: {
+        type: String,
+        required:true
+      },
+      status: {
+        type: Boolean,
+        default:false,
+      },
+      fondationDate: {
+        type: Date,
+        default: Date.now,
+      },
+  
+    },
+  ],
   proposition: [
     {
       userid: {
@@ -49,7 +83,7 @@ const ProductSchema = new mongoose.Schema({
       },
       image: {
         type: String,
-        required:true
+        // required:true
       },
       firstname: {
         type: String,
@@ -57,7 +91,7 @@ const ProductSchema = new mongoose.Schema({
       lastname: {
         type: String,
       },
-      text: {
+      description: {
         type: String,
         required:true
       },

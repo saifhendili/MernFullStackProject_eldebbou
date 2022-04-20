@@ -49,5 +49,78 @@ router.post("/", auth,async(req, res) => {
 res.status(500).send('Server Error');
 }
 })
-  
+
+
+//deliveryy
+
+router.get("/all-orders-without-delivery", auth,async(req, res) => {
+  try {
+    await Order.find({state:'Witout_Delivery'},function(err,data){
+      res.json(data);
+
+    });
+} catch (error) {
+    
+res.status(500).send('Server Error');
+}
+})
+
+
+router.put("/reserve-order/:id", auth,async(req, res) => {
+  try {
+    const order =await Order.findById(req.params.id)
+    if (order) {
+      order.delivery = req.user.id;
+      order.state="Processing"
+    }else{
+res.status(400).send('can find this user');
+    }
+    
+await order.save()
+
+    res.json(order);
+} catch (error) {
+    
+res.status(500).send('Server Error');
+}
+})
+
+
+router.put("/state-order/:id", auth,async(req, res) => {
+  try {
+    const order =await Order.findById(req.params.id)
+
+
+    if (order) {
+      order.delivery = req.user.id;
+      order.state="Delivered"
+    }else{
+res.status(400).send('can find this user');
+    }
+
+await order.save()
+res.json(order);
+
+} catch (error) {
+    
+res.status(500).send('Server Error');
+}
+})
+
+
+
+router.get("/myorders", auth,async(req, res) => {
+  try {
+    await Order.find({'delivery':req.user.id},function(err,data){
+      res.json(data);
+
+    });
+} catch (error) {
+    
+res.status(500).send('Server Error');
+}
+})
+
   module.exports = router;
+
+  

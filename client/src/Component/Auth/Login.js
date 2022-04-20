@@ -124,7 +124,7 @@ function Login({ login, isAuthenticated }) {
 
                                         <Link class="gl-link" to="/forgetpassword">Lost Your Password?</Link></div>
                                 </div>
-                                <div class="u-s-m-b-30">
+                        <div class="u-s-m-b-30">
 
                                     <div class="check-box">
 

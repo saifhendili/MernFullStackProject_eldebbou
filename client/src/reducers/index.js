@@ -10,6 +10,7 @@ import comment from './comment';
 import proposition from './proposition';
 import order from './order';
 import request from './request';
+import profile from './profile';
 
 export default combineReducers({
 
@@ -22,6 +23,6 @@ export default combineReducers({
   comment,
   proposition,
   order,
-  request
+  request,profile
   
 });

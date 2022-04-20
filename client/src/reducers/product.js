@@ -4,7 +4,7 @@ import {
     DELETE_PRODUCT,
     ADD_PRODUCTS,
     GET_PRODUCTS,
-  
+    GET_MY_EXCHANGE_PRODUCTS
   } from '../actions/Types';
 
   const initialState = {
@@ -19,6 +19,7 @@ import {
     const { type, payload } = action;
 
     switch (type) {
+     case GET_MY_EXCHANGE_PRODUCTS:
         case GET_PRODUCTS:
           return {
             ...state,

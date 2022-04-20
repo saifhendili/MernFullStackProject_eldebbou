@@ -8,10 +8,13 @@
     GET_PROPOSITION,
 } from './Types';
   
-  export const AddProposition = (id) => async (dispatch) => {
+  export const AddProposition = (id,formData) => async (dispatch) => {
+  
     try {
-      const res = await axios.post(`/api/propositions/${id}`);
-
+      const res = await axios.post(`/api/propositions/${id}`,
+      formData
+      
+    );
       dispatch({
         type: ADD_PROPOSITION,
         payload: res.data,
@@ -20,7 +23,7 @@
     } catch (err) {
       dispatch({
       type: PROPOSITION_ERROR,
-      //  payload: { msg: err.response.statusText, status: err.response.status },
+        // payload: { msg: err.response.statusText, status: err.response.status },
       });
     }
   };

@@ -19,9 +19,14 @@ function AddProduct({addProduct}) {
     const onChangeFile=e=>{
         setimages(e.target.files[0]);
     }
-    
+    const hundelchange = (e) =>
+   {
+    setdealType(e.target.value)
+       setPrice(0)
+   }
       const onsubmit = (e) => {
         e.preventDefault();
+     
         const formData=new FormData();
         formData.append("name",name);
         formData.append("description",description)
@@ -36,6 +41,7 @@ function AddProduct({addProduct}) {
         setimages("")
         setdescription("")
         setdealType("UsedProduct")
+        
         addProduct(formData)
        
     }
@@ -134,22 +140,24 @@ function AddProduct({addProduct}) {
                                                                         <input className="input-text input-text--primary-style" type="text" id="reg-fname" name='Category'value={Category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" /></div>
 
                                                                 </div>
-
-
-
-                                                                <div className="gl-inline">
-                                                                    <div className="u-s-m-b-30">
-                                                                        <label className="gl-label" htmlFor="reg-fname">Price *</label>
-                                                                        <input className="input-text input-text--primary-style" type="number" id="reg-fname" name='price'value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Put your price" /></div>
-                                                                    <div className="u-s-m-b-30">
+                                                                <div className="u-s-m-b-30">
                                                                         <label className="gl-label"  htmlFor="gender">DealType</label>
-                                                                        <select className="select-box select-box--primary-style u-w-100" name='dealType'value={dealType} onChange={(e) => setdealType(e.target.value)}  id="gender">
+                                                                        <select className="select-box select-box--primary-style u-w-100" name='dealType'value={dealType} onChange={(e) =>hundelchange(e)}  id="gender">
                                                                             <option value="UsedProduct">UsedProduct</option>
                                                                             <option value="Exchange">Exchange</option>
                                                                             <option value="Donation">Donation</option>
 
                                                                         </select></div>
 
+
+
+                                                                <div className="gl-inline">
+                                                                    {dealType=="UsedProduct"? <div className="u-s-m-b-30">
+                                                                        <label className="gl-label" htmlFor="reg-fname">Price *</label>
+                                                                        <input className="input-text input-text--primary-style" type="number" id="reg-fname" name='price'value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Put your price" />
+                                                                    </div>:   null}
+                                                                
+                                                                  
 
                                                                 </div>
                                                                 <div className="gl-inline">
