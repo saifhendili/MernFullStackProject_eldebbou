@@ -65,6 +65,13 @@ export const CHANGE_STATE= 'CHANGE_STATE'
 export const MY_ORDERS_DELIVERY= 'MY_ORDERS_DELIVERY'
 export const GET_MY_EXCHANGE_PRODUCTS= 'GET_MY_EXCHANGE_PRODUCTS'
 export const ADD_ORDER_Exchange= 'ADD_ORDER_Exchange'
+export const GET_OPINIONS="GET_OPINIONS"
+export const SAVE_MESSAGE = 'save_message';
+export const ADD_REP="ADD_REP"
+export const GET_SEARCH="GET_SEARCH"
+export const GET_PROFILE="GET_PROFILE"
+export const GET_MYPRODUCT_USER="GET_MYPRODUCT_USER"
+
 
 
 

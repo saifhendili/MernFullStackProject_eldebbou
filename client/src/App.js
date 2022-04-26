@@ -39,6 +39,14 @@ import MyOrders from './Component/Frontoffice/Delivey/MyOrders';
 import Pricing from './Component/Frontoffice/Delivey/Pricing.js/Pricing';
 import MyExchangeProduct from './Component/Frontoffice/Product/ExchangeProduct/MyExchangeProduct';
 import PropositionOfProducts from './Component/Frontoffice/Product/ExchangeProduct/PropositionOfProducts';
+// import Chatbot from './Component/chat/chatbot';
+import "./App.css";
+
+import ListQuestion from './Component/Admin/ListQuestion/ListQuestion';
+import Chatbot from './Component/Frontoffice/Chatbot/Chatbot';
+import Messenger from './Component/Admin/Chat/messenger/Messenger';
+import Allprofile from './Component/Frontoffice/AllProfiles/Allprofile';
+import ProfileUsers from './Component/Frontoffice/AllProfiles/ProfileUsers';
 
 const promise = loadStripe(
   "pk_test_51KkJdXAKTcryk5ZvXAWqFdeIfD4AW1jvV7yj77K71hUvhGs7hWA8NgONxPl6vsOOYL8yUASXEmUylZtHAqT29p5900JoIJ33lZ"
@@ -64,11 +72,17 @@ function App () {
        <Route exact path='/register' element={<Register/>} />
               <Route exact path='/login' element={<Login/>} />
                <Route path='/' element={<Home/>} />
+               
+               <Route exact path='/listquestion' element={<ListQuestion/>} />
+               <Route exact path='/Chatbot' element={<Chatbot/>} />
+
+               
                <Route exact path='/listeuser' element={<ListeUser/>} />
                <Route exact path='/listeproduct' element={<ListProduct/>} />
                <Route path='/chat' element={<ContenuChat/>}/>
                <Route path="/myproduct" element={<DetailProduit/>} />
             
+            <Route path="/chatbot"element={<Chatbot/>} />
                {/* <PrivateRoute path='/payment' element={ <Elements stripe={promise}>
     <PlaceOrder />
     </Elements>} /> */}
@@ -91,6 +105,14 @@ function App () {
                <Route path="/delivery-list" element={ <PrivateRoute><RequestDelivery/></PrivateRoute>}/>
                
                <Route path="/product-proposition" element={ <PrivateRoute><PropositionOfProducts/></PrivateRoute>}/>
+               
+           
+               <Route path="/friendprofiles" element={ <PrivateRoute><ProfileUsers/></PrivateRoute>}/>
+               
+               <Route path="/messenger" element={ <PrivateRoute><Messenger/></PrivateRoute>}/>
+               <Route path="/profiles" element={ <PrivateRoute><Allprofile/></PrivateRoute>}/>
+
+
                
                <Route path="/pricing" element={ <PrivateRoute><Pricing/></PrivateRoute>}/>
 

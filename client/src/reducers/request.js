@@ -4,6 +4,7 @@ import {
     ACCEPT_Request_ORGANISATION,
     ACCEPT_Request_DELIVERY,
     REQUEST_ERROR,
+    GET_OPINIONS,ADD_REP
  
     } from '../actions/Types';
     
@@ -11,6 +12,7 @@ import {
      loading: true,
       organisations: [],
       deliverys: [],
+      opinions:[],
       error: {},
     };
     export default function (state = initialState, action) {
@@ -31,6 +33,18 @@ import {
                     deliverys: payload,
                     loading: false,
                   };
+                  case GET_OPINIONS:
+                    return {
+                      ...state,
+                      opinions: payload,
+                      loading: false,
+                    };
+                    case ADD_REP:
+                      return {
+                        ...state,
+                        opinions: payload,
+                        loading: false,
+                      };
               case REQUEST_ERROR:
                   return {
                     ...state,

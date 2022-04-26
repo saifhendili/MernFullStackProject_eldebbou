@@ -24,6 +24,15 @@ router.get('/', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+router.get('/myprofile/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 router.delete('/:id', async (req, res) => {
   try {

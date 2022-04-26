@@ -7,6 +7,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Spinner from "../../Layout/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+
 import { SetAlert } from "../../../actions/alert";
 
 function PlaceOrder(props) {
@@ -22,7 +24,6 @@ function PlaceOrder(props) {
         amount:props.auth.user.Total ,
       });
    setClientSecret(data.data.clientSecret);
-
     };
 
     fetchClientSecret();
@@ -126,7 +127,6 @@ function PlaceOrder(props) {
           <button onClick={confirmPayment}>Place Order</button>
         </Subtotal>
       </Main>
-      {/* </Fragment>)} */}
     </Container>
   );
 }
@@ -250,21 +250,12 @@ const Subtotal = styled.div`
     border-radius: 8px;
   }
 `
-
 PlaceOrder.propTypes = {
- 
   // GetOrder: PropTypes.func.isRequired,
- 
 };
-
 const mapStateToProps = (state) => ({
   order: state.order,
  auth:state.auth,
  panier:state.panier
-
 });
-
 export default connect(mapStateToProps, {})(PlaceOrder);
-
-
-

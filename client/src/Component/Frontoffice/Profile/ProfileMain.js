@@ -205,7 +205,7 @@ function ProfileMain({PutInfo,auth:{user,loading}}) {
                                                       </div>
                                                   
                                                   </div>
-                                                  <Link to="changepassword"class="btn btn--e-brand-b-2" >Change Password</Link>
+                                                  <Link to="/changepassword"class="btn btn--e-brand-b-2" >Change Password</Link>
                                                   <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
                                               </form>
                                           </div>

@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import Aside from '../Admin/Layout/Aside';
+import { getsearch } from '../../actions/profile';
 
-function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
+function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) {
   const loggout = (e) => {
     e.preventDefault();
     logout();
   };
-
+  const handleChange = (e) => {
+    getsearch(e.target.value);
+  };
   const authLinks = (
     <div>
 
@@ -24,8 +27,8 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
               <img src="assetes/images/logo/logo-1.png"  /></Link>
             <form className="main-form">
               <label htmlFor="main-search" />
-              <input className="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search" />
-              <button className="btn btn--icon fas fa-search main-search-button" type="submit" /></form>
+              <input  type='text' className="input-text input-text--border-radius input-text--style-1"    onChange={(e) => handleChange(e)} id="main-search" placeholder="Search" />
+              <Link className='Search-nav' to='profiles'>  <button className="btn btn--icon fas fa-search main-search-button" type="submit" /></Link></form>
             {/*====== End - Search Form ======*/}
             {/*====== Dropdown Main plugin ======*/}
             <div className="menu-init" id="navigation">
@@ -694,9 +697,10 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                     {/*====== End - Dropdown ======*/}
                   </li>
                   <li>
-                    <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
+                  <Link to ="messenger" >Messenger</Link>
+                   </li>
                   <li>
-                    <Link to ="exchange-product" href="shop-side-version-2.html">My Exchange Products</Link></li>
+                    <Link to ="exchange-product" >My Exchange Products</Link></li>
                 </ul>
                 {/*====== End - List ======*/}
               </div>
@@ -835,10 +839,7 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
               <div className="primary-nav">
                 <a className="main-logo" href="index.html">
                   <img src="assetes/images/logo/logo-1.png"  /></a>
-                <form className="main-form">
-                  <label htmlFor="main-search" />
-                  <input className="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search" />
-                  <button className="btn btn--icon fas fa-search main-search-button" type="submit" /></form>
+               
                 {/*====== End - Search Form ======*/}
                 {/*====== Dropdown Main plugin ======*/}
                 <div className="menu-init" id="navigation">
@@ -1838,6 +1839,7 @@ function Navbar({ auth: { isAuthenticated, loading, user }, logout }) {
                 <Link to="dashboard" className="main-logo">
                   <img src="assetes/images/logo/logo-1.png"  /></Link>
                   <Link to="pricing">  <h6> <span>Get Premieum account</span></h6></Link>
+                  <Link to ="messenger" >Messenger</Link>
 
                   <Link to="myorders-delivery">  <h6> <span>MyOrders</span></h6></Link>
                   <h6>
@@ -2328,5 +2330,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  logout,
+  logout,getsearch
 })(Navbar);

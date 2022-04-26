@@ -13,9 +13,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/dialogflow": "^4.7.0",
+    "actions-on-google": "^3.0.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "config": "^3.3.1",
     "cors": "^2.8.5",
+    "dialogflow": "^1.2.0",
+    "dialogflow-fulfillment": "^0.6.1",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "express-validator": "^6.6.0",
     "gravatar": "^1.8.1",
@@ -25,6 +31,7 @@
     "nodemailer": "^6.7.2",
     "react-router-dom": "^6.3.0",
     "request": "^2.88.2",
+    "socket.io": "^4.5.0",
     "strip": "^3.0.0",
     "stripe": "^8.215.0"
   },
