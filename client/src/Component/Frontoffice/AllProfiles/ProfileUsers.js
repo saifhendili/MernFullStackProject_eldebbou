@@ -1,15 +1,38 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Spinner from '../../Layout/Spinner';
 import { GetprofileById } from '../../../actions/profile';
 import { useSearchParams } from 'react-router-dom';
+import Axios from 'axios';
+import { Conversation } from '../../../actions/user';
+import { useNavigate } from "react-router-dom";
 
-function ProfileUsers({GetprofileById,profile:{user,loading}}) {
+
+function ProfileUsers({Conversation,GetprofileById,profile:{user,loading},auth}) {
   const [searchParams] = useSearchParams();
+  const [senderId,setsenderId]=useState(auth.user._id)
+  const [receiverId,setreceiverId]=useState(searchParams.get("id"))
+const navigate =useNavigate()
+     
+ const add=(e)=>{
+  e.preventDefault();
+  // console.log(auth.user._id+"ddd")
+  // setsenderId(auth.user._id)
+  // setreceiverId(searchParams.get("id"))
+  const formData=new FormData();
+
+  formData.append("senderId",senderId);
+  formData.append("receiverId",receiverId)
+
+  Conversation({senderId,receiverId})
+  navigate("/messenger");
+
+ }
 
     useEffect(()=>{
+      
         GetprofileById(searchParams.get("id"));    
     },[])
     return (  loading || user === null ? (
@@ -43,7 +66,13 @@ function ProfileUsers({GetprofileById,profile:{user,loading}}) {
                         <li><i className="fa fa-facebook"></i></li>
         
                     </ul>
-                    <div class="buttons"> <button class="btn btn-outline-warning px-4">Follow</button> <button class="btn btn-secondary px-4 ms-3">Contact</button> </div>
+                    <div class="buttons"> <button class="btn btn-outline-warning px-4">Follow</button>
+                    
+                    
+                     <button onClick={(e) => add(e)} class="btn btn-secondary px-4 ms-3">Contact</button>
+                     
+                     
+                      </div>
                 </div>
             </div>
         </div>
@@ -126,6 +155,8 @@ ProfileUsers.propTypes = {
     GetprofileById:PropTypes.func.isRequired
   };
   const mapStateToProps = (state) => ({
-    profile:state.profile
+    profile:state.profile,
+    auth: state.auth,
+
   });
-  export default connect(mapStateToProps, {GetprofileById})(ProfileUsers);
+  export default connect(mapStateToProps, {GetprofileById,Conversation})(ProfileUsers);

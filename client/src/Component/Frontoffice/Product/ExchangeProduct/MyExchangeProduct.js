@@ -46,13 +46,13 @@ function MyExchangeProduct({GetProductsExchange,product:{loading,products}}) {
     <div className="shop-p__collection">
     <div className="row is-grid-active">
 {products.map(x=>x.status== false ?<div className="col-lg-3 col-md-4 col-sm-6">
+
         <div className="product-m">
           <div className="product-m__thumb">
             <Link to={`/product-proposition?id=${x._id}`} className="aspect aspect--bg-grey aspect--square u-d-block" >
               <img className="aspect__img" src={`assetes/image/product/${x.image}`} alt /></Link>
             <div className="product-m__quick-look">
               <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
-            
           </div>
           <div className="product-m__content">
             <div className="product-m__category">
@@ -69,9 +69,8 @@ function MyExchangeProduct({GetProductsExchange,product:{loading,products}}) {
             </div>
           </div>
         </div>
-      </div>
-:null
-      
+      </div>:null
+
 )}
     </div>
     </div> 

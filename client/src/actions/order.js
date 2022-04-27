@@ -10,7 +10,8 @@ import {
     GET_ORDER_WITHOUT_DELIVERY,
     RESERVEORDER,
     CHANGE_STATE,
-    MY_ORDERS_DELIVERY
+    MY_ORDERS_DELIVERY,
+    RESERVEPRODUCT,P_ERROR
 } from './Types';
 
 
@@ -146,5 +147,27 @@ export const AddOrderExchange = (id,idproposition) => async (dispatch) => {
       payload: { msg: err.response.statusText, status: err.response.status },
    //   SetAlert('Comment Added', 'danger')
     });
+  }
+};
+
+
+
+
+export const ReserveOrderDonation = (id) => async (dispatch) => {
+  
+
+  try {
+    const res = await axios.post(
+      `/api/order/reservationdonation/${id}`,  
+    );
+
+    dispatch({
+      type: RESERVEPRODUCT,
+      payload: res.data,
+    });
+
+    // dispatch(SetAlert('Ordre Added', 'success'));
+  } catch (err) {
+   console.log(err)
   }
 };

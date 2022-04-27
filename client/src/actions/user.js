@@ -7,7 +7,7 @@ import {
   DELETE_USER,
   PUT_USER,
   CHANGE_PASSWORD,
- 
+  CONVERSATION
 } from './Types';
 
 
@@ -107,3 +107,26 @@ export const deletePost = (id) => async (dispatch) => {
     }
   };
   
+
+  export const Conversation = (formData) => async (dispatch) => {
+ 
+    try {
+      const res = await axios.post(
+        `/api/conversations/`,
+        formData,
+        
+      );
+  
+      dispatch({
+        type: CONVERSATION,
+      });
+  
+      dispatch(SetAlert('Conv Added', 'success'));
+    } catch (err) {
+      dispatch({
+        type: USER_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+    

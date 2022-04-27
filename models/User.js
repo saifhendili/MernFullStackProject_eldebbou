@@ -135,6 +135,14 @@ const UserSchema = new mongoose.Schema({
     type:Number,
     default:7,
   },
+  ProductDonate: [
+    {
+      product: {
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'product',
+      },
+    },  
+  ],
   resetPasswordToken:String,
   resetPasswordExpire:Date
 });

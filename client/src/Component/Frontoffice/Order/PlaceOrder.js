@@ -24,9 +24,13 @@ function PlaceOrder(props) {
         amount:props.auth.user.Total ,
       });
    setClientSecret(data.data.clientSecret);
+   console.log(data.data.clientSecret+"ssssqxsSSSSSSSSSSSQsssssss") 
+
     };
 
     fetchClientSecret();
+    console.log(fetchClientSecret+"ssssSSSSSSSSSSSQsssssss") 
+
   }, []);
 
   const confirmPayment = async (e,dispatch) => {
@@ -38,14 +42,21 @@ function PlaceOrder(props) {
           card: elements.getElement(CardElement),
         },
       })
-      .then((result) => { 
-        axios.post("/api/order/", {
-          address: props.order.address,
-        });
+      .then((result) => {
+       console.log(JSON.stringify(result)+"sssssssssss") 
+     if(result.paymentIntent.status="succeeded"){
+      axios.post("/api/order/", {
+        address: props.order.address,
+      });
+            navigate("/dashboard");
+
+     } else{
+       alert(result.error.message)
+     }
+      
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => alert(JSON.stringify(err.status)));
     
-      navigate("/dashboard");
 
   };
 

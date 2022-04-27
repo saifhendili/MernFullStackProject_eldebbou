@@ -10,8 +10,8 @@ const User = ({
 }) => {
   return (
     <Fragment>
-      {firstname.includes(search.toLowerCase()) ||
-      lastname.includes(search.toLowerCase()) ? (
+      {firstname.toLowerCase().includes(search.toLowerCase()) ||
+      lastname.toLowerCase().includes(search.toLowerCase()) ? (
         <Link to={`/friendprofiles?id=${_id}`}>
           <div class='center'>
             <div class='property-card'>

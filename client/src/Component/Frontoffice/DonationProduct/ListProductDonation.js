@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Spinner from '../../Layout/Spinner';
 import { GetProducts } from '../../../actions/product';
+import { ReserveOrderDonation } from '../../../actions/order';
 
 const ListProductDonation =({GetProducts,product:{products,loading}}) =>{
   
@@ -14,7 +15,7 @@ let test=0
 
     useEffect(() => {
         GetProducts();
-      },[]);
+      },[GetProducts]);
      
      
       const handleChange = (e) => {
@@ -227,7 +228,7 @@ x.dealType == "Donation"?(
       <div className="product-m__quick-look">
         <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
 
-        <div  className="product-m__add-cart"> 
+        <div  onClick={ReserveOrderDonation(x._id)}  className="product-m__add-cart"> 
                <a   className="btn--e-brand" data-modal="modal"  data-modal-id="#Delete-from-cart">reservation</a>
        </div>
   

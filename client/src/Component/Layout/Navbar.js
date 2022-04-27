@@ -1870,7 +1870,46 @@ function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) 
         </div>
   );
 
+  const OrganisationLink = (
+    <div>
 
+    <header className="header--style-1">
+          <nav className="primary-nav primary-nav-wrapper--border">
+            <div className="container">
+              <div className="primary-nav">
+                <Link to="dashboard" className="main-logo">
+                  <img src="assetes/images/logo/logo-1.png"  /></Link>
+                  <Link to="pricing">  <h6> <span>My Order</span></h6></Link>
+                  <Link to ="messenger" >Messenger</Link>
+
+                  <Link to="">  <h6> <span>My Orders</span></h6></Link>
+                  <h6>
+                   
+                        <a onClick={(e) => loggout(e)} ><i className="fas fa-lock-open u-s-m-r-6" />
+                          <span>Signout</span></a></h6>
+               
+                {/*====== End - Search Form ======*/}
+            
+                {/*====== End - Dropdown Main plugin ======*/}
+              </div>
+              {/*====== End - Primary Nav ======*/}
+            </div>
+          </nav>
+          {/*====== End - Nav 1 ======*/}
+          {/*====== Nav 2 ======*/}
+          <nav className="secondary-nav-wrapper">
+            <div className="container">
+              {/*====== Secondary Nav ======*/}
+            
+              {/*====== End - Secondary Nav ======*/}
+            </div>
+          </nav>
+          {/*====== End - Nav 2 ======*/}
+        </header>
+    
+            
+        </div>
+  );
   const adminLinks = (
 
     <div>
@@ -2299,6 +2338,10 @@ function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) 
           ?requestLink
           :isAuthenticated && user !== null && user.Role == 'Delivery' && user.status == true
           ?DeliveryLink
+          :isAuthenticated && user !== null && user.Role == 'Organisation' && user.status == true
+
+          ?OrganisationLink
+          
           : guestLinks}
           {/* DeliveryLink */}
       </Fragment>
