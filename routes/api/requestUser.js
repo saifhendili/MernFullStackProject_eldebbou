@@ -39,7 +39,7 @@ const upload=multer({storage:storage});
   });
 
 
-  router.put('/delivery',auth, upload.single("file"),async (req, res) => {
+  router.put('/delivery',auth, upload.single("file"),async (req, res) => {  //formulaire theniya //fi lo5era gadina save formulaire
     try {
         const user = await User.findById(req.user.id);
         user.Matricule= req.body.Matricule,
@@ -96,7 +96,7 @@ const upload=multer({storage:storage});
         user.status=true
         
       await user.save(); 
-      const users = await User.find({Role:"Delivery"});     
+      const users = await User.find({Role:"Delivery"});  //5ater role mete3ou par default user 3adi   
       res.json(users);
     } catch (err) {
       console.error(err.message);
