@@ -4,6 +4,8 @@ import WishlistItem from './WishlistItem'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../../Layout/Spinner';
+import { Link } from 'react-router-dom';
+ 
 
 function Wishlist({GetWishLists ,wishlist:{wishlists,loading}}) {
     useEffect(() => {
@@ -65,9 +67,9 @@ function Wishlist({GetWishLists ,wishlist:{wishlists,loading}}) {
                             <div class="route-box">
                                 <div class="route-box__g">
 
-                                    <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                                    <Link to = "/dashboard" class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
 
-                                        <span>CONTINUE SHOPPING</span></a></div>
+                                        <span>CONTINUE SHOPPING</span></Link></div>
                                 <div class="route-box__g">
 
                                     <a class="route-box__link" href="wishlist.html"><i class="fas fa-trash"></i>
