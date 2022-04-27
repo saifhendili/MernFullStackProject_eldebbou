@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const PropositionItems = ({ idproduct,AddOrderExchange, x: {firstname,lastname,description,price,image,_id } }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const onsubmit = (e) => {
     AddOrderExchange(idproduct,_id)
