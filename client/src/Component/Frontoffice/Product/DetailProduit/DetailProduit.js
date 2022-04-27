@@ -153,11 +153,9 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
                                 <a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
 
                                 </a></li>
-                                {product.dealType=="Exchange"?             <li><a class="nav-link" id="view-review" data-toggle="tab" href="#pd-prop">PROPOSITIONS
+                                {product.dealType=="Exchange"?<li><a class="nav-link" id="view-review" data-toggle="tab" href="#pd-prop">PROPOSITIONS
 <span></span></a></li>:null}
 
-                           
-                              
                             </ul>
                         </div>
                         <div class="tab-content">
@@ -205,7 +203,8 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
                                                 <div class="u-s-m-b-15">
 
                                                     <label class="gl-label" for="reviewer-text">YOUR COMMENT *</label><textarea  value={text}
-                                                     onChange={(e) =>setText(e.target.value.replace('ll', '***'))} class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
+
+                                                     onChange={(e) => setText(e.target.value.replace("bro","***"))} class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
                                              
                                             </div>
                                             <div>

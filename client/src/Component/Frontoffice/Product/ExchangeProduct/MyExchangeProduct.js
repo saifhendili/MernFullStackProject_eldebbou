@@ -45,7 +45,8 @@ function MyExchangeProduct({GetProductsExchange,product:{loading,products}}) {
     </div>
     <div className="shop-p__collection">
     <div className="row is-grid-active">
-{products.map(x=>x.status==false? <div className="col-lg-3 col-md-4 col-sm-6">
+{products.map(x=>x.status== false ?<div className="col-lg-3 col-md-4 col-sm-6">
+
         <div className="product-m">
           <div className="product-m__thumb">
             <Link to={`/product-proposition?id=${x._id}`} className="aspect aspect--bg-grey aspect--square u-d-block" >
@@ -69,7 +70,6 @@ function MyExchangeProduct({GetProductsExchange,product:{loading,products}}) {
           </div>
         </div>
       </div>:null
-     
 
 )}
     </div>
