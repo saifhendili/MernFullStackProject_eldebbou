@@ -14,7 +14,6 @@ function OrderDileveryItems({CondirmedState,order:{address,state,_id,products,pr
         <div class="dash-l-r">
             <div>
                 <div class="manage-o__text-2 u-c-secondary">Order #{_id}</div>
-                <div class="manage-o__text u-c-silver">Placed on 26 Oct 2016 09:08:37</div>
             </div>
             <div>
                 <div class="dash__link dash__link--brand">

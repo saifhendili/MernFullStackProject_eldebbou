@@ -5,6 +5,8 @@ import Spinner from '../../Layout/Spinner';
 import PropTypes from 'prop-types';
 import order from '../../../reducers/order';
 import OrderItem from './OrderItem';
+import { Link } from 'react-router-dom';
+
 
 function OrderDilevery({getOrdersFree,order:{orders,loading}}) {
     useEffect(()=>{
@@ -15,6 +17,8 @@ function OrderDilevery({getOrdersFree,order:{orders,loading}}) {
   {loading ||orders==null? (
     <Spinner />
   ) : (
+
+    
     <div class="app-content">
     <div class="u-s-p-y-60">
         <div class="section__content">
@@ -27,55 +31,32 @@ function OrderDilevery({getOrdersFree,order:{orders,loading}}) {
                                 <a href="index.html">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="dash-my-order.html">My Account</a></li>
+                                <a href="dash-my-order.html">Available Orders</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container">
 
+    <Link to="pricing">  <h6 class="btn btn-outline-secondary mr-1"> <span>Get Premieum account</span></h6></Link>
+              <Link to="messenger"><h6 class="btn btn-outline-secondary mr-1">Messanger</h6></Link>
+
+              <Link to="myorders-delivery">  <h6 class="btn btn-outline-secondary mr-1"> <span>MyOrders</span></h6></Link>
+</div>
     <div class="u-s-p-b-60">
 
         <div class="section__content">
             <div class="dash">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-12">
-                            <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
-                                <div class="dash__pad-1">
+                       
 
-                                    <span class="dash__text u-s-m-b-16">Hello, John Doe</span>
-                                    <ul class="dash__f-list">
-                                        <li>
 
-                                            <a href="dashboard.html">Manage My Account</a></li>
-                                        <li>
 
-                                            <a href="dash-my-profile.html">My Profile</a></li>
-                                        <li>
 
-                                            <a href="dash-address-book.html">Address Book</a></li>
-                                        <li>
-
-                                            <a href="dash-track-order.html">Track Order</a></li>
-                                        <li>
-
-                                            <a class="dash-active" href="dash-my-order.html">My Orders</a></li>
-                                        <li>
-
-                                            <a href="dash-payment-option.html">My Payment Options</a></li>
-                                        <li>
-
-                                            <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-12">
+                        <div class="col-lg-12 col-md-12">
                             <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                 <div class="dash__pad-2">
                                     <h1 class="dash__h1 u-s-m-b-14">Orders</h1>

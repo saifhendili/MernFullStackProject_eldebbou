@@ -16,13 +16,12 @@ function OrderItem({ReserveOrder,order:{address,state,_id,products,price}}) {
     <div class="manage-o__header u-s-m-b-30">
         <div class="dash-l-r">
             <div>
-                <div class="manage-o__text-2 u-c-secondary">Order #{_id}</div>
-                <div class="manage-o__text u-c-silver">Placed on 26 Oct 2016 09:08:37</div>
+                <div class="manage-o__text-2 u-c-secondary">Order Number :  {_id}</div>
             </div>
             <div>
-                <div class="dash__link dash__link--brand">
+                <div class="dash__link dash__link--brand ">
 
-                    <a href="dash-manage-order.html">MANAGE</a></div>
+                    <a href="#">Details</a></div>
             </div>
             <div>
                 <div class="dash__link dash__link--brand">
