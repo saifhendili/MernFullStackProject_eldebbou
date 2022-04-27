@@ -121,6 +121,48 @@ res.status(500).send('Server Error');
 }
 })
 
+
+router.post('/reservationdonation/:id',auth,async(req,res)=>{
+  
+  try {
+      const me =await User.findById(req.user.id).select('-password');;
+      const product =await Product.findById(req.params.id);
+      
+      const newProduct =  {
+        product:req.params.id,
+        name: product.name,
+        description: product.description,
+        image: product.image,
+      };
+
+      await  me.ProductDonate.unshift(newProduct)
+      await product.remove();
+      await  me.save();
+      const productS =await Product.find();
+
+    res.json(productS);
+  } catch (error) {
+      
+  res.status(500).send('Server Error');
+  }
+})
+
+
+
+
+
+router.get('/getorderdonation/',auth,async(req,res)=>{
+  
+  try {
+      const me =await User.findById(req.user.id).select('-password');;
+
+    res.json(me.ProductDonate);
+  } catch (error) {
+      
+  res.status(500).send('Server Error');
+  }
+})
+
   module.exports = router;
 
   

@@ -71,6 +71,13 @@ export const ADD_REP="ADD_REP"
 export const GET_SEARCH="GET_SEARCH"
 export const GET_PROFILE="GET_PROFILE"
 export const GET_MYPRODUCT_USER="GET_MYPRODUCT_USER"
+export const CONVERSATION="CONVERSATION"
+export const RESERVEPRODUCT="RESERVEPRODUCT"
+export const P_ERROR="P_ERROR"
+
+
+
+
 
 
 

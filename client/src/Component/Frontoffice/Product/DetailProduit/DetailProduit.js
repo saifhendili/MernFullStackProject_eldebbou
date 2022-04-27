@@ -153,9 +153,9 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
                                 <a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
 
                                 </a></li>
-                                <li><a class="nav-link" id="view-review" data-toggle="tab" href="#pd-prop">PROPOSITIONS
+                                {product.dealType=="Exchange"?             <li><a class="nav-link" id="view-review" data-toggle="tab" href="#pd-prop">PROPOSITIONS
+<span></span></a></li>:null}
 
-                                <span></span></a></li>
                            
                               
                             </ul>
@@ -199,13 +199,13 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
                                     <div class="u-s-m-b-30">
                                         <form onSubmit={(e)=>   
                                           {  e.preventDefault();
-                                            addComment(searchParams.get("id"), { text });
+                                                 addComment(searchParams.get("id"), { text });
                                             setText('');}} class="pd-tab__rev-f2">
                                             <div class="rev-f2__group">
                                                 <div class="u-s-m-b-15">
 
                                                     <label class="gl-label" for="reviewer-text">YOUR COMMENT *</label><textarea  value={text}
-                                                     onChange={(e) => setText(e.target.value)} class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
+                                                     onChange={(e) =>setText(e.target.value.replace('ll', '***'))} class="text-area text-area--primary-style" id="reviewer-text"></textarea></div>
                                              
                                             </div>
                                             <div>
