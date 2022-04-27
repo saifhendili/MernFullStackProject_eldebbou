@@ -14,6 +14,7 @@ function MyProfile({GetMyProducts,auth:{user,loading},profile:{products}}) {
       ):
         
   <div className="app-content">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></link>
   <div className="u-s-p-y-90">
     <div className="container">
       <div className="row">
@@ -26,18 +27,23 @@ function MyProfile({GetMyProducts,auth:{user,loading},profile:{products}}) {
     <div class="row d-flex justify-content-center">
         <div class="col-md-7 w-100">
             <div class="card p-3 py-4">
-                <div class="text-center"> <img src={user.avatar} width={100} className="rounded-circle" />
- </div>
+            <div class="text-center">
+            <img width={100} src='https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairTheCaesar&accessoriesType=Sunglasses&hairColor=Auburn&facialHairType=Blank&clotheType=ShirtCrewNeck&clotheColor=Black&eyeType=Squint&eyebrowType=Angry&mouthType=Disbelief&skinColor=Light'/>
+            </div>
                 <div class="text-center mt-3">
                   
                    <span class="bg-secondary p-1 px-4 rounded text-white">User</span>
                    <span> </span>
                     <h5 class="mt-2 mb-0">{user.firstname} {user.lastname}</h5>
                     <div class="px-4 mt-1">
-                        <p class="fonts">Bio: Consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud consequat. </p>
+                        <p class="fonts">Bio: I'm thrifter and owner of a retail shop that sells various products, I'm mainly passionate about second hand clothes.<br></br>Contact me : 27444423&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For Business: nassim.benaissa@hotmail.fr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></br> <ul class="social-links list-inline">
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                        </ul> </p>
                     </div>
                     <ul class="social-list">
-                        <li><i className="fa fa-facebook"></i></li>
+                        
         
                     </ul>
                     <div class="buttons"> <button class="btn btn-outline-warning px-4">Follow</button> <button class="btn btn-secondary px-4 ms-3">Contact</button> </div>
@@ -127,3 +133,4 @@ MyProfile.propTypes = {
     profile:state.profile
   });
   export default connect(mapStateToProps, {GetMyProducts})(MyProfile);
+  
