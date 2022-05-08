@@ -9,6 +9,7 @@ const User = require('../../models/User');
 const auth = require('../../middleware/auth');
 const sendEmail=require('../../middleware/sendEmail')
 const { check, validationResult } = require('express-validator');
+const Product = require('../../models/Product');
 // const normalize = require('normalize-url');
 // @route post api/user
 // @desc Test route
@@ -245,4 +246,84 @@ res.status(201).json({
 }
 
 })
+
+
+
+
+
+
+router.post('/get-search',auth,async (req, res) => {
+  try {
+    const me=await User.findById(req.user.id);
+    const products=await Product.find();
+let n=0
+    products.filter(x=>{
+     
+
+      if(x.name.toLowerCase().includes(req.body.search.toLowerCase())){
+        console.log("hh0")
+        n=n+1
+      }
+    })
+console.log("hh1")
+if(n>0){
+  const newOrder =  ({
+    search:req.body.search,
+  });
+  me.searchs.unshift(newOrder)
+   me.save()
+}
+   
+  return res.status(200).json(me.searchs)
+} catch (err) {
+
+    res.status(500).send('Server Error');
+  }
+});
+
+
+router.get('/recommandedsys',auth,async (req, res) => {
+  try {
+    const products=await Product.find();
+    const me=await User.findById(req.user.id)
+   let j=0;
+    let search=[];
+    let recommandedPro=[];
+me.searchs.filter((x,i)=>{
+  if(j<3){
+j=j+1
+search.push(x)
+  }
+})
+j=0
+
+search.map(p=>{
+  j=0
+  products.filter(x=>{
+  if(j<2){
+    if(x.dealType=="UsedProduct"){
+  if(x.name.toLowerCase().includes(p.search.toLowerCase())){
+    recommandedPro.push(x)
+    j=j+1
+  }
+}
+}
+
+  })
+
+})
+
+  return res.status(200).json(recommandedPro)
+} catch (err) {
+    res.status(500).send('Server Error');
+  }
+});
+
+
+
+
+
+
+
+
 module.exports = router;

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Addwishlist } from '../../../../actions/wishlist';
 import { AddPanier, GetPanier } from '../../../../actions/panier';
+import { GetSearchProduct } from '../../../../actions/profile';
 
 
 
@@ -509,11 +510,7 @@ MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price|| 
         </div>
       </div>
     </div>
-    {/*====== End - Add to Cart Modal ======*/}
-    {/*====== End - Modal Section ======*/}
   </div>
-  {/*====== End - Main App ======*/}
-  {/*====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======*/}
 </div>
 </div>
 </Fragment>

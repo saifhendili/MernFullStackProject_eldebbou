@@ -1,7 +1,9 @@
 import {
     GET_MYPRODUCT,
     PROFILE_ERROR ,
-    GET_SEARCH,GET_MYPRODUCT_USER
+    GET_SEARCH,
+    GET_MYPRODUCT_USER,
+    GET_SEARCH_PRODUCT
     } from '../actions/Types';
     
     const initialState = {
@@ -9,6 +11,7 @@ import {
       products: [],
       user: null,
       search:"",
+      searchpro:"",
       error: {},
     };
     export default function (state = initialState, action) {
@@ -21,7 +24,12 @@ import {
             user: payload,
             loading: false,
           };
-        case GET_SEARCH:
+        case GET_SEARCH_PRODUCT:
+          return {
+            ...state,
+            searchpro: payload,
+          };
+          case GET_SEARCH:
           return {
             ...state,
             search: payload,

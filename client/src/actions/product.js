@@ -7,7 +7,8 @@ PRODUCT_ERROR,
   DELETE_PRODUCT,
   ADD_PRODUCTS,
   GET_PRODUCTS,
-  GET_MY_EXCHANGE_PRODUCTS
+  GET_MY_EXCHANGE_PRODUCTS,
+RECOMMENDED_SYS
 } from './Types';
 
 export const GetProducts = () => async (dispatch) => {
@@ -107,3 +108,19 @@ export const addProduct = (formData) => async (dispatch) => {
   }
 };
   
+export const RecommandedSys = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/users/recommandedsys');
+
+    dispatch({
+      type: RECOMMENDED_SYS,
+      payload: res.data,
+    });
+
+  } catch (err) {
+    dispatch({
+    type: PRODUCT_ERROR,
+    //  payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

@@ -4,7 +4,9 @@ import {
    GET_MYPRODUCT,
    GET_MYPRODUCT_USER,
    GET_SEARCH,
-   PROFILE_ERROR
+   GET_SEARCH_PRODUCT,
+   PROFILE_ERROR,
+   
 } from './Types';
 
 
@@ -12,6 +14,14 @@ export const getsearch = (payload) => (dispatch) => {
   dispatch({
     type: GET_SEARCH,
     payload,
+  });
+};
+
+export const GetSearchProduct = (search) => async(dispatch) => {
+  await axios.post('/api/users/get-search',{search});
+  dispatch({
+    type: GET_SEARCH_PRODUCT,
+    payload:search,
   });
 };
 

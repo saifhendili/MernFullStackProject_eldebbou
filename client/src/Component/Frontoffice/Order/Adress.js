@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { addAddress } from "../../../actions/order";
 import PlaceOrder from "./PlaceOrder";
 import { connect } from 'react-redux'
+import Iframe from 'react-iframe'
 
 function Address({addAddress}) {
 
@@ -36,7 +37,7 @@ function Address({addAddress}) {
 
   return (
     <Fragment>
-    
+    <Container>
       <Main>
           <form  onSubmit={(e) => onsubmit(e)}>
         <FormContainer>
@@ -62,7 +63,7 @@ function Address({addAddress}) {
             />
           </InputContainer>
           <InputContainer>
-            <p>Area, Colony, Street</p>
+            <p>Region</p>
             <input
               name="Street"
 
@@ -73,7 +74,7 @@ function Address({addAddress}) {
           </InputContainer>
         
           <InputContainer>
-            <p>Town/City</p>
+            <p>City</p>
             <input
               name="city"
 
@@ -83,7 +84,7 @@ function Address({addAddress}) {
             />
           </InputContainer>
           <InputContainer>
-            <p>State/Province</p>
+            <p>Address</p>
             <input
               type="text"
               onChange={(e) => hundelchange(e)}
@@ -98,9 +99,18 @@ function Address({addAddress}) {
           </Link>
         </FormContainer>
         </form>
+      
+         <div>
+  
+      <Iframe width="600" height="450"style="border:0;width:100%;"margin="10px 70px"loading="lazy" allowfullscreen src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDX-nRJ8JxhkpsCsD_-7qGO1vgGtRfMWG4&q=${Street},${city},${state}`}> </Iframe>
+
+        </div>
+
         {/* <PlaceOrder address={address}/> */}
 
       </Main>
+    
+        </Container>
     </Fragment>
   );
 }
@@ -116,6 +126,8 @@ const Container = styled.div`
 
 const Main = styled.div`
   padding: 15px;
+  display:flex;
+  flex-direction:row
 `;
 
 const FormContainer = styled.form`

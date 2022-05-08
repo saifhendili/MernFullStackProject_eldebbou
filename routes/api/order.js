@@ -10,14 +10,30 @@ const Product = require('../../models/Product');
 const User = require('../../models/User');
 const stripe =require('stripe')("sk_test_51KkJdXAKTcryk5Zv4pRrttt41nachGRtQ6QPg8YYf7DoQVAV16OfWInxcP57DngvDH0us0bEEgWZi4YxHeW0xBmT00SwOI2xKk");
 
+const sendEmail=require('../../middleware/sendEmail')
 
 
-router.post("/payment/", async (req, res) => {
-  const total = req.body.amount;
-  console.log("Payment Request recieved for this ruppess", total);
+    router.post("/payment/", async (req, res) => {
+      const total = req.body.amount;
+      console.log("Payment Request recieved for this ruppess", total);
 
+      const payment = await stripe.paymentIntents.create({
+        amount: total*100,
+        currency: "usd",
+      });
+    console.log(payment.client_secret)
+      res.status(201).send({
+        clientSecret: payment.client_secret,
+      });
+    });
+
+
+
+
+router.post("/premieum/", async (req, res) => {
+  
   const payment = await stripe.paymentIntents.create({
-    amount: total*100,
+    amount: 19*100,
     currency: "usd",
   });
 console.log(payment.client_secret)
@@ -25,6 +41,8 @@ console.log(payment.client_secret)
     clientSecret: payment.client_secret,
   });
 });
+
+
 
 
 router.post("/", auth,async(req, res) => {
@@ -38,6 +56,17 @@ router.post("/", auth,async(req, res) => {
       address: req.body.address,
     
     });
+    const users=await User.find()
+    users.map(x=>x.typeuser=="Premium"?
+   
+       sendEmail({
+        to:x.email,
+        subject:"User Create an order",
+        text:`<h1>User Added NeW Order </h1>
+        <p>Please go to this link to take this order</p>
+       `
+      })
+    :null)
 
     me.Total=0;
     me.panier=[]
@@ -162,6 +191,31 @@ router.get('/getorderdonation/',auth,async(req,res)=>{
   res.status(500).send('Server Error');
   }
 })
+
+
+
+
+
+
+router.put("/switch-to-prem", auth,async(req, res) => {
+  try {
+    const user =await User.findById(req.user.id)
+    if (user) {
+      user.typeuser = "Premium"
+      
+    }else{
+res.status(400).send('can find this user');
+    }
+    
+await user.save()
+
+    res.json(user);
+} catch (error) {
+    
+res.status(500).send('Server Error');
+}
+})
+
 
   module.exports = router;
 

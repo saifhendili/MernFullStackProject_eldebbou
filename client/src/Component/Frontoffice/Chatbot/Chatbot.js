@@ -12,7 +12,7 @@ function Chatbot() {
 
     useEffect(() => {
 
-        eventQuery('yabro')
+        eventQuery('Welcome')
 
     }, [])
 

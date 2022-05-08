@@ -72,7 +72,7 @@ function Login({ login, isAuthenticated }) {
                         <div class="l-f-o__pad-box">
                             <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
 
-                            <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
+                            {/* <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span> */}
                             <div class="u-s-m-b-15">
 
                                  <Link to='/register' class="l-f-o__create-link btn--e-transparent-brand-b-2" >CREATE AN ACCOUNT</Link></div>

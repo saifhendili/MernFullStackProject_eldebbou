@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect,useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Component/Layout/Navbar';
 import Alert from './Component/Layout/Alert';
@@ -7,7 +7,9 @@ import Login from './Component/Auth/Login';
 import Dashboard from './Component/Dashboard/Dashboard';
 import { Provider } from 'react-redux';
 import store from './store';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Switch from 'react-switch';
+import Camera from './Component/Frontoffice/Emotion/components/Camera/Camera';
 import PrivateRoute from './Component/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
@@ -39,7 +41,7 @@ import MyOrders from './Component/Frontoffice/Delivey/MyOrders';
 import Pricing from './Component/Frontoffice/Delivey/Pricing.js/Pricing';
 import MyExchangeProduct from './Component/Frontoffice/Product/ExchangeProduct/MyExchangeProduct';
 import PropositionOfProducts from './Component/Frontoffice/Product/ExchangeProduct/PropositionOfProducts';
-// import Chatbot from './Component/chat/chatbot';
+import Chatbott from './Component/chat/chatbot';
 import "./App.css";
 
 import ListQuestion from './Component/Admin/ListQuestion/ListQuestion';
@@ -47,7 +49,14 @@ import Chatbot from './Component/Frontoffice/Chatbot/Chatbot';
 import Messenger from './Component/Admin/Chat/messenger/Messenger';
 import Allprofile from './Component/Frontoffice/AllProfiles/Allprofile';
 import ProfileUsers from './Component/Frontoffice/AllProfiles/ProfileUsers';
+import { loadModels } from './Component/Frontoffice/Emotion/helpers/faceApi';
+import { createFaLibrary } from './Component/Frontoffice/Emotion/helpers/icons';
+import PlaceOrderPremuim from './Component/Frontoffice/Delivey/Pricing.js/PlaceOrderPremuim';
+import SearchProduct from './Component/Frontoffice/Product/SearchProduct/SearchProduct';
+import Recommandedmain from './Component/Frontoffice/RecommandedSys/Recommandedmain';
 
+createFaLibrary();
+loadModels();
 const promise = loadStripe(
   "pk_test_51KkJdXAKTcryk5ZvXAWqFdeIfD4AW1jvV7yj77K71hUvhGs7hWA8NgONxPl6vsOOYL8yUASXEmUylZtHAqT29p5900JoIJ33lZ"
 );
@@ -59,7 +68,8 @@ function App () {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
-  
+  const [mode, setMode] = useState(false); //true = photo mode; false = video mode
+
   return (
  
     
@@ -68,6 +78,7 @@ function App () {
     <Router>
     <Alert className='aaa' />
     <Navbar />
+    <Chatbott/>
     <Routes>
        <Route exact path='/register' element={<Register/>} />
               <Route exact path='/login' element={<Login/>} />
@@ -81,7 +92,8 @@ function App () {
                <Route exact path='/listeproduct' element={<ListProduct/>} />
                <Route path='/chat' element={<ContenuChat/>}/>
                <Route path="/myproduct" element={<DetailProduit/>} />
-            
+               <Route path="/emotion" element={<Camera photoMode={mode} />}/>
+
             <Route path="/chatbot"element={<Chatbot/>} />
                {/* <PrivateRoute path='/payment' element={ <Elements stripe={promise}>
     <PlaceOrder />
@@ -94,6 +106,9 @@ function App () {
               </Elements></PrivateRoute>
             }
           />
+        
+
+
                <Route path="/myprofile" element={ <PrivateRoute><MyProfile/></PrivateRoute>}/>
           
                <Route path="/forgetpassword" element={<ForgetPassword/>} />
@@ -112,7 +127,8 @@ function App () {
                <Route path="/messenger" element={ <PrivateRoute><Messenger/></PrivateRoute>}/>
                <Route path="/profiles" element={ <PrivateRoute><Allprofile/></PrivateRoute>}/>
 
-
+               
+               <Route path="/recommanded-system" element={ <PrivateRoute><Recommandedmain/></PrivateRoute>}/>
                
                <Route path="/pricing" element={ <PrivateRoute><Pricing/></PrivateRoute>}/>
 
@@ -127,6 +143,10 @@ function App () {
                <Route path='/address' element={<PrivateRoute><Address/></PrivateRoute>} />
                <Route path='/changepassword' element={<PrivateRoute><ChangePossword/></PrivateRoute>}/>
                <Route exact path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+               <Route exact path='/PlaceOrderPremuim' element={<PrivateRoute>  <Elements stripe={promise}><PlaceOrderPremuim/></Elements></PrivateRoute>} />
+               
+               
+               <Route exact path='/product_searched' element={<PrivateRoute><SearchProduct/></PrivateRoute>} />
                
                <Route exact path='/exchange-product' element={<PrivateRoute><MyExchangeProduct/></PrivateRoute>} />
 

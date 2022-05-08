@@ -5,8 +5,8 @@ function chatbot() {
 <div >
 
 <df-messenger
-  intent="WELCOME"
-  chat-title="ElDebbou ChatBot"
+  intent="Welcome"
+  chat-title="Elghali"
   agent-id="0c660519-ea57-42f3-8b5d-c2873cb47f8a"
   language-code="en"
 ></df-messenger>

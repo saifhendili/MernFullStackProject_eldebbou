@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Pricing() {
   return (
 <section>
-  <div class="container py-5">
+  <div class="container py-5 text-centre">
 
     <header class="text-center mb-5 text-white">
       <div class="row">
@@ -14,7 +15,7 @@ function Pricing() {
       </div>
     </header>
   
-
+<div className='col d-flex justify-content-center'>
     <div class="row text-center center align-items-end">
       <div class="col-lg-4 mb-5 mb-lg-0">
         <div class="bg-white p-5 rounded-lg shadow">
@@ -47,7 +48,7 @@ function Pricing() {
       <div class="col-lg-4">
         <div class="bg-white p-5 rounded-lg shadow">
           <h1 class="h6 text-uppercase font-weight-bold mb-4">Enterprise</h1>
-          <h2 class="h1 font-weight-bold">$899<span class="text-small font-weight-normal ml-2">/ month</span></h2>
+          <h2 class="h1 font-weight-bold">$19<span class="text-small font-weight-normal ml-2">/ month</span></h2>
 
           <div class="custom-separator my-4 mx-auto bg-primary"></div>
 
@@ -66,10 +67,11 @@ function Pricing() {
             </li>
             
           </ul>
-          <a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Subscribe</a>
+          <Link to="/PlaceOrderPremuim" href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Subscribe</Link>
         </div>
       </div>
 
+    </div>
     </div>
   </div>
 </section>  )

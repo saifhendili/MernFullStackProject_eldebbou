@@ -5,7 +5,9 @@ import {
     ADD_PRODUCTS,
     GET_PRODUCTS,
     GET_MY_EXCHANGE_PRODUCTS,
-    RESERVEPRODUCT,P_ERROR
+    RESERVEPRODUCT,
+    P_ERROR,
+    RECOMMENDED_SYS
   } from '../actions/Types';
 
   const initialState = {
@@ -22,6 +24,7 @@ import {
     switch (type) {
       case RESERVEPRODUCT:
      case GET_MY_EXCHANGE_PRODUCTS:
+      case RECOMMENDED_SYS:
         case GET_PRODUCTS:
           return {
             ...state,

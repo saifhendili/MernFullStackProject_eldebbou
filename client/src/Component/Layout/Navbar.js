@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faUser, faCog } from '@fortawesome/free-solid-svg-icons';
@@ -6,16 +6,22 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import Aside from '../Admin/Layout/Aside';
-import { getsearch } from '../../actions/profile';
+import { getsearch, GetSearchProduct } from '../../actions/profile';
 
-function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) {
+
+function Navbar({getsearch,GetSearchProduct, auth: { isAuthenticated, loading, user }, logout }) {
+  const [search, setSearch] = useState('');
+
   const loggout = (e) => {
     e.preventDefault();
     logout();
   };
   const handleChange = (e) => {
-    getsearch(e.target.value);
+    setSearch(e.target.value);
   };
+ 
+
+
   const authLinks = (
     <div>
 
@@ -25,10 +31,22 @@ function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) 
           <div className="primary-nav">
             <Link className="main-logo" to='dashboard'>
               <img src="assetes/images/logo/logo-1.png"  /></Link>
-            <form className="main-form">
+            {/* <form className="main-form">
               <label htmlFor="main-search" />
               <input  type='text' className="input-text input-text--border-radius input-text--style-1"    onChange={(e) => handleChange(e)} id="main-search" placeholder="Search" />
-              <Link className='Search-nav' to='profiles'>  <button className="btn btn--icon fas fa-search main-search-button" type="submit" /></Link></form>
+              <div className='perso_nav_dim'>
+              <Link className='Search-nav ' to='profiles'>  <button className="btn btn--icon fas fa-search main-search-button"  type="submit" >Product</button></Link>
+              <Link className='Search-nav perso_nav_dim' to='profiles'> <button className="btn btn--icon fas fa-search main-search-button"  type="submit" >User</button></Link>
+              </div>
+              </form> */}
+                  <form class="form-inline my-2 my-lg-0">
+  
+      <input class="form-control mr-sm-2" type="search"  onChange={(e) => handleChange(e)} placeholder="Search" aria-label="Search"/>
+      <Link className='Search-nav ' to='profiles'><button onClick={() => getsearch(search)}  class="btn btn-outline-success my-2 my-sm-0" type="submit">User</button></Link> 
+      <Link className='Search-nav ' to='product_searched'><button onClick={() =>GetSearchProduct(search)}   class="btn btn-outline-success my-2 my-sm-0" type="submit">Product</button></Link> 
+
+
+    </form>
             {/*====== End - Search Form ======*/}
             {/*====== Dropdown Main plugin ======*/}
             <div className="menu-init" id="navigation">
@@ -326,124 +344,14 @@ function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) 
                           <br />
                           {/*====== Mega Menu Row ======*/}
                           <div className="row">
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">HOT CATEGORIES</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Dresses</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Blouses &amp; Shirts</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">T-shirts</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Rompers</a></li>
-                              </ul>
-                            </div>
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">INTIMATES</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Bras</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Brief Sets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Bustiers &amp; Corsets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Panties</a></li>
-                              </ul>
-                            </div>
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">WEDDING &amp; EVENTS</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Wedding Dresses</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Evening Dresses</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Prom Dresses</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Flower Dresses</a></li>
-                              </ul>
-                            </div>
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">BOTTOMS</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Skirts</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Shorts</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Leggings</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Jeans</a></li>
-                              </ul>
-                            </div>
+                           
+                   
+                        
                           </div>
                           {/*====== End - Mega Menu Row ======*/}
                           <br />
                           {/*====== Mega Menu Row ======*/}
-                          <div className="row">
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">OUTWEAR</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Blazers</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Basics Jackets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Trench</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Leather &amp; Suede</a></li>
-                              </ul>
-                            </div>
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">JACKETS</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Denim Jackets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Trucker Jackets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Windbreaker Jackets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Leather Jackets</a></li>
-                              </ul>
-                            </div>
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">ACCESSORIES</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Tech Accessories</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Headwear</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Baseball Caps</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Belts</a></li>
-                              </ul>
-                            </div>
-                            <div className="col-lg-3">
-                              <ul>
-                                <li className="mega-list-title">
-                                  <a href="shop-side-version-2.html">OTHER ACCESSORIES</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Bags</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Wallets</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Watches</a></li>
-                                <li>
-                                  <a href="shop-side-version-2.html">Sunglasses</a></li>
-                              </ul>
-                            </div>
-                          </div>
+                      
                           {/*====== End - Mega Menu Row ======*/}
                           <br />
                           {/*====== Mega Menu Row ======*/}
@@ -660,8 +568,9 @@ function Navbar({getsearch, auth: { isAuthenticated, loading, user }, logout }) 
                 <span className="ah-close">✕ Close</span>
                 {/*====== List ======*/}
                 <ul className="ah-list ah-list--design2 ah-list--link-color-secondary">
-                  <li>
-                    <a href="shop-side-version-2.html">NEW ARRIVALS</a></li>
+                  <Link  to="/recommanded-system" className="shop-side-version-2.html">
+                   Recommanded System
+                    </Link>
                   <li className="has-dropdown">
                     <a>Services<i className="fas fa-angle-down u-s-m-l-6" /></a>
                     {/*====== Dropdown ======*/}
@@ -2373,5 +2282,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  logout,getsearch
+  logout,getsearch,GetSearchProduct
 })(Navbar);

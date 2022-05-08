@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     reuired: true,
   },
+
   email: {
     type: String,
     required: true,
@@ -63,6 +64,10 @@ const UserSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
+  searchs:[{  
+    search: {
+    type: String,
+  },}],
   wishlist: [
     {
       product: {
