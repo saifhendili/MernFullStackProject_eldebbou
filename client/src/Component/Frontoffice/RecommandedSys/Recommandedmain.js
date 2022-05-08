@@ -152,10 +152,7 @@ let test=0
                
                   <div className="u-s-m-b-30">
                     <div className="shop-w">
-                      <div className="shop-w__intro-wrap">
-                        <h1 className="shop-w__h">SIZE</h1>
-                        <span className="fas fa-minus collapsed shop-w__toggle" data-target="#s-size" data-toggle="collapse" />
-                      </div>
+                      
                       <div className="shop-w__wrap collapse" id="s-size">
                         <ul className="shop-w__list gl-scroll">
                           <li>
@@ -228,16 +225,7 @@ let test=0
             <div className="col-lg-9 col-md-12">
               <div className="shop-p">
                 <div className="shop-p__toolbar u-s-m-b-30">
-                  <div className="shop-p__meta-wrap u-s-m-b-60">
-                    <span className="shop-p__meta-text-1">RESULTS</span>
-                    <div className="shop-p__meta-text-2">
-                      <span >DEAL TYPE:</span>
-                      <a className="gl-tag btn--e-brand-shadow" onClick={(e) => onChange1(e)}  value="UsedProduct" >UsedProduct</a>
-                      <a className="gl-tag btn--e-brand-shadow" onClick={(e) => onChange2(e)}  value="Exchange"  >Exchange</a>
-                      <a className="gl-tag btn--e-brand-shadow" onClick={(e) => onChange3(e)}  value="Donation" >Donation</a>
-    </div>
-    
-                  </div>
+              
                   <div className="main-form">
               <label htmlFor="main-search" />
               <input className="input-text input-text--border-radius input-text--style-1" type="text" onChange={(e)=>handleChange(e)} id="main-search" placeholder="Search" />
@@ -255,49 +243,53 @@ x.dealType == dealType?(
 MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price||  MinPrice<= x.price && MaxPrice==null||MaxPrice >=x.price &&MinPrice==null ?(
 <div  key={i} className="col-lg-4 col-md-6 col-sm-6">
   {/* <h1>{x.dealType} ={dealType}</h1> */}
-<div className="product-m">
-    <div className="product-m__thumb">
-    <Link to={`/myproduct?id=${x._id}`} className="aspect aspect--bg-grey aspect--square u-d-block" >
-      
-    <img className="aspect__img" src={`assetes/image/product/${x.image}`}/>
-    </Link> 
-      
-      <div className="product-m__quick-look">
-        <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
+  <div className="product-m">
+ 
+ <div className="product-m__thumb">
+ <Link to={`/myproduct?id=${x._id}`} className="aspect aspect--bg-grey aspect--square u-d-block" >
+ 
+ <img className="aspect__img" src={`assetes/image/product/${x.image}`}/>
+ </Link> 
 
-        {panier.map((ele,i)=>ele.product==x._id ?(test=test+1):(null))}
-
-       {test>0 ?
-       (
-        <div  className="product-m__add-cart"> 
-<a  className="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Already In Card</a>
-
-        </div>
-       ):
-       (        <div  className="product-m__add-cart"> 
-               <a  onClick={() => addtomypanier(x._id,x.price)} className="btn--e-brand" data-modal="modal"  data-modal-id="#Delete-from-cart">Add To Card</a>
-       </div>)}
+   <div className="product-m__quick-look">
+     <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
   
-     
-    </div>
-    <div className="product-m__content">
-      <div className="product-m__category">
-        <a href="shop-side-version-2.html">{x.dealType}</a></div>
-      <div className="product-m__name">
-      <Link to={`/myproduct?id=${x._id}`} >{x.name}</Link></div>
-      <div className="product-m__rating gl-rating-style"><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star-half-" /><i className="far fa-star" /><i className="far fa-star" />
+     {panier.map((ele,i)=>ele.product==x._id ?(<div hidden>{test=test+1}</div>):(null))}
+
+    {test==0 ?
+   
+    (       
+       <div  className="product-m__add-cart"> 
        
-        <span className="product-m__review">(23)</span></div>
-     {x.dealType=="UsedProduct"?    <div className="product-m__price">{x.price}</div>:null}
+            <a  onClick={() => addtomypanier(x._id,x.price)} className="btn--e-brand" data-modal="modal"  data-modal-id="#Delete-from-cart">Add To Card</a>
+    </div>): (
+     <div  className="product-m__add-cart"> 
+<a  className="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Already In Card</a>
+<div hidden> {test=0}</div>
+
+     </div>
+    )}
+
   
-      <div className="product-m__hover">
-        <div className="product-m__preview-description">
-          <span>{x.description}</span></div>
-        <div className="product-m__wishlist">
-          <div  onClick={() => Addwishlist(x._id)} className="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist" /></div>
-      </div>
-    </div>
-  </div>
+ </div>
+ <div className="product-m__content">
+   <div className="product-m__category">
+     <a href="shop-side-version-2.html">{x.dealType}</a></div>
+   <div className="product-m__name">
+   <Link to={`/myproduct?id=${x._id}`} >{x.name}</Link></div>
+   <div className="product-m__rating gl-rating-style"><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star-half-" /><i className="far fa-star" /><i className="far fa-star" />
+    
+     <span className="product-m__review">(23)</span></div>
+  {x.dealType=="UsedProduct"?    <div className="product-m__price">{x.price}</div>:null}
+
+   <div className="product-m__hover">
+     <div className="product-m__preview-description">
+       <span>{x.description}</span></div>
+     <div className="product-m__wishlist">
+       <div  onClick={() => Addwishlist(x._id)} className="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist" /></div>
+   </div>
+ </div>
+</div>
 </div>
 
 

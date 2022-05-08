@@ -68,7 +68,7 @@ router.post("/", auth,async(req, res) => {
       })
     :null)
 
-    me.Total=0;
+    me.Total=7;
     me.panier=[]
     await  me.save();
     await newOrder.save();

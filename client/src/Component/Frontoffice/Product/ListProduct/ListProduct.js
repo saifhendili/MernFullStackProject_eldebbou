@@ -13,7 +13,7 @@ import { GetSearchProduct } from '../../../../actions/profile';
 
 const ListProduct =({GetPanier,AddPanier,GetProducts,Addwishlist ,panier:{panier},product:{products,loading},auth:{user}}) =>{
   
-let test=0
+  let [test, setTest] = useState(0);
   const [dealType, setdeal] = useState('UsedProduct');
   const [Search, setSearch] = useState('');
   
@@ -45,6 +45,7 @@ let test=0
         user.Total=user.Total+price
         AddPanier(id)
       }
+      
   return (
     
     <Fragment>
@@ -71,59 +72,9 @@ let test=0
                   <div className="u-s-m-b-30">
           
                   </div>
+                
                   <div className="u-s-m-b-30">
-                    <div className="shop-w">
-                      <div className="shop-w__intro-wrap">
-                        <h1 className="shop-w__h">RATING</h1>
-                        <span className="fas fa-minus shop-w__toggle" data-target="#s-rating" data-toggle="collapse" />
-                      </div>
-                      <div className="shop-w__wrap collapse show" id="s-rating">
-                        <ul className="shop-w__list gl-scroll">
-                          <li>
-                            <div className="rating__check">
-                              <input type="checkbox" />
-                              <div className="rating__check-star-wrap"><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star" /></div>
-                            </div>
-                            <span className="shop-w__total-text">(2)</span>
-                          </li>
-                          <li>
-                            <div className="rating__check">
-                              <input type="checkbox" />
-                              <div className="rating__check-star-wrap"><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star" /><i className="far fa-star" />
-                                <span>&amp; Up</span></div>
-                            </div>
-                            <span className="shop-w__total-text">(8)</span>
-                          </li>
-                          <li>
-                            <div className="rating__check">
-                              <input type="checkbox" />
-                              <div className="rating__check-star-wrap"><i className="fas fa-star" /><i className="fas fa-star" /><i className="fas fa-star" /><i className="far fa-star" /><i className="far fa-star" />
-                                <span>&amp; Up</span></div>
-                            </div>
-                            <span className="shop-w__total-text">(10)</span>
-                          </li>
-                          <li>
-                            <div className="rating__check">
-                              <input type="checkbox" />
-                              <div className="rating__check-star-wrap"><i className="fas fa-star" /><i className="fas fa-star" /><i className="far fa-star" /><i className="far fa-star" /><i className="far fa-star" />
-                                <span>&amp; Up</span></div>
-                            </div>
-                            <span className="shop-w__total-text">(12)</span>
-                          </li>
-                          <li>
-                            <div className="rating__check">
-                              <input type="checkbox" />
-                              <div className="rating__check-star-wrap"><i className="fas fa-star" /><i className="far fa-star" /><i className="far fa-star" /><i className="far fa-star" /><i className="far fa-star" />
-                                <span>&amp; Up</span></div>
-                            </div>
-                            <span className="shop-w__total-text">(1)</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="u-s-m-b-30">
-                 
+          
                   </div>
                   <div className="u-s-m-b-30">
                     <div className="shop-w">
@@ -151,78 +102,7 @@ let test=0
                  
                   </div>
                
-                  <div className="u-s-m-b-30">
-                    <div className="shop-w">
-                      <div className="shop-w__intro-wrap">
-                        <h1 className="shop-w__h">SIZE</h1>
-                        <span className="fas fa-minus collapsed shop-w__toggle" data-target="#s-size" data-toggle="collapse" />
-                      </div>
-                      <div className="shop-w__wrap collapse" id="s-size">
-                        <ul className="shop-w__list gl-scroll">
-                          <li>
-                            {/*====== Check Box ======*/}
-                            <div className="check-box">
-                              <input type="checkbox" id="xs" />
-                              <div className="check-box__state check-box__state--primary">
-                                <label className="check-box__label" htmlFor="xs">XS</label></div>
-                            </div>
-                            {/*====== End - Check Box ======*/}
-                            <span className="shop-w__total-text">(2)</span>
-                          </li>
-                          <li>
-                            {/*====== Check Box ======*/}
-                            <div className="check-box">
-                              <input type="checkbox" id="small" />
-                              <div className="check-box__state check-box__state--primary">
-                                <label className="check-box__label" htmlFor="small">Small</label></div>
-                            </div>
-                            {/*====== End - Check Box ======*/}
-                            <span className="shop-w__total-text">(4)</span>
-                          </li>
-                          <li>
-                            {/*====== Check Box ======*/}
-                            <div className="check-box">
-                              <input type="checkbox" id="medium" />
-                              <div className="check-box__state check-box__state--primary">
-                                <label className="check-box__label" htmlFor="medium">Medium</label></div>
-                            </div>
-                            {/*====== End - Check Box ======*/}
-                            <span className="shop-w__total-text">(6)</span>
-                          </li>
-                          <li>
-                            {/*====== Check Box ======*/}
-                            <div className="check-box">
-                              <input type="checkbox" id="large" />
-                              <div className="check-box__state check-box__state--primary">
-                                <label className="check-box__label" htmlFor="large">Large</label></div>
-                            </div>
-                            {/*====== End - Check Box ======*/}
-                            <span className="shop-w__total-text">(8)</span>
-                          </li>
-                          <li>
-                            {/*====== Check Box ======*/}
-                            <div className="check-box">
-                              <input type="checkbox" id="xl" />
-                              <div className="check-box__state check-box__state--primary">
-                                <label className="check-box__label" htmlFor="xl">XL</label></div>
-                            </div>
-                            {/*====== End - Check Box ======*/}
-                            <span className="shop-w__total-text">(10)</span>
-                          </li>
-                          <li>
-                            {/*====== Check Box ======*/}
-                            <div className="check-box">
-                              <input type="checkbox" id="xxl" />
-                              <div className="check-box__state check-box__state--primary">
-                                <label className="check-box__label" htmlFor="xxl">XXL</label></div>
-                            </div>
-                            {/*====== End - Check Box ======*/}
-                            <span className="shop-w__total-text">(12)</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -257,27 +137,31 @@ MinPrice ==null && MaxPrice ==null ||MinPrice<= x.price && MaxPrice >=x.price|| 
 <div  key={i} className="col-lg-4 col-md-6 col-sm-6">
   {/* <h1>{x.dealType} ={dealType}</h1> */}
 <div className="product-m">
+ 
     <div className="product-m__thumb">
     <Link to={`/myproduct?id=${x._id}`} className="aspect aspect--bg-grey aspect--square u-d-block" >
-      
+    
     <img className="aspect__img" src={`assetes/image/product/${x.image}`}/>
     </Link> 
-      
+
       <div className="product-m__quick-look">
         <a className="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look" /></div>
+     
+        {panier.map((ele,i)=>ele.product==x._id ?(<div hidden>{test=test+1}</div>):(null))}
 
-        {panier.map((ele,i)=>ele.product==x._id ?(test=test+1):(null))}
-
-       {test>0 ?
-       (
+       {test==0 ?
+      
+       (       
+          <div  className="product-m__add-cart"> 
+          
+               <a  onClick={() => addtomypanier(x._id,x.price)} className="btn--e-brand" data-modal="modal"  data-modal-id="#Delete-from-cart">Add To Card</a>
+       </div>): (
         <div  className="product-m__add-cart"> 
 <a  className="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Already In Card</a>
+<div hidden> {test=0}</div>
 
         </div>
-       ):
-       (        <div  className="product-m__add-cart"> 
-               <a  onClick={() => addtomypanier(x._id,x.price)} className="btn--e-brand" data-modal="modal"  data-modal-id="#Delete-from-cart">Add To Card</a>
-       </div>)}
+       )}
   
      
     </div>

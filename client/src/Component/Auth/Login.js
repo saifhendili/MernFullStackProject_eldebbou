@@ -37,11 +37,12 @@ function Login({ login, isAuthenticated }) {
                 <div class="breadcrumb__wrap">
                     <ul class="breadcrumb__list">
                         <li class="has-separator">
-
-                            <a href="index.html">Home</a></li>
+<Link to="/">
+                         Home   </Link></li>
+                         
                         <li class="is-marked">
 
-                            <a href="signin.html">Signin</a></li>
+                            Signin</li>
                     </ul>
                 </div>
             </div>
@@ -52,17 +53,7 @@ function Login({ login, isAuthenticated }) {
 
 <div class="u-s-p-b-60">
 
-    <div class="section__intro u-s-m-b-60">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section__text-wrap">
-                        <h1 class="section__heading u-c-secondary">ALREADY REGISTERED?</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
    
     <div class="section__content">
         <div class="container">

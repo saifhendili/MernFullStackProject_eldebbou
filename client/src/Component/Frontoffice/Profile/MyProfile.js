@@ -36,7 +36,7 @@ function MyProfile({GetMyProducts,auth:{user,loading},profile:{products}}) {
                    <span> </span>
                     <h5 class="mt-2 mb-0">{user.firstname} {user.lastname}</h5>
                     <div class="px-4 mt-1">
-                        <p class="fonts">Bio: I'm thrifter and owner of a retail shop that sells various products, I'm mainly passionate about second hand clothes.<br></br>Contact me : 27444423&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For Business: nassim.benaissa@hotmail.fr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></br> <ul class="social-links list-inline">
+                        <p class="fonts">Bio: I'm thrifter and owner of a retail shop that sells various products, I'm mainly passionate about second hand clothes.<br></br>Based in :{user.city} 27444423&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For Business: {user.email}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></br> <ul class="social-links list-inline">
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
                             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>

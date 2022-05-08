@@ -137,7 +137,7 @@ function MainCard({GetPanier,panier:{panier,loading} ,auth:{user}}) {
                                                       
                                                         <tr>
                                                             <td>SUBTOTAL</td>
-                                                            <td>{user.Total-7}</td>
+                                                            <td>{user.Total}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>GRAND TOTAL</td>

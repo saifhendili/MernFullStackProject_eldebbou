@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-
+import ChatBot from 'react-simple-chatbot';
 import Message from './Sections/Message';
 import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";

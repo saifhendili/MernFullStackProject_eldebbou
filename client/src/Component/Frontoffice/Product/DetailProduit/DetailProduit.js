@@ -11,7 +11,7 @@ import { AddProposition, getPropositions } from '../../../../actions/proposition
 import { useSearchParams } from 'react-router-dom';
 import FormItemProposition from './FormItemProposition';
 
-function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropositions ,comment:{comments},proposition:{propositions},product:{product,loading}}) {
+function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropositions ,comment:{comments},proposition:{propositions},product:{product,loading},auth:{isAuthenticated}}) {
     const [text, setText] = useState('');
     const [searchParams] = useSearchParams();
 
@@ -79,38 +79,22 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
 
                             <span class="pd-detail__preview-desc">{product.description}</span></div>
                         <div class="u-s-m-b-15">
+                            {isAuthenticated?
                             <div class="pd-detail__inline">
 
                                 <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
 
                                     <a href="signin.html">Add to Wishlist</a>
 
-                                    <span class="pd-detail__click-count">(222)</span></span></div>
+                                  </span></div>
+                                  :<Fragment></Fragment>}
                         </div>
                         <div class="u-s-m-b-15">
                       
                         </div>
+                      
                         <div class="u-s-m-b-15">
-                            <ul class="pd-social-list">
-                                <li>
-
-                                    <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li>
-
-                                    <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li>
-
-                                    <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li>
-
-                                    <a class="s-wa--color-hover" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                <li>
-
-                                    <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="u-s-m-b-15">
-                            <form class="pd-detail__form">
+                            {isAuthenticated? <form class="pd-detail__form">
                                 <div class="pd-detail-inline-2">
                                     <div class="u-s-m-b-15">
 
@@ -120,7 +104,8 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
 
                                         <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
                                 </div>
-                            </form>
+                            </form>:<Fragment></Fragment>}
+                           
                         </div>
                         <div class="u-s-m-b-15">
 
@@ -162,7 +147,6 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
 
                         <div class="tab-pane" id="pd-prop">
                                 <div class="pd-tab__rev">
-                        
                                     <div class="u-s-m-b-30">
                                         <form class="pd-tab__rev-f1">
                                           
@@ -176,7 +160,11 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
                                         </form>
                                     </div>
                                     <div class="u-s-m-b-30">
-<FormItemProposition id={searchParams.get("id")}/>                                    </div>
+                                    {isAuthenticated? 
+
+<FormItemProposition id={searchParams.get("id")}/>        
+:<Fragment></Fragment>} 
+                            </div>
                                 </div>
                             </div>
                        
@@ -194,6 +182,7 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
                                             </div>
                                         </form>
                                     </div>
+                                    {isAuthenticated? 
                                     <div class="u-s-m-b-30">
                                         <form onSubmit={(e)=>   
                                           {  e.preventDefault();
@@ -211,7 +200,7 @@ function DetailProduit({AddProposition,getProduct,addComment,getComment,getPropo
 
                                                 <input value='Submit' class="btn btn--e-brand-shadow" type="submit"/></div>
                                         </form>
-                                    </div>
+                                    </div>:<Fragment></Fragment>}
                                 </div>
                             </div>
                         </div>
@@ -238,7 +227,8 @@ DetailProduit.propTypes = {
   const mapStateToProps = (state) => ({
     product: state.product,
     comment:state.comment,
-    proposition:state.proposition
+    proposition:state.proposition,
+    auth:state.auth
   });
     
   export default connect(mapStateToProps, { getProduct,addComment,getComment ,getPropositions})(DetailProduit);

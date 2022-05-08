@@ -48,11 +48,24 @@ function PlaceOrder(props) {
       axios.post("/api/order/", {
         address: props.order.address,
       });
-            navigate("/dashboard");
+            navigate("/emotion");
 
      } else{
-       alert(result.error.message)
-     }
+
+      switch (result.paymentIntent.status) {
+        // case "succeeded":
+        //   showMessage("Payment succeeded!");
+        //   break;
+        case "processing":
+          alert("Your payment is processing.");
+          break;
+        case "requires_payment_method":
+          alert("Your payment was not successful, please try again.");
+          break;
+        default:
+          alert("Something went wrong.");
+          break;
+      }     }
       
       })
       .catch((err) => alert(JSON.stringify(err.status)));
