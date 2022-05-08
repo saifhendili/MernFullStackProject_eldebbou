@@ -9,7 +9,7 @@ import Aside from '../Admin/Layout/Aside';
 import { getsearch, GetSearchProduct } from '../../actions/profile';
 
 
-function Navbar({getsearch,GetSearchProduct, auth: { isAuthenticated, loading, user }, logout }) {
+function Navbar({getsearch,GetSearchProduct, auth: { isAuthenticated, loading, user },panier:{panier}, logout }) {
   const [search, setSearch] = useState('');
 
   const loggout = (e) => {
@@ -42,8 +42,8 @@ function Navbar({getsearch,GetSearchProduct, auth: { isAuthenticated, loading, u
                   <form class="form-inline my-2 my-lg-0">
   
       <input class="form-control mr-sm-2" type="search"  onChange={(e) => handleChange(e)} placeholder="Search" aria-label="Search"/>
-      <Link className='Search-nav ' to='profiles'><button onClick={() => getsearch(search)}  class="btn btn-outline-success my-2 my-sm-0" type="submit">User</button></Link> 
-      <Link className='Search-nav ' to='product_searched'><button onClick={() =>GetSearchProduct(search)}   class="btn btn-outline-success my-2 my-sm-0" type="submit">Product</button></Link> 
+      <Link className='Search-nav ' to='profiles'><button onClick={() => getsearch(search)}  class="btn btn-outline-warning my-2 my-sm-0" type="submit">User</button></Link> 
+      <Link className='Search-nav ' to='product_searched'><button onClick={() =>GetSearchProduct(search)}   class="btn btn-outline-warning my-2 my-sm-0" type="submit">Product</button></Link> 
 
 
     </form>
@@ -79,7 +79,7 @@ function Navbar({getsearch,GetSearchProduct, auth: { isAuthenticated, loading, u
                   <li data-tooltip="tooltip" data-placement="left" title="Contact">
                     <a href="tel:+0900901904"><i className="fas fa-phone-volume" /></a></li>
                   <li data-tooltip="tooltip" data-placement="left" title="Mail">
-                    <a href=""><i className="far fa-envelope" /></a></li>
+                    <a href="mailto:artweb@gmail.com"><i className="far fa-envelope" /></a></li>
                 </ul>
                 {/*====== End - List ======*/}
               </div>
@@ -567,93 +567,11 @@ function Navbar({getsearch,GetSearchProduct, auth: { isAuthenticated, loading, u
 <i className="far fa-heart" /></Link></li>
                   <li className="has-dropdown">
                     <Link to="card" className="mini-cart-shop-link"><i className="fas fa-shopping-bag" />
-                      <span className="total-item-round">2</span></Link>
+                    {panier.length==0?null: <span className="total-item-round">{panier.length}</span>}
+                     </Link>
                     {/*====== Dropdown ======*/}
                     <span className="js-menu-toggle" />
-                    <div className="mini-cart">
-                      {/*====== Mini Product Container ======*/}
-                      <div className="mini-product-container gl-scroll u-s-m-b-15">
-                        {/*====== Card for mini cart ======*/}
-                        <div className="card-mini-product">
-                          <div className="mini-product">
-                            <div className="mini-product__image-wrapper">
-                              <a className="mini-product__link" href="product-detail.html">
-                                <img className="u-img-fluid" src="assetes/images/product/electronic/product3.jpg"  /></a></div>
-                            <div className="mini-product__info-wrapper">
-                              <span className="mini-product__category">
-                                <a href="shop-side-version-2.html">Electronics</a></span>
-                              <span className="mini-product__name">
-                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
-                              <span className="mini-product__quantity">1 x</span>
-                              <span className="mini-product__price">$8</span></div>
-                          </div>
-                          <a className="mini-product__delete-link far fa-trash-" />
-                        </div>
-                        {/*====== End - Card for mini cart ======*/}
-                        {/*====== Card for mini cart ======*/}
-                        <div className="card-mini-product">
-                          <div className="mini-product">
-                            <div className="mini-product__image-wrapper">
-                              <a className="mini-product__link" href="product-detail.html">
-                                <img className="u-img-fluid" src="assetes/images/product/electronic/product18.jpg"  /></a></div>
-                            <div className="mini-product__info-wrapper">
-                              <span className="mini-product__category">
-                                <a href="shop-side-version-2.html">Electronics</a></span>
-                              <span className="mini-product__name">
-                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-                              <span className="mini-product__quantity">1 x</span>
-                              <span className="mini-product__price">$8</span></div>
-                          </div>
-                          <a className="mini-product__delete-link far fa-trash-" />
-                        </div>
-                        {/*====== End - Card for mini cart ======*/}
-                        {/*====== Card for mini cart ======*/}
-                        <div className="card-mini-product">
-                          <div className="mini-product">
-                            <div className="mini-product__image-wrapper">
-                              <a className="mini-product__link" href="product-detail.html">
-                                <img className="u-img-fluid" src="assetes/images/product/women/product8.jpg"  /></a></div>
-                            <div className="mini-product__info-wrapper">
-                              <span className="mini-product__category">
-                                <a href="shop-side-version-2.html">Women Clothing</a></span>
-                              <span className="mini-product__name">
-                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
-                              <span className="mini-product__quantity">1 x</span>
-                              <span className="mini-product__price">$8</span></div>
-                          </div>
-                          <a className="mini-product__delete-link far fa-trash-" />
-                        </div>
-                        {/*====== End - Card for mini cart ======*/}
-                        {/*====== Card for mini cart ======*/}
-                        <div className="card-mini-product">
-                          <div className="mini-product">
-                            <div className="mini-product__image-wrapper">
-                              <a className="mini-product__link" href="product-detail.html">
-                                <img className="u-img-fluid" src="assetes/images/product/men/product8.jpg"  /></a></div>
-                            <div className="mini-product__info-wrapper">
-                              <span className="mini-product__category">
-                                <a href="shop-side-version-2.html">Men Clothing</a></span>
-                              <span className="mini-product__name">
-                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
-                              <span className="mini-product__quantity">1 x</span>
-                              <span className="mini-product__price">$8</span></div>
-                          </div>
-                          <a className="mini-product__delete-link far fa-trash-" />
-                        </div>
-                        {/*====== End - Card for mini cart ======*/}
-                      </div>
-                      {/*====== End - Mini Product Container ======*/}
-                      {/*====== Mini Product Statistics ======*/}
-                      <div className="mini-product-stat">
-                        <div className="mini-total">
-                          <span className="subtotal-text">SUBTOTAL</span>
-                          <span className="subtotal-value">$16</span></div>
-                        <div className="mini-action">
-                          <a className="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
-                          <a className="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW CART</a></div>
-                      </div>
-                      {/*====== End - Mini Product Statistics ======*/}
-                    </div>
+                   
                     {/*====== End - Dropdown ======*/}
                   </li>
                 </ul>
@@ -1332,6 +1250,7 @@ Navbar.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  panier: state.panier,
 
   // admin: state.admin,
 });

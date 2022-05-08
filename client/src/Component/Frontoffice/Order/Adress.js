@@ -10,7 +10,7 @@ function Address({addAddress}) {
 
 
     const [fromData, setFormData] = useState({
-        fullName: 'ddd',
+        fullName: '',
         phone: '',
         city:'',
         state: '',

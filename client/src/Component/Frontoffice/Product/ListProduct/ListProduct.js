@@ -112,7 +112,7 @@ const ListProduct =({GetPanier,AddPanier,GetProducts,Addwishlist ,panier:{panier
                   <div className="shop-p__meta-wrap u-s-m-b-60">
                     <span className="shop-p__meta-text-1">RESULTS</span>
                     <div className="shop-p__meta-text-2">
-                      <span >DEAL TYPE:</span>
+                      <span >DEAL TYPE :  </span>
                       <a className="gl-tag btn--e-brand-shadow" onClick={(e) => onChange1(e)}  value="UsedProduct" >UsedProduct</a>
                       <a className="gl-tag btn--e-brand-shadow" onClick={(e) => onChange2(e)}  value="Exchange"  >Exchange</a>
                       <a className="gl-tag btn--e-brand-shadow" onClick={(e) => onChange3(e)}  value="Donation" >Donation</a>

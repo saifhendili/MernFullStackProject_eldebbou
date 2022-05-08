@@ -14,7 +14,7 @@ function WishlistItem({DeleteWishlist, product:{_id,name,image,Category,price,pr
         <div class="w-r__wrap-1">
             <div class="w-r__img-wrap">
 
-                <img class="u-img-fluid" src={image} alt=""/></div>
+                <img class="u-img-fluid" src={`assetes/image/product/${image}`} alt=""/></div>
             <div class="w-r__info">
 
                 <span class="w-r__name">

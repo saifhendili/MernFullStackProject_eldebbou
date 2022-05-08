@@ -67,6 +67,12 @@ router.post("/", auth,async(req, res) => {
        `
       })
     :null)
+// newOrder.products.map((x)=>{
+  
+// let product = Product.findById(x.product)
+//    product.remove();
+
+// })
 
     me.Total=7;
     me.panier=[]

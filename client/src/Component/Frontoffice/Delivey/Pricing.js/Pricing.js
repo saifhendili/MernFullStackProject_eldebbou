@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Pricing() {
   return (
 <section>
-  <div class="container py-5 text-centre">
+  <div class="container py-5 ">
 
     <header class="text-center mb-5 text-white">
       <div class="row">
@@ -15,9 +15,9 @@ function Pricing() {
       </div>
     </header>
   
-<div className='col d-flex justify-content-center'>
+<div className='col justify-content-center'>
     <div class="row text-center center align-items-end">
-      <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="col-lg-6 mb-5 mb-lg-0">
         <div class="bg-white p-5 rounded-lg shadow">
           <h1 class="h6 text-uppercase font-weight-bold mb-4">Basic</h1>
           <h2 class="h1 font-weight-bold">Free<span class="text-small font-weight-normal ml-2">/ month</span></h2>
@@ -45,7 +45,7 @@ function Pricing() {
   
      
    
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="bg-white p-5 rounded-lg shadow">
           <h1 class="h6 text-uppercase font-weight-bold mb-4">Enterprise</h1>
           <h2 class="h1 font-weight-bold">$19<span class="text-small font-weight-normal ml-2">/ month</span></h2>

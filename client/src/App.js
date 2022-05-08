@@ -78,21 +78,21 @@ function App () {
     <Router>
     <Alert className='aaa' />
     <Navbar />
-    <Chatbott/>
+    <Chatbot/>
+    {/* <Chatbott/> */}
     <Routes>
        <Route exact path='/register' element={<Register/>} />
               <Route exact path='/login' element={<Login/>} />
                <Route path='/' element={<Home/>} />
                
                <Route exact path='/listquestion' element={<ListQuestion/>} />
-               <Route exact path='/Chatbot' element={<Chatbot/>} />
 
                
                <Route exact path='/listeuser' element={<ListeUser/>} />
                <Route exact path='/listeproduct' element={<ListProduct/>} />
                <Route path='/chat' element={<ContenuChat/>}/>
                <Route path="/myproduct" element={<DetailProduit/>} />
-               <Route path="/emotion" element={<PrivateRoute><Camera photoMode={mode} /></PrivateRoute>}/>
+               <Route path="/emotion" element={<Camera photoMode={mode} />}/>
 
             <Route path="/chatbot"element={<Chatbot/>} />
                {/* <PrivateRoute path='/payment' element={ <Elements stripe={promise}>

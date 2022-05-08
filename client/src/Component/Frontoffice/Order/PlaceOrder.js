@@ -125,7 +125,7 @@ function PlaceOrder(props) {
                   <Description>
                     <h4>{product.name}</h4>
 
-                    <p>₹ {product.price}</p>
+                    <p>usd {product.price}</p>
                   </Description>
                 </Product>
               ))}
@@ -145,7 +145,7 @@ function PlaceOrder(props) {
             value="1003"
             displayType="text"
             thousandSeparator={true}
-            prefix={"₹ "}
+            prefix={"usd "}
           />
 
           <button onClick={confirmPayment}>Place Order</button>

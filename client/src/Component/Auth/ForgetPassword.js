@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function ForgetPassword() {
     const [email,setEmail]=useState("")
@@ -81,7 +82,7 @@ this.email=""
                                             <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button></div>
                                         <div class="u-s-m-b-30">
 
-                                            <a class="gl-link" href="signin.html">Back to Login</a></div>
+                                            <Link class="gl-link" to="/login">Back to Login</Link></div>
                                     </form>
                                 </div>
                             </div>

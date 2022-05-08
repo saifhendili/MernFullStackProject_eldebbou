@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect,useState } from 'react';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import ChatBot from 'react-simple-chatbot';
@@ -7,8 +7,22 @@ import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";
 import { saveMessage } from '../../../actions/message_actions';
 function Chatbot() {
+    const [state, setbut] = useState(false);
+
+        // this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+     
+      
+    const toggle=()=>{
+        if(state){
+            setbut(false)
+        }else{
+            setbut(true)
+        }
+    }
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector(state => state.message.messages)
+
+
 
     useEffect(() => {
 
@@ -174,26 +188,37 @@ function Chatbot() {
 
     return (
 
-        <div>
+        <div className=''>
+              {state?
+        <Fragment>
+      
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
           {/* <Title level={2} >CHAT BOT APP&nbsp;<Icon type="robot" /></Title> */}
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-         
-        <div style={{
-            height: 700, width: 700,
-            border: '3px solid black', borderRadius: '7px'
+     
+
+        <div className='caintainerChatbot'  style={{
+            height: 490, width: 400,
+           borderRadius: '7px',
+           marginLeft:'65%',
+           marginBottom:'10%',
+        //    position: 'fixed',
+           backgroundColor:'#fafafa',
+           zIndex: 1
+
         }}>
-            <div style={{ height: 644, width: '100%', overflow: 'auto' }}>
+               <div className='chatbotintel-main'>ArtWeb ChatBot</div>
+            <div style={{ height: 420, width: '100%', overflow: 'auto' ,backgroundColor:'#fafafa'}}>
 
 
                 {renderMessage(messagesFromRedux)}
 
 
             </div>
-            <input
+            <input className='inputchatbot'
                 style={{
-                    margin: 0, width: '100%', height: 50,
+                     width: '100%', height: 50,
                     borderRadius: '4px', padding: '5px', fontSize: '1rem'
                 }}
                 placeholder="Send a message..."
@@ -202,6 +227,10 @@ function Chatbot() {
             />
 
         </div>
+        </div>
+        </Fragment> :null} 
+        <div  onClick={(e) => toggle()}className='imagechatbot'>
+            <img src="https://i.imgur.com/bnkA2ai.png" />
         </div>
     </div>
     )

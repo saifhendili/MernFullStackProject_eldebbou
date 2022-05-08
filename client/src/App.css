@@ -7,6 +7,7 @@
 .main-logo img{
   width: 200px !important;
 }
+
 .fixed{
   margin-left: 20%;
 }
@@ -185,4 +186,60 @@ body{
 
 .user-dashboard-info-box .candidates-list .thumb {
   margin-right: 20px;
+}
+
+
+.chatbotintel-main{
+border: 1px solid #42A5F5;
+background-color: #42A5F5;
+padding: 20px;
+font-family: 'Roboto', sans-serif;
+font-size: 18px;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+color:white;
+
+
+
+}
+.messagestyle{
+  align-self: flex-start;
+  background-color: #ffffff;
+  background-color: var(--df-messenger-bot-message);
+  margin:10px;
+  margin-right: 65px;
+  line-height: 1.4;
+  padding: 10px;
+  border-radius: 30px;
+  border: solid 1px #c0bebe;
+
+}
+.messagestyleUser{
+  margin:10px;
+  border: solid 1px #c0bebe;
+    align-self: flex-start;
+    background-color: #ffffff;
+    background-color: var(--df-messenger-bot-message);
+    margin-left: 230px;
+    line-height: 1.4;
+    padding: 10px;
+    border-radius: 30px;
+  
+}
+
+.caintainerChatbot{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: fixed;
+
+}
+.inputchatbot{
+  border: solid 1px #c0bebe;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+.imagechatbot img{
+  width: 70px;
+  position: fixed;
+  left:93%;
+  bottom:2%;
+  cursor: pointer;
 }
