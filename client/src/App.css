@@ -228,8 +228,8 @@ color:white;
 
 .caintainerChatbot{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  position: fixed;
-
+display: flex;
+flex-direction: column;
 }
 .inputchatbot{
   border: solid 1px #c0bebe;

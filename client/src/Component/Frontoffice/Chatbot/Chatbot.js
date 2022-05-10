@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect,useState } from 'react';
+import React, { Fragment, useEffect,useRef,useState } from 'react';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import ChatBot from 'react-simple-chatbot';
@@ -6,11 +6,18 @@ import Message from './Sections/Message';
 import { List, Icon, Avatar } from 'antd';
 import Card from "./Sections/Card";
 import { saveMessage } from '../../../actions/message_actions';
+import ScrollToBottom from 'react-scroll-to-bottom';
+
 function Chatbot() {
     const [state, setbut] = useState(false);
 
         // this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-     
+        const scrollRef = useRef();
+        useEffect(() => {
+            if (scrollRef && scrollRef.current /* + other conditions */) {
+          scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+          }, [Message]);
       
     const toggle=()=>{
         if(state){
@@ -202,9 +209,9 @@ function Chatbot() {
             height: 490, width: 400,
            borderRadius: '7px',
            marginLeft:'65%',
-           marginBottom:'10%',
-        //    position: 'fixed',
+           marginBottom:'15%',
            backgroundColor:'#fafafa',
+           position:'fixed',
            zIndex: 1
 
         }}>

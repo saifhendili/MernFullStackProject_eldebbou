@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  feeling: {
+    type: String,
+    default: "neutral",
+  },
   typeuser: {
     type: String,
     enum:["Premium","Normal"],

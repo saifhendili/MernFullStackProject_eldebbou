@@ -50,6 +50,18 @@ router.delete('/:id', async (req, res) => {
 
 
 
+router.put('/feeling/:feel',auth,async (req, res) => {
+  try {
+await User.findByIdAndUpdate({_id:req.user.id},{feeling:req.params.feel},{new:false});
+const me=await User.findById(req.user.id);
+
+res.json(me)
+
+} catch (err) {
+
+    res.status(500).send('Server Error');
+  }
+});
 
 router.post(
   '/',

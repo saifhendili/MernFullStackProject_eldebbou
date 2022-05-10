@@ -6,10 +6,17 @@ import Spinner from '../Spinner/Spinner';
 import { mapExpressionToEmoji } from '../../helpers/emojis';
 
 import './Results.css';
+import Axios from 'axios';
 
 const Results = ({ results, processing }) => {
   if (processing && results) {
     return <Spinner />;
+  }
+  if(!processing && results && results.length > 0){
+     (
+    results.map(x=>{   Axios.put(`/api/users/feeling/${(x.expressions.asSortedArray()[0].expression)}`)})
+
+    )
   }
   if (!processing && results && results.length > 0) {
     return (
