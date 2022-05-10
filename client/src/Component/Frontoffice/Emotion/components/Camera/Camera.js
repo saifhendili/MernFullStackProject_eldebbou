@@ -34,7 +34,7 @@ const Camera = ({ photoMode }) => {
   };
 
   useEffect(() => {
-    if (!photoMode && camera !== null) {
+    if (photoMode && camera !== null) {
       const ticking = setInterval(async () => {
         await getFaces();
       }, 80);

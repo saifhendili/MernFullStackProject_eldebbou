@@ -74,11 +74,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  //when disconnect
-  socket.on("disconnect", (userId) => {
-    addUser(userId, socket.id);
-    io.emit("getUsers", users);
-  });
+
 });
 
 
