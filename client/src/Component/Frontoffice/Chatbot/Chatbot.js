@@ -185,7 +185,7 @@ function Chatbot() {
 
         if (returnedMessages) {
             return returnedMessages.map((message, i) => {
-                return renderOneMessage(message, i);
+               return  renderOneMessage(message, i);
             })
         } else {
             return null;
@@ -202,27 +202,18 @@ function Chatbot() {
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
           {/* <Title level={2} >CHAT BOT APP&nbsp;<Icon type="robot" /></Title> */}
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className='fixedallchatbot'>
      
 
-        <div className='caintainerChatbot'  style={{
-            height: 490, width: 400,
-           borderRadius: '7px',
-           marginLeft:'65%',
-           marginBottom:'15%',
-           backgroundColor:'#fafafa',
-           position:'fixed',
-           zIndex: 1
-
-        }}>
+    
                <div className='chatbotintel-main'>ArtWeb ChatBot</div>
-            <div style={{ height: 420, width: '100%', overflow: 'auto' ,backgroundColor:'#fafafa'}}>
+               <ScrollToBottom className='caintainerChatbot'>
 
 
                 {renderMessage(messagesFromRedux)}
 
 
-            </div>
+            </ScrollToBottom>
             <input className='inputchatbot'
                 style={{
                      width: '100%', height: 50,
@@ -233,7 +224,6 @@ function Chatbot() {
                 type="text"
             />
 
-        </div>
         </div>
         </Fragment> :null} 
         <div  onClick={(e) => toggle()}className='imagechatbot'>

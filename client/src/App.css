@@ -1,6 +1,4 @@
-.chatbot{
-  margin-left: 70%;
-}
+
 .perso_nav_dim{
   margin-left: 30px;  
 }
@@ -199,7 +197,6 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 color:white;
 
 
-
 }
 .messagestyle{
   align-self: flex-start;
@@ -225,11 +222,21 @@ color:white;
     border-radius: 30px;
   
 }
-
-.caintainerChatbot{
+.fixedallchatbot{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-display: flex;
-flex-direction: column;
+  margin-left:75%;
+  position: absolute;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  height: 370px;
+  width: 300px;
+  justify-content: center;
+}
+.caintainerChatbot{
+  height: 280px;
+  width: 300px;
+  background-color: white;
+
 }
 .inputchatbot{
   border: solid 1px #c0bebe;
