@@ -225,8 +225,8 @@ color:white;
 .fixedallchatbot{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-left:75%;
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  bottom:10%;  z-index: 1;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   height: 370px;
   width: 300px;
@@ -249,4 +249,5 @@ color:white;
   left:93%;
   bottom:2%;
   cursor: pointer;
+  z-index: 2;
 }

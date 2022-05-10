@@ -52,6 +52,7 @@
     "socket.io-client": "^4.5.0",
     "stripe": "^8.215.0",
     "styled-components": "^5.3.5",
+    "sweetalert": "^2.1.2",
     "timeago.js": "^4.0.2",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"

@@ -7,6 +7,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Spinner from "../../Layout/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 
 import { SetAlert } from "../../../actions/alert";
@@ -45,31 +46,46 @@ function PlaceOrder(props) {
       .then((result) => {
        console.log(JSON.stringify(result)+"sssssssssss") 
      if(result.paymentIntent.status="succeeded"){
+
       axios.post("/api/order/", {
         address: props.order.address,
       });
+
+      swal("Good job!", "Your Order Has Succesfully Passed!", "success");
+
+      swal("Can You Open Your Camera To Detect Your Emotion?", {
+        buttons: {
+          cancel: "Run away!",
+          catch: {
+            text: "Ok!",
+            value: "catch",
+          }
+        },
+      })
+      .then((value) => {
+        switch (value) {
+       
+          case "defeat":
+            swal("Pikachu fainted! You gained 500 XP!");
+            break;
+       
+          case "catch":
+            swal("Gotcha!", "Show Us Your State!", "success");
             navigate("/emotion");
+            break;
+       
+        }
+      });
+
+
 
      } else{
 
-      switch (result.paymentIntent.status) {
-        // case "succeeded":
-        //   showMessage("Payment succeeded!");
-        //   break;
-        case "processing":
-          alert("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          alert("Your payment was not successful, please try again.");
-          break;
-        default:
-          alert("Something went wrong.");
-          break;
-      }     }
+      swal("OHH NOOO!", "Please Verify Your Information!", "error");    }
       
       })
-      .catch((err) => alert(JSON.stringify(err.status)));
-    
+      .catch((err) => swal("OHH NOOO!", "Please Verify Your Information!", "error") );
+  
 
   };
 
